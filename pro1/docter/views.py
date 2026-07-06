@@ -42,7 +42,7 @@ def docter_profile_settings(request):
     return render(request, 'docter_profile_settings.html')
 
 def docter_specialties(request):
-    return render(request, 'docter_specialties.html')
+    return render(request, 'docter_speclities.html')
 
 def invoice(request):
     return render(request, 'invoice.html')
