@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
+from . import urls
 
 from pro1 import settings
 from .models import Register
@@ -78,8 +79,6 @@ def Registr(req):
     return render(req,'Register.html')
 
 
-def patient_dashboard(req):
-    return render(req,"patient_dashboard.html")
 
 def docter_Registr(req):
     return render(req,'doctor_registration.html')
