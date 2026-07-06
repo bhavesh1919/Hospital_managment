@@ -22,6 +22,7 @@ from . import views
 
 urlpatterns = [
     
+    
     path('account/', views.account, name='account'),
     path('appointment/', views.Appointment, name='appointment'),
     path('available_timming/', views.avilable_timming, name='avilable_timming'),

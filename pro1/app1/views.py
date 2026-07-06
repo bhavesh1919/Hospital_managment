@@ -84,9 +84,6 @@ def patient_dashboard(req):
 def docter_Registr(req):
     return render(req,'doctor_registration.html')
 
-def docter_Dash(req):
-    return render(req,'docter_dashboard.html')
-
 def about_us(req):
     return render(req,'about-us.html')
 

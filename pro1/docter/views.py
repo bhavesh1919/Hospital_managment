@@ -7,6 +7,9 @@ from . import urls
 def docter_Dash(req):
     return render(req,'docter_dashboard.html')
 
+# def docter_Dash(req):
+#     return render(req,'docter_dashboard.html')
+
 def Appointment(req):
     return render(req,"appointments.html")
 
