@@ -12,7 +12,7 @@ def patients_appointment(request):
 
 
 def patient_account(request):
-    return render(request, 'patient_account.html')
+    return render(request, 'patient_Account.html')
 
 
 def patient_invoice(request):

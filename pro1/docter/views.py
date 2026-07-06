@@ -19,7 +19,6 @@ def docter_request(req):
 def avilable_timming(req):
     return render(req,"avilable_timming.html")
 
-
 def account(request):
     return render(request, 'account.html')
 
