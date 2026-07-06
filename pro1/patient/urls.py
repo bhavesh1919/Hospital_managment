@@ -20,13 +20,5 @@ from app1 import views
 
 urlpatterns = [
     
-    path('',views.index),
-    path('login/',views.Login),
-    path('register/',views.Registr),
-   path('docter_Registr/',views.docter_Registr), 
-   path('docter_dash/',views.docter_Dash),
-   path('about-us/',views.about_us),
-   path('contact/',views.contact),
-   path('admin_dash/',views.admin_dash),
-   path('patient',views.patient_dashboard),
+   
 ]
