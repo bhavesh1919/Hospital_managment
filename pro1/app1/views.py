@@ -29,7 +29,23 @@ def Login(req):
 
         if user is not None:
             login(req,user)
-            return redirect('/')
+            try:
+                profile =Profile.objects.get(user=user)
+
+                if profile.role=='Docter':
+                    return redirect("/docter_dash")
+
+                elif profile.role=='Pateint':
+                    return redirect("/patient/")
+                
+                else:
+                    return redirect('/')
+
+            except Profile.DoesNotExist:
+                messages.error(req,"profile not found")
+                return redirect("/login")
+        
+            #return redirect('/')
         
         else:
             messages.error(req,"Bed credentail")
@@ -39,7 +55,7 @@ def Login(req):
 
 
 def Logout(req):    
-    logout(messages)
+    logout(req)
     messages.success(req,"you are successful logout")
     return redirect("/")
     
@@ -59,11 +75,11 @@ def Registr(req):
             return redirect("/login")
 
         user = User.objects.create_user(username,email,password)
-        profile = Profile.objects.get(user=user)
-        profile.role=role
         user.first_name=fname
         user.last_name=lname
         user.save()
+
+        profile = Profile.objects.create(user=user,role=role)
         profile.save()
         
 
@@ -80,12 +96,12 @@ def Registr(req):
 
        #welcom email
 
-        subject="welcome to Hospital Managment system"
-        message="Hello"+myuser.first_name+myuser.last_name+"\n"+"welcome\n "+"your are succesfully Regiter in our system"
-        from_email=info.EMAIL_HOST_USER
-        to_list=[myuser.email]
-        print(myuser.email)
-        send_mail(subject,message,from_email,to_list,fail_silently=False)
+        # subject="welcome to Hospital Managment system"
+        # message="Hello"+myuser.first_name+myuser.last_name+"\n"+"welcome\n "+"your are succesfully Regiter in our system"
+        # from_email=info.EMAIL_HOST_USER
+        # to_list=[myuser.email]
+        # print(myuser.email)
+        # send_mail(subject,message,from_email,to_list,fail_silently=False)
 
         # register = Register.objects.create(name=name,phone=phone,email=email,password=password)
 

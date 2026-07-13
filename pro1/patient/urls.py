@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     
-   path('patient',views.patient_dashboard),
+   path('patient/',views.patient_dashboard),
    
     path('patients_appointment/', views.patients_appointment, name='patients_appointment'),
 
