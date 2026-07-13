@@ -4,8 +4,6 @@
 	
 <!-- Mirrored from doccure.dreamstechnologies.com/html/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:02:18 GMT -->
 <head>
-
-
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" >
 		<meta name="description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
@@ -346,25 +344,25 @@
 													<div class="col-lg-4 sub-menu-left">
 														<ul class="sub-menu-list">
 															<li><a href="/patient">Patient Dashboard</a></li>
-															<li><a href="map-grid.html">Doctors Grid</a></li>
+															<!-- <li><a href="map-grid.html">Doctors Grid</a></li>
 															<li><a href="map-list.html">Doctors List</a></li>
 															<li><a href="map-list-availability.html">Doctors Availability</a></li>
 															<li><a href="booking.html">Booking</a></li>
 															<li><a href="booking-1.html">Booking 1</a></li>
 															<li><a href="booking-2.html">Booking 2</a></li>
-															<li><a href="booking-popup.html">Booking Popup</a></li>
+															<li><a href="booking-popup.html">Booking Popup</a></li> -->
 														</ul>
 													</div>
 													<div class="col-lg-4">
 														<ul class="sub-menu-list">
-															<li><a href="search.html">Search Doctor 1</a></li>
+															<!-- <li><a href="search.html">Search Doctor 1</a></li>
 															<li><a href="search-2.html">Search Doctor 2</a></li>
 															<li><a href="doctor-profile.html">Doctor Profile 1</a></li>
 															<li><a href="doctor-profile-2.html">Doctor Profile 2</a></li>
 															<li><a href="checkout.html">Checkout</a></li>
 															<li><a href="favourites.html">Favourites</a></li>
 															<li><a href="chat.html">Chat</a></li>
-															<li><a href="profile-settings.html">Profile Settings</a></li>
+															<li><a href="profile-settings.html">Profile Settings</a></li> -->
 														</ul>
 													</div>
 													<div class="col-lg-4">
@@ -523,7 +521,20 @@
 							</div>
 						</div>
 
+					
+						
+
 						<ul class="nav header-navbar-rht">
+							{% if user.is_authenticated %}
+
+							<li>
+								<a href="/logout/" class="btn btn-md btn-primary-gradient">
+									<i class="isax isax-lock-1 me-2"></i><span>Log out</span> 
+								</a>
+							</li>
+							
+							{% else %}
+
 							<li>
 								<a href="/login/" class="btn btn-md btn-primary-gradient">
 									<i class="isax isax-lock-1 me-2"></i><span>Sign Up</span> 
@@ -534,6 +545,8 @@
 									<i class="isax isax-user-tick me-2"></i><span>Register</span> 
 								</a>
 							</li>
+
+							{% endif %}
 							<!-- <li>
 								<a href="#" role="button" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item" aria-label="about">
 									<i class="isax isax-menu5"></i>

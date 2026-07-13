@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 
 from pro1 import info
+from .models import Profile,Docter,Patient
 from django.core.mail import send_mail
 
 
@@ -37,7 +38,7 @@ def Login(req):
     return render(req,'login.html')
 
 
-def logout(req):    
+def Logout(req):    
     logout(messages)
     messages.success(req,"you are successful logout")
     return redirect("/")
@@ -50,16 +51,29 @@ def Registr(req):
         #phone=req.POST.get('Phone')
         email=req.POST.get('Email')
         password=req.POST.get('Password')
+        role = req.POST.get('role')
 
 
         if User.objects.filter(username=username):
             messages.error(req," user will be alredy exists")
             return redirect("/login")
 
-        myuser = User.objects.create_user(username,email,password)
-        myuser.first_name=fname
-        myuser.last_name=lname
-        myuser.save()
+        user = User.objects.create_user(username,email,password)
+        profile = Profile.objects.get(user=user)
+        profile.role=role
+        user.first_name=fname
+        user.last_name=lname
+        user.save()
+        profile.save()
+        
+
+
+        if profile.role == 'Docter':
+            er = Docter.objects.create(profile=profile)
+            er.save()
+        else:
+            ee = Patient.objects.create(profile=profile)
+            ee.save()
 
         messages.success(req,"registration will be successfully")
 
