@@ -14,6 +14,9 @@ def patients_appointment(request):
 def patient_account(request):
     return render(request, 'patient_Account.html')
 
+def patient_profile(request):
+    return render(request, 'patient_profile.html')
+
 
 def patient_invoice(request):
     return render(request, 'patient_invoice.html')

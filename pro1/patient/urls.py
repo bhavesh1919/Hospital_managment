@@ -35,4 +35,6 @@ urlpatterns = [
     path('favourites/', views.favourites, name='favourites'),
 
     path('dependent/', views.dependent, name='dependent'),
+
+    path("patient_profile/",views.patient_profile),
 ]

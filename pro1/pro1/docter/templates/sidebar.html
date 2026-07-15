@@ -1,0 +1,169 @@
+{% load static %}
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                </head>
+                <body>
+
+
+                                    
+                <!-- Profile Sidebar -->
+						<div class="profile-sidebar doctor-sidebar profile-sidebar-new">
+    <div class="widget-profile pro-widget-content">
+        <div class="profile-info-widget">
+            <a href="#" class="booking-doc-img">
+                <img src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}" alt="User Image">
+            </a>
+            <div class="profile-det-info">
+                <h3><a href="#">Dr Edalin Hendry</a></h3>
+                <div class="patient-details">
+                    <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+                </div>
+                <span class="badge doctor-role-badge">
+                    <i class="fa-solid fa-circle"></i>Dentist
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="doctor-available-head">
+        <div class="input-block input-block-new">
+            <label class="form-label">
+                Availability <span class="text-danger">*</span>
+            </label>
+            <select class="select form-control">
+                <option>I am Available Now</option>
+                <option>Not Available</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="dashboard-widget">
+        <nav class="dashboard-menu">
+            <ul>
+
+                <li class="active">
+                    <a href="{% url 'docter_dash' %}">
+                        <i class="isax isax-category-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'request' %}">
+                        <i class="isax isax-clipboard-tick"></i>
+                        <span>Requests</span>
+                        <small class="unread-msg">2</small>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'appointment' %}">
+                        <i class="isax isax-calendar-1"></i>
+                        <span>Appointments</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/available_timming/">
+                        <i class="isax isax-calendar-tick"></i>
+                        <span>Available Timings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'my_patients' %}">
+                        <i class="fa-solid fa-user-injured"></i>
+                        <span>My Patients</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/docter_specialties">
+                        <i class="isax isax-clock"></i>
+                        <span>Specialties & Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'review' %}">
+                        <i class="isax isax-star-1"></i>
+                        <span>Reviews</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'account' %}">
+                        <i class="isax isax-profile-tick"></i>
+                        <span>Accounts</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'invoice' %}">
+                        <i class="isax isax-document-text"></i>
+                        <span>Invoices</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'docter_payment' %}">
+                        <i class="fa-solid fa-money-bill-1"></i>
+                        <span>Payout Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'chat' %}">
+                        <i class="isax isax-messages-1"></i>
+                        <span>Message</span>
+                        <small class="unread-msg">7</small>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'docter_blog' %}">
+                        <i class="isax isax-grid-5"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'docter_profile_settings' %}">
+                        <i class="isax isax-setting-2"></i>
+                        <span>Profile Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Social Media</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'docter_change_password' %}">
+                        <i class="isax isax-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/">
+                        <i class="isax isax-logout"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+						</div>
+<!-- /Profile Sidebar -->
+                    
+                </body>
+                </html>
