@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import urls
+from app1.models import Patient,Profile
+from datetime import datetime
 
 # Create your views here.
 
@@ -14,8 +16,50 @@ def patients_appointment(request):
 def patient_account(request):
     return render(request, 'patient_Account.html')
 
+
 def patient_profile(request):
-    return render(request, 'patient_profile.html')
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == "POST":
+        profile_photo = request.FILES.get("img")
+        fname = request.POST.get("fname")
+        lname = request.POST.get("lname")
+        dob = request.POST.get("dob")
+
+        if dob:
+            dob = datetime.strptime(dob, "%d/%m/%Y").date()
+
+        phone = request.POST.get("phone")
+        email = request.POST.get("email")
+        blood = request.POST.get("blood")
+        address = request.POST.get("address")
+        city = request.POST.get("city")
+        state = request.POST.get("state")
+        pincode = request.POST.get("pincode")
+
+        patient, created = Patient.objects.get_or_create(profile=profile)
+
+        patient.profile_photo = profile_photo
+        patient.fname = fname
+        patient.lname = lname
+        patient.dob = dob
+        patient.phone = phone
+        patient.email = email
+        patient.blood = blood
+        patient.address = address
+        patient.city = city
+        patient.state = state
+        patient.pincode = pincode
+
+        patient.save()
+
+        return redirect("patient_profile")
+
+    p = Patient.objects.filter(profile=profile).first()
+
+    return render(request, "patient_profile.html", {
+        "p": p
+    })
 
 
 def patient_invoice(request):

@@ -136,3 +136,8 @@ EMAIL_HOST_USER = 'thakorking1231@gmail.com'
 EMAIL_HOST_PASSWORD = 'gopj rxhf kujc gmmf'
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+import os
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
