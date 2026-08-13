@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from . import urls
-from app1.models import Patient,Profile
+from app1.models import Patient,Profile,Docter
+from docter.models import Availability
+from .models import appointment
 from datetime import datetime
 
 # Create your views here.
@@ -10,7 +12,14 @@ def patient_dashboard(req):
 
 
 def patients_appointment(request):
-    return render(request, 'patients_appointment.html')
+    doctors = Docter.objects.all()
+   
+    # appoinent = appointment.objects.filter(patient=Patient)
+    availability = Availability.objects.filter(
+        status="Available"
+    ).select_related("doctor")
+
+    return render(request, 'patients_appointment.html',{"availability": availability})
 
 
 def patient_account(request):
@@ -92,3 +101,20 @@ def sidear(request):
 
 
     return render(request,"sidebar.html" ,{"p":p})
+
+def book_appointment(request, id):
+    slot = Availability.objects.get(id=id)
+
+    patient =Patient.objects.get(profile__user = request.user)
+    doctor_obj = Docter.objects.get(profile__user=slot.doctor)
+    print
+
+    appointment.objects.create(
+       patient=patient,
+        docter=doctor_obj,
+        appointment=slot,
+        appointment_day=slot.day,
+        status="Pending"
+    )
+
+    return redirect("/patient/")

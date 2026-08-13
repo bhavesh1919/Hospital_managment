@@ -37,4 +37,7 @@ urlpatterns = [
     path('dependent/', views.dependent, name='dependent'),
 
     path("patient_profile/", views.patient_profile, name="patient_profile"),
+
+    path('book_appointment/<int:id>/', views.book_appointment, name='book_appointment'),
+
 ]

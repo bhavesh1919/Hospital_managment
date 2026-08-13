@@ -205,767 +205,107 @@
 							<div class="tab-content appointment-tab-content">
 								<div class="tab-pane fade show active" id="pills-upcoming" role="tabpanel" aria-labelledby="pills-upcoming-tab">
 									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-21.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0001</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr Edalin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>11 Nov 2024 10.45 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>edalin@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 504 368 6874</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+{% for slot in availability %}
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-13.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0002</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.Shanta</a><span class="badge new-tag">New</span></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>05 Nov 2024 11.50 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Audio Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>shanta@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 832 891 8403</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+<div class="appointment-wrap">
+    <ul>
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-14.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0003</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.John</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>27 Oct 2024 09.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>john@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 749 104 6291</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+        <li>
+            <div class="patinet-information">
+                <a href="#">
+                    <img src="{% static 'assets/img/doctors/doctor-thumb-21.jpg' %}" alt="Doctor">
+                </a>
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-15.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0004</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.Susan</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>18 Oct 2024 12.20 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Direct Visit</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>susan@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 584 920 7183</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+                <div class="patient-info">
+                    <p>#{{ slot.id }}</p>
+                    <h6>
+                        <a href="#">
+                            Dr. {{ slot.doctor.username }}
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </li>
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-16.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0005</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.Juliet</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>10 Oct 2024 11.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>juliet@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 059 327 6729</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+        <li class="appointment-info">
+            <p>
+                <i class="isax isax-clock5"></i>
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-17.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0006</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.Joseph</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>26 Sep 2024 10.20 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>joseph@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 278 402 7103</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+                {{ slot.day }}
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-18.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0007</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.Victoria</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>14 Sep 2024 08.10 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>victoria@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 638 278 0249</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+                {{ slot.start_time }}
 
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-upcoming-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-19.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0008</p>
-														<h6><a href="patient-upcoming-appointment.html">Dr.Benjamin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>03 Sep 2024 06.00 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>benjamin@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 261 039 1873</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="patient-upcoming-appointment.html"><i class="isax isax-eye4"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-messages-25"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="isax isax-close-circle5"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+                -
 
-									<!-- Pagination -->
-									<div class="pagination dashboard-pagination">
-										<ul>
-											<li>
-												<a href="#" class="page-link prev">Prev</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">1</a>
-											</li>
-											<li>
-												<a href="#" class="page-link active">2</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">3</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">4</a>
-											</li>
-											<li>
-												<a href="#" class="page-link next">Next</a>
-											</li>
-										</ul>
-									</div>
+                {{ slot.end_time }}
+            </p>
+
+            <ul class="d-flex apponitment-types">
+                <li>Available</li>
+                <li>₹ {{ slot.fee }}</li>
+            </ul>
+        </li>
+
+        <li class="mail-info-patient">
+            <ul>
+                <li>
+                    <i class="isax isax-sms5"></i>
+                    {{ slot.doctor.email }}
+                </li>
+
+                <li>
+                    <i class="isax isax-call5"></i>
+                    --
+                </li>
+            </ul>
+        </li>
+
+        <li class="appointment-action">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="isax isax-eye4"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="appointment-detail-btn">
+
+            <a href="{% url 'book_appointment' slot.id %}"
+               class="btn btn-md btn-primary-gradient">
+
+                Book Appointment
+
+            </a>
+
+        </li>
+
+    </ul>
+</div>
+
+{% empty %}
+
+<div class="appointment-wrap">
+    <h3 class="text-center">
+        No Doctor Available
+    </h3>
+</div>
+
+{% endfor %}
+
+<div class="pagination dashboard-pagination">
+    <ul>
+        <li><a href="#" class="page-link prev">Prev</a></li>
+        <li><a href="#" class="page-link active">1</a></li>
+        <li><a href="#" class="page-link next">Next</a></li>
+    </ul>
+</div>
 									<!-- /Pagination -->
 
 								</div>
-								<div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-21.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt00011</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr Edalin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>11 Nov 2024 10.45 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>edalin@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 504 368 6874</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-13.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0002</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.Shanta</a><span class="badge new-tag">New</span></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>05 Nov 2024 11.50 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Audio Call</li>
-												</ul>
-												
-											</li>
-											
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>shanta@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 832 891 8403</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-14.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0003</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.John</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>27 Oct 2024 09.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>john@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 749 104 6291</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-15.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0004</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.Susan</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>18 Oct 2024 12.20 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Direct Visit</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>susan@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 584 920 7183</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-16.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0005</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.Juliet</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>10 Oct 2024 11.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>juliet@example.com
-													</li>
-													<li><i class="isax isax-call5"></i>+1 059 327 6729
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-17.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0006</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.Joseph</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>26 Sep 2024 10.20 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>joseph@example.com
-													</li>
-													<li><i class="isax isax-call5"></i>+1 278 402 7103
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-18.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0007</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.Victoria</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>14 Sep 2024 08.10 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>victoria@example.com
-													</li>
-													<li><i class="isax isax-call5"></i>+1 059 327 6729
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-cancelled-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-19.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0008</p>
-														<h6><a href="patient-cancelled-appointment.html">Dr.Benjamin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>03 Sep 2024 06.00 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="isax isax-sms5"></i>benjamin@example.com</li>
-													<li><i class="isax isax-call5"></i>+1 261 039 1873</li>
-												</ul>
-											</li>	
-											<li class="appointment-detail-btn">
-												<a href="patient-cancelled-appointment.html" class="btn btn-md btn-primary-gradient"><i class="isax isax-calendar-tick5 me-1"></i>Reschedule</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Pagination -->
-									<div class="pagination dashboard-pagination">
-										<ul>
-											<li>
-												<a href="#" class="page-link prev">Prev</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">1</a>
-											</li>
-											<li>
-												<a href="#" class="page-link active">2</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">3</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">4</a>
-											</li>
-											<li>
-												<a href="#" class="page-link">...</a>
-											</li>
-											<li>
-												<a href="#" class="page-link next">Next</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Pagination -->
-								</div>
-								<div class="tab-pane fade" id="pills-complete" role="tabpanel" aria-labelledby="pills-complete-tab">
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-21.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0001</p>
-														<h6><a href="patient-completed-appointment.html">Dr Edalin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>11 Nov 2024 10.45 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#add_review">Add Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
+							
+			
 										<ul>
 											<li>
 												<div class="patinet-information">
@@ -994,206 +334,8 @@
 												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
 											</li>
 										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-14.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0003</p>
-														<h6><a href="patient-completed-appointment.html">Dr.John</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>27 Oct 2024 09.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#view_review">View Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-15.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0004</p>
-														<h6><a href="patient-completed-appointment.html">Dr.Susan</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>18 Oct 2024 12.20 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Direct Visit</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#view_review">View Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-16.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0005</p>
-														<h6><a href="patient-completed-appointment.html">Dr.Juliet</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>10 Oct 2024 11.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#view_review">View Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-17.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0006</p>
-														<h6><a href="patient-completed-appointment.html">Dr.Joseph</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>26 Sep 2024 10.20 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#view_review">View Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-18.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0007</p>
-														<h6><a href="patient-completed-appointment.html">Dr.Victoria</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>14 Sep 2024 08.10 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#view_review">View Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="patient-completed-appointment.html">
-														<img src="{% static 'assets/img/doctors/doctor-thumb-19.jpg' %}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0008</p>
-														<h6><a href="patient-completed-appointment.html">Dr.Benjamin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="isax isax-clock5"></i>03 Sep 2024 06.00 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li>
-												<a href="#" class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#view_review">View Review</a>
-											</li>
-											<li class="appointment-detail-btn d-flex align-items-center gap-3 flex-wrap">
-												<a href="map-grid.html" class="btn btn-md btn-dark">Book Again<i class="isax isax-arrow-right-3 ms-1"></i></a>
-												<a href="patient-completed-appointment.html" class="btn btn-md btn-primary-gradient">View Details<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
+								
+							
 
 									<!-- Pagination -->
 									<div class="pagination dashboard-pagination">

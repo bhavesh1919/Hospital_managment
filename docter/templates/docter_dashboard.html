@@ -77,136 +77,78 @@
 											<div class="table-responsive">
 												<table class="table dashboard-table appoint-table">
 													<tbody>
+														
 														<tr>
+															{% for appointment in appointment %}
 															<td>
 																<div class="patient-info-profile">
 																	<a href="appointments.html" class="table-avatar">
-																		<img src="{% static 'assets/img/doctors-dashboard/profile-01.jpg' %}" alt="Img">
-																	</a>
-																	<div class="patient-name-info">
-																		<span>#Apt0001</span>
-																		<h5><a href="appointments.html">Adrian Marshall</a></h5>
-																	</div>
-																</div>
-																
-															</td>
-															<td>
-																<div class="appointment-date-created">
-																	<h6>11 Nov 2024 10.45 AM</h6>
-																	<span class="badge table-badge">General</span>
-																</div>
-															</td>
-															<td>
-																<div class="apponiment-actions d-flex align-items-center">
-																	<a href="#" class="text-success-icon me-2"><i class="fa-solid fa-check"></i></a>
-																	<a href="#" class="text-danger-icon"><i class="fa-solid fa-xmark"></i></a>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="patient-info-profile">
-																	<a href="appointments.html" class="table-avatar">
-																		<img src="{% static 'assets/img/doctors-dashboard/profile-02.jpg' %}" alt="Img">
-																	</a>
-																	<div class="patient-name-info">
-																		<span>#Apt0002</span>
-																		<h5><a href="appointments.html">Kelly Stevens</a></h5>
-																	</div>
-																</div>
-																
-															</td>
-															<td>
-																<div class="appointment-date-created">
-																	<h6>10 Nov 2024 11.00 AM</h6>
-																	<span class="badge table-badge">Clinic Consulting</span>
-																</div>
-															</td>
-															<td>
-																<div class="apponiment-actions d-flex align-items-center">
-																	<a href="#" class="text-success-icon me-2"><i class="fa-solid fa-check"></i></a>
-																	<a href="#" class="text-danger-icon"><i class="fa-solid fa-xmark"></i></a>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="patient-info-profile">
-																	<a href="appointments.html" class="table-avatar">
-																		<img src="{% static 'assets/img/doctors-dashboard/profile-03.jpg' %}" alt="Img">
-																	</a>
-																	<div class="patient-name-info">
-																		<span>#Apt0003</span>
-																		<h5><a href="appointments.html">Samuel Anderson</a></h5>
-																	</div>
-																</div>
-																
-															</td>
-															<td>
-																<div class="appointment-date-created">
-																	<h6>03 Nov 2024 02.00 PM</h6>
-																	<span class="badge table-badge">General</span>
-																</div>
-															</td>
-															<td>
-																<div class="apponiment-actions d-flex align-items-center">
-																	<a href="#" class="text-success-icon me-2"><i class="fa-solid fa-check"></i></a>
-																	<a href="#" class="text-danger-icon"><i class="fa-solid fa-xmark"></i></a>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="patient-info-profile">
-																	<a href="appointments.html" class="table-avatar">
+																		{% if appointment.patient.profile_photo %}
+																		<img src="{{appointment.patient.profile.photo.url}}" alt="" >
+																		{% else%}
 																		<img src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}" alt="Img">
+																		{% endif %}
 																	</a>
 																	<div class="patient-name-info">
 																		<span>#Apt0004</span>
-																		<h5><a href="appointments.html">Catherine Griffin</a></h5>
+																		<h5><a href="#">{{appointment.patient.fname}}
+																						{{appointment.patient.lname}}
+																		</a></h5>
 																	</div>
 																</div>
 																
 															</td>
 															<td>
 																<div class="appointment-date-created">
-																	<h6>01 Nov 2024 04.00 PM</h6>
+																	<h6>{{ appointment.appointment_day }}</h6>
 																	<span class="badge table-badge">Clinic Consulting</span>
+																	<span class="badge"> {{ appointment.status }}</span>
+																	{% if appointment.status == "Pending" %}
+																	<span class="badage table-badge">
+																		pending
+																	</span>
+																	{% elif appointment.status == "Approved"%}
+																	<span class="badage table-badge">
+																		pending
+																	</span>
+																	{% elif appointment.status == "Rejected"%}
+																	<span class="badage table-badge">
+																		rejected
+																	</span>
+																	{% elif appointment.status == "Completed"%}
+																	<span class="badage table-badge">
+																		Completed
+																	</span>
+																	{% endif %}
+    
 																</div>
 															</td>
 															<td>
 																<div class="apponiment-actions d-flex align-items-center">
-																	<a href="#" class="text-success-icon me-2"><i class="fa-solid fa-check"></i></a>
-																	<a href="#" class="text-danger-icon"><i class="fa-solid fa-xmark"></i></a>
+																	{% if appointment.status == "Pending"%}
+																	<a href="{% url 'approve_appointment' appointment.id %}" class="text-success-icon"><i class="fa-solid fa-check"></i></a>
+																	
+												
+																	<a href="{% url 'reject_appointment' appointment.id%}" class="text-success-icon me-2"><i class="fa-solid fa-xmark"></i></i></a>
+																	{% elif appointment.status == "Approved" %}
+																	<span class="badge bg-success">  Accepted</span>
+
+																	 {% elif appointment.status == "Rejected" %}
+
+            														<span class="badge bg-danger"> Rejected </span>
+               
+																	 {% endif %}
+
+																	
 																</div>
 															</td>
+															
 														</tr>
-														<tr>
-															<td>
-																<div class="patient-info-profile">
-																	<a href="appointments.html" class="table-avatar">
-																		<img src="{% static 'assets/img/doctors-dashboard/profile-05.jpg' %}" alt="Img">
-																	</a>
-																	<div class="patient-name-info">
-																		<span>#Apt0005</span>
-																		<h5><a href="appointments.html">Robert Hutchinson</a></h5>
-																	</div>
-																</div>
-																
-															</td>
-															<td>
-																<div class="appointment-date-created">
-																	<h6>28 Oct 2024 05.30 PM</h6>
-																	<span class="badge table-badge">General</span>
-																</div>
-															</td>
-															<td>
-																<div class="apponiment-actions d-flex align-items-center">
-																	<a href="#" class="text-success-icon me-2"><i class="fa-solid fa-check"></i></a>
-																	<a href="#" class="text-danger-icon"><i class="fa-solid fa-xmark"></i></a>
-																</div>
-															</td>
-														</tr>
+														    <tr>
+        														<td colspan="3">No appointments found. </td>
+															 </tr>
+   
+														{% endfor %}
 													</tbody>
 												</table>
 											</div>

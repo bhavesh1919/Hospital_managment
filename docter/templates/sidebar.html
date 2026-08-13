@@ -12,23 +12,36 @@
                                     
                 <!-- Profile Sidebar -->
 						<div class="profile-sidebar doctor-sidebar profile-sidebar-new">
-    <div class="widget-profile pro-widget-content">
-        <div class="profile-info-widget">
-            <a href="#" class="booking-doc-img">
-                <img src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}" alt="User Image">
-            </a>
-            <div class="profile-det-info">
-                <h3><a href="#">Dr Edalin Hendry</a></h3>
-                <div class="patient-details">
-                    <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
-                </div>
-                <span class="badge doctor-role-badge">
-                    <i class="fa-solid fa-circle"></i>Dentist
-                </span>
-            </div>
+    <div class="profile-info-widget">
+
+    <a href="#" class="booking-doc-img">
+
+        {% if doctor and doctor.profile_image %}
+            <img src="{{ doctor.profile_image.url }}" alt="Doctor">
+        {% else %}
+            <img src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}" alt="Doctor">
+        {% endif %}
+
+    </a>
+
+    <div class="profile-det-info">
+
+        <h3>
+            Dr. {{ doctor.first_name }} {{ doctor.last_name }}
+        </h3>
+
+        <div class="patient-details">
+            <h5 class="mb-0">{{ doctor.designation }}</h5>
         </div>
+
+        <span class="badge doctor-role-badge">
+            <i class="fa-solid fa-circle"></i>
+            {{ doctor.specalist }}
+        </span>
+
     </div>
 
+</div>
     <div class="doctor-available-head">
         <div class="input-block input-block-new">
             <label class="form-label">

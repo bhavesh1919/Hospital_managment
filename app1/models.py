@@ -43,6 +43,18 @@ class Patient(models.Model):
 class Docter(models.Model):
     profile= models.OneToOneField(Profile,on_delete=models.CASCADE)
     specalist = models.CharField(max_length=255)
+    profile_image = models.ImageField(upload_to='doctor/', blank=True, null=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    display_name = models.CharField(max_length=100)
+    designation = models.CharField(max_length=100,blank=True, null=True)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField()
+    languages = models.CharField(max_length=255, blank=True)
+
+    membership_title = models.CharField(max_length=100, blank=True)
+    membership_about = models.TextField(blank=True)
+
 
     def __str__(self):
        return f"Docter:{self.profile.user.username}"

@@ -146,7 +146,7 @@
 							</div>
 
 							<!-- Settings List -->
-							<div class="setting-tab">
+							<!-- <div class="setting-tab">
 								<div class="appointment-tabs">
 									<ul class="nav">
 										<li class="nav-item">
@@ -172,25 +172,32 @@
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
 							<!-- /Settings List -->
 
 							<div class="setting-title">
 								<h5>Profile</h5>
 							</div>
 
-							<form action="https://doccure.dreamstechnologies.com/html/template/doctor-profile-settings.html">
+							<form method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
 								<div class="setting-card">
+									
 									<div class="change-avatar img-upload">
+										
 										<div class="profile-img">
-											<i class="fa-solid fa-file-image"></i>
+										{% if doctor.profile_image %}
+											<img src="{{doctor.profile_image.url}}" alt="docter" style="width:80px;height:80px;	">
+										{% else %}
+       									 <i class="fa-solid fa-file-image"></i>
+    									{% endif %}
 										</div>
 										<div class="upload-img">
 											<h5>Profile Image</h5>
 											<div class="imgs-load d-flex align-items-center">
 												<div class="change-photo">
 													Upload New 
-													<input type="file" class="upload">
+													<input type="file" name="profile_image" class="upload">
 												</div>
 												<a href="#" class="upload-remove">Remove</a>
 											</div>
@@ -206,45 +213,43 @@
 										<div class="col-lg-4 col-md-6">
 											<div class="form-wrap">
 												<label class="form-label">First Name <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+												<input type="text" name="first_name" value="{{ doctor.first_name }}" class="form-control">
+       										
 											</div>
 										</div>
 										<div class="col-lg-4 col-md-6">
 											<div class="form-wrap">
 												<label class="form-label">Last Name <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+												<input type="text" name="last_name" value="{{ doctor.last_name }}" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-4 col-md-6">
 											<div class="form-wrap">
 												<label class="form-label">Display Name <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+								<input type="text" name="display_name" value="{{ doctor.display_name }}" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-4 col-md-6">
 											<div class="form-wrap">
 												<label class="form-label">Designation <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+												<input type="text" name="designation" value="{{ doctor.designation }}" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-4 col-md-6">
 											<div class="form-wrap">
 												<label class="form-label">Phone Numbers <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
-											</div>
+<input type="text" name="phone" value="{{ doctor.phone }}" class="form-control">										</div>
 										</div>
 										<div class="col-lg-4 col-md-6">
 											<div class="form-wrap">
 												<label class="form-label">Email Address <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
-											</div>
+<input type="email" name="email" value="{{ doctor.email }}" class="form-control">										</div>
 										</div>
 										<div class="col-lg-12">
 											<div class="form-wrap">
 												<label class="form-label">Known Languages <span class="text-danger">*</span></label>
 												<div class="input-block input-block-new mb-0">
-													<input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New"  name="Label" value="English German,Portugese" >
-													<a href="#" class="input-text save-btn">Save</a>
+<input type="text" name="languages" value="{{ doctor.languages }}" class="form-control">												<a href="#" class="input-text save-btn">Save</a>
 												</div>
 											</div>
 										</div>
@@ -259,14 +264,14 @@
 											<div class="col-lg-3 col-md-6">
 												<div class="form-wrap">
 													<label class="form-label">Title <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" placeholder="Add Title">
+													<input type="text" name="membership_title" value="{{ doctor.membership_title }}" class="form-control">
 												</div>
 											</div>
 											<div class="col-lg-9 col-md-6">
 												<div class="d-flex align-items-center">
 													<div class="form-wrap w-100">
 														<label class="form-label">About Membership</label>
-														<input type="text" class="form-control">
+														<input type="text" name="membership_about" value="{{ doctor.membership_about }}" class="form-control">
 													</div>										
 													<div class="form-wrap ms-2">
 														<label class="col-form-label d-block">&nbsp;</label>

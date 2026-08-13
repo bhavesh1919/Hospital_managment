@@ -37,4 +37,9 @@ urlpatterns = [
     path('my_patients/', views.my_patients, name='my_patients'),
     path('request/', views.request_page, name='request'),
     path('review/', views.review, name='review'),
+    path("approve_appointment/<int:id>/",views.approve,name="approve_appointment"),
+    path( "reject_appointment/<int:id>/", views.reject_appointment,name="reject_appointment"),
+       
+       
+        
 ]
