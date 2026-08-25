@@ -8,137 +8,7 @@
 				<div class="row">
 					<div class="col-lg-4 col-xl-3 theiaStickySidebar">
 
-						<!-- Profile Sidebar -->
-							<!-- <div class="profile-sidebar doctor-sidebar profile-sidebar-new">
-								<div class="widget-profile pro-widget-content">
-									<div class="profile-info-widget">
-										<a href="doctor-profile.html" class="booking-doc-img">
-											<img src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}" alt="User Image">
-										</a>
-										<div class="profile-det-info">
-											<h3><a href="doctor-profile.html">Dr Edalin Hendry</a></h3>
-											<div class="patient-details">
-												<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
-											</div>
-											<span class="badge doctor-role-badge"><i class="fa-solid fa-circle"></i>Dentist</span>
-										</div>
-									</div>
-								</div>
-								<div class="doctor-available-head">
-									<div class="input-block input-block-new">
-										<label class="form-label">Availability <span class="text-danger">*</span></label>
-										<select class="select form-control">
-											<option>I am Available Now</option>
-											<option>Not Available</option>
-										</select>
-									</div>
-								</div>
-								<div class="dashboard-widget">
-									<nav class="dashboard-menu">
-										<ul>
-											<li>
-												<a href="doctor-dashboard.html">
-													<i class="isax isax-category-2"></i>
-													<span>Dashboard</span>
-												</a>
-											</li>
-											<li>
-												<a href="doctor-request.html">
-													<i class="isax isax-clipboard-tick"></i>
-													<span>Requests</span>
-													<small class="unread-msg">2</small>
-												</a>
-											</li>
-											<li>
-												<a href="appointments.html">
-													<i class="isax isax-calendar-1"></i>
-													<span>Appointments</span>
-												</a>
-											</li>
-											<li>
-												<a href="available-timings.html">
-													<i class="isax isax-calendar-tick"></i>
-													<span>Available Timings</span>
-												</a>
-											</li>
-											<li class="active">
-												<a href="my-patients.html">
-													<i class="fa-solid fa-user-injured"></i>
-													<span>My Patients</span>
-												</a>
-											</li>
-											<li>
-												<a href="doctor-specialities.html">
-													<i class="isax isax-clock"></i>
-													<span>Specialties & Services</span>
-												</a>
-											</li>
-											<li>
-												<a href="reviews.html">
-													<i class="isax isax-star-1"></i>
-													<span>Reviews</span>
-												</a>
-											</li>
-											<li>
-												<a href="accounts.html">
-													<i class="isax isax-profile-tick"></i>
-													<span>Accounts</span>
-												</a>
-											</li>
-											<li>
-												<a href="invoices.html">
-													<i class="isax isax-document-text"></i>
-													<span>Invoices</span>
-												</a>
-											</li>
-											<li>
-												<a href="doctor-payment.html">
-													<i class="fa-solid fa-money-bill-1"></i>
-													<span>Payout Settings</span>
-												</a>
-											</li>																																				
-											<li>
-												<a href="chat-doctor.html">
-													<i class="isax isax-messages-1"></i>
-													<span>Message</span>
-													<small class="unread-msg">7</small>
-												</a>
-											</li>
-											<li>
-												<a href="doctor-blog.html">
-													<i class="isax isax-grid-5"></i>
-													<span>Blog</span>
-												</a>
-											</li>
-											<li>
-												<a href="doctor-profile-settings.html">
-													<i class="isax isax-setting-2"></i>
-													<span>Profile Settings</span>
-												</a>
-											</li>
-											<li>
-												<a href="social-media.html">
-													<i class="fa-solid fa-shield-halved"></i>
-													<span>Social Media</span>
-												</a>
-											</li>
-											<li>
-												<a href="doctor-change-password.html">
-													<i class="isax isax-key"></i>
-													<span>Change Password</span>
-												</a>
-											</li>
-											<li>
-												<a href="login.html">
-													<i class="isax isax-logout"></i>
-													<span>Logout</span>
-												</a>
-											</li>
-										</ul>
-									</nav>
-								</div>
-							</div> -->
-							<!-- /Profile Sidebar -->
+						
 							 
 							  {% include 'sidebar.html' %}
 
@@ -324,336 +194,91 @@
 								<div class="row">
 
 									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-01.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0001</p>
-																<h6><a href="patient-profile.html">Adrian</a></h6>
-																<ul>
-																	<li>Age : 42</li>
-																	<li>Male</li>
-																	<li>AB+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>11 Nov 2024 10.45 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>Alabama, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking <span>27 Feb 2024</span></p>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
+							<!-- Appointment Grid -->
+{% for patient in patients %}
+<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
+    <div class="appointment-wrap appointment-grid-wrap w-100">
+        <ul>
+            <li>
+                <div class="appointment-grid-head">
+                    <div class="patinet-information">
+
+                        <a href="#">
+                            {% if patient.profile_photo %}
+                                <img src="{{ patient.profile_photo.url }}" alt="Patient Image">
+                            {% else %}
+                                <img src="{% static 'assets/img/doctors-dashboard/profile-01.jpg' %}" alt="Patient Image">
+                            {% endif %}
+                        </a>
+
+                        <div class="patient-info">
+                            <p>#PAT{{ patient.id }}</p>
+
+                            <h6>
+                                <a href="#">
+                                    {{ patient.fname }} {{ patient.lname }}
+                                </a>
+                            </h6>
+
+                            <ul>
+                                {% if patient.dob %}
+                                    <li>
+                                        Age : 
+                                        {% now "Y" as current_year %}
+                                        {{ current_year|add:"-0" }}
+                                    </li>
+                                {% endif %}
+
+                                <li>{{ patient.gender }}</li>
+
+                                <li>
+                                    {{ patient.blood }}
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="appointment-info">
+                <p>
+                    <i class="isax isax-call5"></i>
+                    {{ patient.phone }}
+                </p>
+
+                <p class="mb-0">
+                    <i class="isax isax-location5"></i>
+                    {{ patient.city }}, {{ patient.state }}
+                </p>
+            </li>
+
+            <li class="appointment-action">
+                <div class="patient-book">
+                    <p>
+                        <i class="isax isax-calendar-1"></i>
+                        Patient ID
+                        <span>#{{ patient.id }}</span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% empty %}
+
+<div class="col-md-12">
+    <div class="text-center p-4">
+        <h5>No patients found</h5>
+        <p>No patient has booked an appointment with you yet.</p>
+    </div>
+</div>
+
+{% endfor %}
+<!-- /Appointment Grid -->
 									<!-- /Appointment Grid -->
 
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-02.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0002</p>
-																<h6><a href="patient-profile.html">Kelly Stevens</a></h6>
-																<ul>
-																	<li>Age : 37</li>
-																	<li>Female</li>
-																	<li>O+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>05 Nov 2024 11.50 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>San Diego, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>20 Mar 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-03.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0003</p>
-																<h6><a href="patient-profile.html">Samuel James</a></h6>
-																<ul>
-																	<li>Age : 43</li>
-																	<li>Male</li>
-																	<li>B+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>27 Oct 2024 09.30 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>Chicago, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>12 Mar 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0004</p>
-																<h6><a href="patient-profile.html">Catherine Gracey</a></h6>
-																<ul>
-																	<li>Age : 36</li>
-																	<li>Female</li>
-																	<li>AB-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>18 Oct 2024 12.20 PM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>Los Angeles, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>27 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-05.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0005</p>
-																<h6><a href="patient-profile.html">Robert Miller</a></h6>
-																<ul>
-																	<li>Age : 38</li>
-																	<li>Male</li>
-																	<li>A+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>10 Oct 2024 11.30 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>Dallas, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>18 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-06.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0006</p>
-																<h6><a href="patient-profile.html">Anderea Kearns</a></h6>
-																<ul>
-																	<li>Age : 40</li>
-																	<li>Female</li>
-																	<li>B-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>26 Sep 2024 10.20 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>San Francisco, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>11 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-07.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0007</p>
-																<h6><a href="patient-profile.html">Peter Anderson</a></h6>
-																<ul>
-																	<li>Age : 30</li>
-																	<li>Male</li>
-																	<li>A-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>14 Sep 2024 08.10 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>Austin, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>25 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-08.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0008</p>
-																<h6><a href="patient-profile.html">Emily Musick</a></h6>
-																<ul>
-																	<li>Age : 32</li>
-																	<li>Female</li>
-																	<li>O-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>03 Sep 2024 06.00 PM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>Nashville, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>13 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="patient-profile.html">
-																<img src="{% static 'assets/img/doctors-dashboard/profile-01.jpg' %}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0009</p>
-																<h6><a href="patient-profile.html">Darrell Tan</a></h6>
-																<ul>
-																	<li>Age : 31</li>
-																	<li>Male</li>
-																	<li>AB+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="isax isax-clock5"></i>25 Aug 2024 10.45 AM</p>
-													<p class="mb-0"><i class="isax isax-location5"></i>San Antonio, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="isax isax-calendar-1"></i>Last Booking<span>03 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
+									
 
 									<div class="col-md-12">
 										<div class="loader-item text-center">

@@ -24,7 +24,7 @@ urlpatterns = [
     
     
     path('account/', views.account, name='account'),
-    path('appointment/', views.Appointment, name='appointment'),
+    path('appointment/', views.appointments, name='appointment'),
     path('available_timming/', views.avilable_timming, name='avilable_timming'),
     path('chat/', views.chat, name='chat'),
     path('docter_blog/', views.docter_blog, name='docter_blog'),
@@ -39,6 +39,11 @@ urlpatterns = [
     path('review/', views.review, name='review'),
     path("approve_appointment/<int:id>/",views.approve,name="approve_appointment"),
     path( "reject_appointment/<int:id>/", views.reject_appointment,name="reject_appointment"),
+    path(
+    "docter_change_password/",
+    views.docter_change_password,
+    name="docter_change_password"
+),
        
        
         

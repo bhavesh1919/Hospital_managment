@@ -79,7 +79,7 @@
 										</div>
 									</li>
 								</ul>
-								<a href="#add-med-record" class="btn btn-md btn-primary-gradient rounded-pill" data-bs-toggle="modal">Add Vitals</a>
+								<a href="/add-vital/{{user.id}}" class="btn btn-md btn-primary-gradient rounded-pill" data-bs-toggle="modal">Add Vitals</a>
 							</div>
 							<div class="row">
 								<div class="col-md-12">
@@ -99,35 +99,81 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td><a class="link-primary" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#med-detail">#MD1236</a></td>
-														<td>
-															<h2 class="table-avatar">
-																<a href="patient-profile.html" class="avatar avatar-sm me-2">
-																	<img class="avatar-img rounded-3" src="{% static 'assets/img/doctors-dashboard/profile-06.jpg' %}" alt="User Image">
-																</a>
-																<a href="doctor-profile.html">Hendrita Kearns</a>
-															</h2>
-														</td>
-														<td>23.5</td>
-														<td>89</td>
-														<td>140</td>
-														<td>74Kg</td>
-														<td>22 Mar 2024</td>
-														<td>
-															<div class="action-item">
-																<a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#med-detail">
-																	<i class="isax isax-link-2"></i>
-																</a>
-																<a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-med-record">
-																	<i class="isax isax-edit-2"></i>
-																</a>
-																<a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_modal">
-																	<i class="isax isax-trash"></i>
-																</a>
-															</div>
-														</td>
-													</tr>
+													{% for vital in vitals %}
+<tr>
+    <td>
+        <a class="link-primary"
+           href="javascript:void(0);"
+           data-bs-toggle="modal"
+           data-bs-target="#med-detail">
+            #MD{{ vital.id }}
+        </a>
+    </td>
+
+    <td>
+        <h2 class="table-avatar">
+            <a href="#" class="avatar avatar-sm me-2">
+                {% if patient.profile_photo %}
+                    <img class="avatar-img rounded-3"
+                         src="{{ patient.profile_photo.url }}"
+                         alt="Patient Image">
+                {% else %}
+                    <img class="avatar-img rounded-3"
+                         src="{% static 'assets/img/doctors-dashboard/profile-06.jpg' %}"
+                         alt="Patient Image">
+                {% endif %}
+            </a>
+
+            <a href="#">
+                {{ patient.fname }} {{ patient.lname }}
+            </a>
+        </h2>
+    </td>
+
+    <td>{{ vital.temperature }}°F</td>
+
+    <td>{{ vital.heart_rate }}</td>
+
+    <td>{{ vital.blood_pressure }}</td>
+
+    <td>{{ vital.weight }} Kg</td>
+
+    <td>{{ vital.created_at|date:"d M Y" }}</td>
+
+    <td>
+        <div class="action-item">
+
+            <a href="javascript:void(0);"
+               data-bs-toggle="modal"
+               data-bs-target="#med-detail">
+                <i class="isax isax-link-2"></i>
+            </a>
+
+            <a href="javascript:void(0);"
+               data-bs-toggle="modal"
+               data-bs-target="#edit-med-record">
+                <i class="isax isax-edit-2"></i>
+            </a>
+
+            <a href="javascript:void(0);"
+               data-bs-toggle="modal"
+               data-bs-target="#delete_modal">
+                <i class="isax isax-trash"></i>
+            </a>
+
+        </div>
+    </td>
+</tr>
+
+{% empty %}
+
+<tr>
+    <td colspan="8" class="text-center">
+        No vital records found.
+    </td>
+</tr>
+
+{% endfor %}
 												</tbody>
 											</table>
 										</div>

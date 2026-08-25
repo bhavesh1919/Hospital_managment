@@ -1,15 +1,72 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from . import urls
 from app1.models import Patient,Profile,Docter
 from docter.models import Availability
-from .models import appointment
+from .models import appointment,Vital,Favourite
 from datetime import datetime
+from django.contrib import messages 
+from django.db.models import Case, When, IntegerField
 
 # Create your views here.
 
 def patient_dashboard(req):
-    return render(req,"patient_dashboard.html")
+    doctors = Docter.objects.all()
+    patient=Patient.objects.get(profile__user=req.user)
 
+    # av = appointment.objects.all()
+    # availability = Availability.objects.filter(
+    #         status="Available"
+    #     ).select_related("doctor")
+
+
+    av = appointment.objects.filter(
+    patient=patient,
+    status__in=["Pending", "Approved"]
+    ).select_related('docter').order_by(
+        Case(
+            When(status="Approved",then=0),
+            When(status="Pending", then=1),
+            output_field=IntegerField(),
+        )
+    )
+
+    health_record = Vital.objects.filter(
+        patient=patient
+    ).order_by("-id").first()
+
+       
+    
+
+    # Get only this patient's favourite doctors
+    favourites = Favourite.objects.filter(
+        patient=patient
+    ).select_related("docter")
+
+
+    
+
+
+    return render(req,"patient_dashboard.html",{"av":av,"health_record": health_record,"favourites": favourites,})
+
+
+
+def cancel_appointment(request, id):
+
+    patient = Patient.objects.get(
+        profile__user=request.user
+    )
+
+    app = get_object_or_404(
+        appointment,
+        id=id,
+        patient=patient
+    )
+
+    if app.status in ["Pending", "Approved"]:
+        app.status = "Cancelled"
+        app.save()
+
+    return redirect("/patient/")
 
 def patients_appointment(request):
     doctors = Docter.objects.all()
@@ -78,19 +135,89 @@ def patient_invoice(request):
 
 
 def medical_record(request):
+
     return render(request, 'medical_record.html')
 
 
 def medical_details(request):
-    return render(request, 'medical_details.html')
+
+    patient = Patient.objects.get(profile__user=request.user)
+
+    vitals = Vital.objects.filter(patient=patient)
+
+
+
+
+    return render(request, 'medical_details.html', {
+            "vitals": vitals
+        })
+
+
+def add_vital(request,patient_id):
+
+    patient = Patient.objects.get(profile__user_id=patient_id)
+
+    if request.method == "POST":
+
+        Vital.objects.create(
+            patient=patient,
+            
+            blood_pressure=request.POST.get("blood_pressure"),
+            heart_rate=request.POST.get("heart_rate"),
+            glucose_level=request.POST.get("glucose_level"),
+            body_temperature=request.POST.get("body_temperature"),
+            bmi=request.POST.get("bmi"),
+            spo2=request.POST.get("spo2"),
+            weight=request.POST.get("weight"),
+            fbc_status=request.POST.get("fbc_status"),
+        )
+
+        return redirect("medical_details")
+
+    return render(request, "add_vital.html")
 
 
 def favourites(request):
-    return render(request, 'favourites.html')
 
+    patient = Patient.objects.get(
+        profile__user=request.user
+    )
+
+    # Show ALL doctors
+    docters = Docter.objects.all()
+
+    # Get favourite doctor IDs of current patient
+    favourite_ids = Favourite.objects.filter(
+        patient=patient
+    ).values_list("docter_id", flat=True)
+
+    return render(request, "favourites.html", {
+        "docters": docters,
+        "favourite_ids": favourite_ids,
+    })
 
 def dependent(request):
     return render(request, 'dependent.html')
+
+def add_favourite(request, doctor_id):
+
+    patient = Patient.objects.get(
+        profile__user=request.user
+    )
+
+    doctor = get_object_or_404(
+        Docter,
+        id=doctor_id
+    )
+
+    Favourite.objects.get_or_create(
+        patient=patient,
+        docter=doctor
+    )
+
+    return redirect("favourites")
+
+
 
 
 def sidear(request):
