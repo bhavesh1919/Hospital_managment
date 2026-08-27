@@ -117,161 +117,261 @@
         <div class="dashboard-card-body">
             <div class="table-responsive">
 
-                <table class="table dashboard-table appoint-table">
-                    <tbody>
+               <table class="table dashboard-table appoint-table">
 
-                        {% if appointment %}
+    <tbody>
 
-                            {% for appointment in appointment %}
+        {% if appointment %}
 
-                            <tr>
+            {% for appointment in appointment %}
 
-                                <!-- Patient -->
-                                <td>
-                                    <div class="patient-info-profile">
+            <tr>
 
-                                        <a href="appointments.html"
-                                           class="table-avatar">
+                <!-- Patient -->
+                <td>
 
-                                            {% if appointment.patient.profile_photo %}
-                                                <img src="{{ appointment.patient.profile_photo.url }}"
-                                                     alt="Patient">
-                                            {% else %}
-                                                <img src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}"
-                                                     alt="Img">
-                                            {% endif %}
+                    <div class="patient-info-profile">
 
-                                        </a>
+                        <a href="javascript:void(0);"
+                           class="table-avatar">
 
-                                        <div class="patient-name-info">
-                                            <span>#Apt0004</span>
+                            {% if appointment.patient.profile_photo %}
 
-                                            <h5>
-                                                <a href="#">
-                                                    {{ appointment.patient.fname }}
-                                                    {{ appointment.patient.lname }}
-                                                </a>
-                                            </h5>
-                                        </div>
+                                <img
+                                    src="{{ appointment.patient.profile_photo.url }}"
+                                    alt="Patient"
+                                >
 
-                                    </div>
-                                </td>
+                            {% else %}
+
+                                <img
+                                    src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}"
+                                    alt="Patient"
+                                >
+
+                            {% endif %}
+
+                        </a>
 
 
-                                <!-- Appointment -->
-                                <td>
-                                    <div class="appointment-date-created">
+                        <div class="patient-name-info">
 
-                                        <h6>
-                                            {{ appointment.appointment_day }}
-                                        </h6>
+                            <span>
+                                #Apt{{ appointment.id|stringformat:"04d" }}
+                            </span>
 
-                                        <span class="badge table-badge">
-                                            Clinic Consulting
-                                        </span>
+                            <h5>
+                                <a href="javascript:void(0);">
 
-                                        {% if appointment.status == "Pending" %}
+                                    {{ appointment.patient.fname }}
+                                    {{ appointment.patient.lname }}
 
-                                            <span class="badge bg-warning">
-                                                Pending
-                                            </span>
+                                </a>
+                            </h5>
 
-                                        {% elif appointment.status == "Approved" %}
+                        </div>
 
-                                            <span class="badge bg-success">
-                                                Approved
-                                            </span>
+                    </div>
 
-                                        {% elif appointment.status == "Rejected" %}
-
-                                            <span class="badge bg-danger">
-                                                Rejected
-                                            </span>
-
-                                        {% elif appointment.status == "Completed" %}
-
-                                            <span class="badge bg-primary">
-                                                Completed
-                                            </span>
-
-                                        {% elif appointment.status == "Cancelled" %}
-
-                                            <span class="badge bg-warning">
-                                                Cancelled
-                                            </span>
-
-                                        {% endif %}
-
-                                    </div>
-                                </td>
+                </td>
 
 
-                                <!-- Actions -->
-                                <td>
-                                    <div class="apponiment-actions d-flex align-items-center">
+                <!-- Appointment Date & Time -->
+                <td>
 
-                                        {% if appointment.status == "Pending" %}
+                    <div class="appointment-date-created">
 
-                                            <a href="{% url 'approve_appointment' appointment.id %}"
-                                               class="text-success-icon me-2">
-                                                <i class="fa-solid fa-check"></i>
-                                            </a>
+                        <!-- Date -->
+                        {% if appointment.appointment_date %}
 
-                                            <a href="{% url 'reject_appointment' appointment.id %}"
-                                               class="text-danger-icon">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </a>
-
-
-                                        {% elif appointment.status == "Approved" %}
-
-                                            <span class="badge bg-success">
-                                                Accepted
-                                            </span>
-
-
-                                        {% elif appointment.status == "Rejected" %}
-
-                                            <span class="badge bg-danger">
-                                                Rejected
-                                            </span>
-
-
-                                        {% elif appointment.status == "Completed" %}
-
-                                            <span class="badge bg-primary">
-                                                Completed
-                                            </span>
-
-
-                                        {% elif appointment.status == "Cancelled" %}
-
-                                            <span class="badge bg-warning">
-                                                Cancelled
-                                            </span>
-
-                                        {% endif %}
-
-                                    </div>
-                                </td>
-
-                            </tr>
-
-                            {% endfor %}
+                            <h6>
+                                {{ appointment.appointment_date|date:"d M Y" }}
+                            </h6>
 
                         {% else %}
 
-                            <tr>
-                                <td colspan="3" class="text-center">
-                                    No appointments found.
-                                </td>
-                            </tr>
+                            <h6>
+                                Date not selected
+                            </h6>
 
                         {% endif %}
 
-                    </tbody>
-                </table>
 
+                        <!-- Day -->
+                        <span class="d-block text-muted">
+
+                            <i class="fa-regular fa-calendar me-1"></i>
+
+                            {{ appointment.appointment_day }}
+
+                        </span>
+
+
+                        <!-- Time -->
+                        {% if appointment.appointment_time %}
+
+                            <span class="d-block text-primary">
+
+                                <i class="fa-regular fa-clock me-1"></i>
+
+                                {{ appointment.appointment_time|time:"h:i A" }}
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="d-block text-muted">
+                                Time not available
+                            </span>
+
+                        {% endif %}
+
+
+                        <!-- Appointment Type -->
+                        <span class="badge table-badge mt-1">
+
+                            Clinic Consulting
+
+                        </span>
+
+                    </div>
+
+                </td>
+
+
+                <!-- Status -->
+                <td>
+
+                    {% if appointment.status == "Pending" %}
+
+                        <span class="badge bg-warning">
+                            Pending
+                        </span>
+
+                    {% elif appointment.status == "Approved" %}
+
+                        <span class="badge bg-success">
+                            Approved
+                        </span>
+
+                    {% elif appointment.status == "Rejected" %}
+
+                        <span class="badge bg-danger">
+                            Rejected
+                        </span>
+
+                    {% elif appointment.status == "Completed" %}
+
+                        <span class="badge bg-primary">
+                            Completed
+                        </span>
+
+                    {% elif appointment.status == "Cancelled" %}
+
+                        <span class="badge bg-warning">
+                            Cancelled
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+
+                <!-- Actions -->
+                <td>
+
+                    <div class="apponiment-actions d-flex align-items-center">
+
+                        {% if appointment.status == "Pending" %}
+
+                            <!-- Approve -->
+                            <a
+                                href="{% url 'approve_appointment' appointment.id %}"
+                                class="text-success-icon me-2"
+                                title="Approve Appointment"
+                                onclick="return confirm('Approve this appointment?');"
+                            >
+
+                                <i class="fa-solid fa-check"></i>
+
+                            </a>
+
+
+                            <!-- Reject -->
+                            <a
+                                href="{% url 'reject_appointment' appointment.id %}"
+                                class="text-danger-icon"
+                                title="Reject Appointment"
+                                onclick="return confirm('Reject this appointment?');"
+                            >
+
+                                <i class="fa-solid fa-xmark"></i>
+
+                            </a>
+
+
+                        {% elif appointment.status == "Approved" %}
+
+                            <span class="badge bg-success">
+
+                                Accepted
+
+                            </span>
+
+
+                        {% elif appointment.status == "Rejected" %}
+
+                            <span class="badge bg-danger">
+
+                                Rejected
+
+                            </span>
+
+
+                        {% elif appointment.status == "Completed" %}
+
+                            <span class="badge bg-primary">
+
+                                Completed
+
+                            </span>
+
+
+                        {% elif appointment.status == "Cancelled" %}
+
+                            <span class="badge bg-warning">
+
+                                Cancelled
+
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        {% else %}
+
+            <tr>
+
+                <td colspan="4" class="text-center">
+
+                    No appointments found.
+
+                </td>
+
+            </tr>
+
+        {% endif %}
+
+    </tbody>
+
+</table>
             </div>
         </div>
 

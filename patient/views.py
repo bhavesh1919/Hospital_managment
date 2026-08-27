@@ -228,20 +228,127 @@ def sidear(request):
 
 
     return render(request,"sidebar.html" ,{"p":p})
-
 def book_appointment(request, id):
-    slot = Availability.objects.get(id=id)
 
-    patient =Patient.objects.get(profile__user = request.user)
-    doctor_obj = Docter.objects.get(profile__user=slot.doctor)
-    print
-
-    appointment.objects.create(
-       patient=patient,
-        docter=doctor_obj,
-        appointment=slot,
-        appointment_day=slot.day,
-        status="Pending"
+    # Get selected availability slot
+    slot = get_object_or_404(
+        Availability,
+        id=id,
+        status="Available"
     )
 
-    return redirect("/patient/")
+    # Get logged-in patient
+    patient = get_object_or_404(
+        Patient,
+        profile__user=request.user
+    )
+
+    # Get doctor from availability
+    doctor_obj = get_object_or_404(
+        Docter,
+        profile__user=slot.doctor
+    )
+
+    if request.method == "POST":
+
+        selected_date = request.POST.get("appointment_date")
+
+        # Date is required
+        if not selected_date:
+            messages.error(
+                request,
+                "Please select an appointment date."
+            )
+
+            return render(
+                request,
+                "book_appointment.html",
+                {
+                    "slot": slot
+                }
+            )
+
+        # Convert HTML date to Python date
+        try:
+            appointment_date = datetime.strptime(
+                selected_date,
+                "%Y-%m-%d"
+            ).date()
+
+        except ValueError:
+            messages.error(
+                request,
+                "Invalid appointment date."
+            )
+
+            return render(
+                request,
+                "book_appointment.html",
+                {
+                    "slot": slot
+                }
+            )
+
+        # Check that selected date is the same day
+        # as the Availability day
+        if appointment_date.strftime("%A") != slot.day:
+            messages.error(
+                request,
+                f"Please select a {slot.day}."
+            )
+
+            return render(
+                request,
+                "book_appointment.html",
+                {
+                    "slot": slot
+                }
+            )
+
+        # Prevent booking the same doctor/time/date twice
+        already_booked = appointment.objects.filter(
+            docter=doctor_obj,
+            appointment_date=appointment_date,
+            appointment_time=slot.start_time,
+            status__in=["Pending", "Approved"]
+        ).exists()
+
+        if already_booked:
+            messages.error(
+                request,
+                "This time slot is already booked."
+            )
+
+            return render(
+                request,
+                "book_appointment.html",
+                {
+                    "slot": slot
+                }
+            )
+
+        # Create appointment
+        appointment.objects.create(
+            patient=patient,
+            docter=doctor_obj,
+            appointment=slot,
+            appointment_day=slot.day,
+            appointment_date=appointment_date,
+            appointment_time=slot.start_time,
+            status="Pending"
+        )
+
+        messages.success(
+            request,
+            "Appointment booked successfully."
+        )
+
+        return redirect("/patient/")
+
+    return render(
+        request,
+        "book_appointment.html",
+        {
+            "slot": slot
+        }
+    )

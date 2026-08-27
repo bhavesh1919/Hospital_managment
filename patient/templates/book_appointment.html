@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <h3 class="mb-4">
+                Book Appointment
+            </h3>
+
+            <!-- Doctor -->
+            <div class="mb-3">
+                <strong>Doctor:</strong>
+                Dr. {{ slot.doctor.username }}
+            </div>
+
+            <!-- Available Day -->
+            <div class="mb-3">
+                <strong>Available Day:</strong>
+                {{ slot.day }}
+            </div>
+
+            <!-- Available Time -->
+            <div class="mb-3">
+                <strong>Available Time:</strong>
+                {{ slot.start_time|time:"h:i A" }}
+                -
+                {{ slot.end_time|time:"h:i A" }}
+            </div>
+
+            <!-- Fee -->
+            <div class="mb-4">
+                <strong>Fee:</strong>
+                ₹ {{ slot.fee }}
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <!-- Appointment Date -->
+                <div class="mb-3">
+
+                    <label for="appointment_date">
+                        Select Appointment Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="appointment_date"
+                        name="appointment_date"
+                        class="form-control"
+                        required
+                    >
+
+                    <small class="text-muted">
+                        Please select a {{ slot.day }}.
+                    </small>
+
+                </div>
+
+
+                <!-- Selected Time -->
+                <div class="mb-3">
+
+                    <label>
+                        Appointment Time
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="{{ slot.start_time|time:'h:i A' }}"
+                        readonly
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Confirm Appointment
+                </button>
+
+                <a
+                    href="{% url 'patients_appointment' %}"
+                    class="btn btn-secondary"
+                >
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const dateInput = document.getElementById(
+        "appointment_date"
+    );
+
+    const allowedDay = "{{ slot.day }}";
+
+    dateInput.addEventListener("change", function () {
+
+        if (!this.value) {
+            return;
+        }
+
+        const selectedDate = new Date(
+            this.value + "T00:00:00"
+        );
+
+        const days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ];
+
+        const selectedDay =
+            days[selectedDate.getDay()];
+
+        if (selectedDay !== allowedDay) {
+
+            alert(
+                "Please select a " +
+                allowedDay +
+                "."
+            );
+
+            this.value = "";
+        }
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

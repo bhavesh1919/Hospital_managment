@@ -135,235 +135,341 @@
 
                     <!-- Request List -->
 
-                    {% if appointment %}
+                   {% if appointment %}
 
-                        {% for i in appointment %}
+    {% for i in appointment %}
 
-                        <div class="appointment-wrap">
+    <div class="appointment-wrap">
 
-                            <ul>
+        <ul>
 
-                                <!-- Patient Information -->
-                                <li>
+            <!-- Patient Information -->
+            <li>
 
-                                    <div class="patinet-information">
+                <div class="patinet-information">
 
-                                        {% if i.patient.profile_photo %}
+                    {% if i.patient.profile_photo %}
 
-                                            <a href="patient-profile.html">
-                                                <img src="{{ i.patient.profile_photo.url }}"
-                                                     alt="User Image"
-                                                     width="50"
-                                                     height="50">
-                                            </a>
+                        <a href="patient-profile.html">
 
-                                        {% else %}
+                            <img
+                                src="{{ i.patient.profile_photo.url }}"
+                                alt="User Image"
+                                width="50"
+                                height="50"
+                            >
 
-                                            <a href="patient-profile.html">
-                                                <img src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}"
-                                                     alt="Img">
-                                            </a>
-
-                                        {% endif %}
-
-
-                                        <div class="patient-info">
-
-                                            <p>#APT{{ i.id }}</p>
-
-                                            <h6>
-                                                <a href="patient-profile.html">
-                                                    {{ i.patient.fname }}
-                                                    {{ i.patient.lname }}
-                                                </a>
-                                            </h6>
-
-                                        </div>
-
-                                    </div>
-
-                                </li>
-                                <!-- /Patient Information -->
-
-
-                                <!-- Appointment Information -->
-                                <li class="appointment-info">
-
-                                    <p>
-                                        <i class="isax isax-clock5"></i>
-                                        {{ i.appointment_day }}
-                                    </p>
-
-                                    <p class="md-text">
-                                        General Visit
-                                    </p>
-
-                                </li>
-                                <!-- /Appointment Information -->
-
-
-                                <!-- Status -->
-                                <li>
-
-                                    <div class="appointment-status">
-
-                                        {% if i.status == "Pending" %}
-
-                                            <span class="badge bg-warning">
-                                                Pending
-                                            </span>
-
-                                        {% elif i.status == "Approved" %}
-
-                                            <span class="badge bg-success">
-                                                Approved
-                                            </span>
-
-                                        {% elif i.status == "Rejected" %}
-
-                                            <span class="badge bg-danger">
-                                                Rejected
-                                            </span>
-
-                                        {% elif i.status == "Cancelled" %}
-
-                                            <span class="badge bg-warning">
-                                                Cancelled
-                                            </span>
-
-                                        {% elif i.status == "Completed" %}
-
-                                            <span class="badge bg-primary">
-                                                Completed
-                                            </span>
-
-                                        {% endif %}
-
-                                    </div>
-
-                                </li>
-                                <!-- /Status -->
-
-
-                                <!-- Request Actions -->
-                                <li>
-
-                                    <ul class="request-action">
-
-
-                                        <!-- PENDING -->
-                                        {% if i.status == "Pending" %}
-
-                                            <!-- Accept -->
-                                            <li>
-
-                                                <a href="{% url 'approve_appointment' i.id %}"
-                                                   class="accept-link">
-
-                                                    <i class="fa-solid fa-check"></i>
-                                                    Accept
-
-                                                </a>
-
-                                            </li>
-
-
-                                            <!-- Reject -->
-                                            <li>
-
-                                                <a href="{% url 'reject_appointment' i.id %}"
-                                                   class="reject-link">
-
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                    Reject
-
-                                                </a>
-
-                                            </li>
-
-
-                                        <!-- APPROVED -->
-                                        {% elif i.status == "Approved" %}
-
-                                            <!-- Reject Only -->
-                                            <li>
-
-                                                <a href="{% url 'reject_appointment' i.id %}"
-                                                   class="reject-link">
-
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                    Reject
-
-                                                </a>
-
-                                            </li>
-
-
-                                        <!-- CANCELLED -->
-                                        {% elif i.status == "Cancelled" %}
-
-                                            <li>
-
-                                                <span class="badge bg-warning">
-                                                    Cancelled
-                                                </span>
-
-                                            </li>
-
-
-                                        <!-- REJECTED -->
-                                        {% elif i.status == "Rejected" %}
-
-                                            <li>
-
-                                                <span class="badge bg-danger">
-                                                    Rejected
-                                                </span>
-
-                                            </li>
-
-
-                                        <!-- COMPLETED -->
-                                        {% elif i.status == "Completed" %}
-
-                                            <li>
-
-                                                <span class="badge bg-primary">
-                                                    Completed
-                                                </span>
-
-                                            </li>
-
-                                        {% endif %}
-
-                                    </ul>
-
-                                </li>
-                                <!-- /Request Actions -->
-
-
-                            </ul>
-
-                        </div>
-
-                        {% endfor %}
+                        </a>
 
                     {% else %}
 
-                        <!-- No Appointment -->
-                        <div class="appointment-wrap">
+                        <a href="patient-profile.html">
 
-                            <div class="text-center p-4">
+                            <img
+                                src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}"
+                                alt="Img"
+                            >
 
-                                <h5>No appointments found.</h5>
-
-                            </div>
-
-                        </div>
+                        </a>
 
                     {% endif %}
 
-                    <!-- /Request List -->
+
+                    <div class="patient-info">
+
+                        <p>
+                            #APT{{ i.id }}
+                        </p>
+
+                        <h6>
+
+                            <a href="patient-profile.html">
+
+                                {{ i.patient.fname }}
+                                {{ i.patient.lname }}
+
+                            </a>
+
+                        </h6>
+
+                    </div>
+
+                </div>
+
+            </li>
+            <!-- /Patient Information -->
+
+
+            <!-- Appointment Information -->
+            <li class="appointment-info">
+
+                <!-- Appointment Date -->
+
+                {% if i.appointment_date %}
+
+                    <p>
+
+                        <i class="isax isax-calendar-1"></i>
+
+                        {{ i.appointment_date|date:"d M Y" }}
+
+                    </p>
+
+                {% else %}
+
+                    <p>
+
+                        <i class="isax isax-calendar-1"></i>
+
+                        Date not selected
+
+                    </p>
+
+                {% endif %}
+
+
+                <!-- Appointment Day -->
+
+                <p>
+
+                    <i class="isax isax-calendar"></i>
+
+                    {{ i.appointment_day }}
+
+                </p>
+
+
+                <!-- Appointment Time -->
+
+                {% if i.appointment_time %}
+
+                    <p>
+
+                        <i class="isax isax-clock5"></i>
+
+                        {{ i.appointment_time|time:"h:i A" }}
+
+                    </p>
+
+                {% else %}
+
+                    <p>
+
+                        <i class="isax isax-clock5"></i>
+
+                        Time not available
+
+                    </p>
+
+                {% endif %}
+
+
+                <p class="md-text">
+
+                    General Visit
+
+                </p>
+
+            </li>
+            <!-- /Appointment Information -->
+
+
+            <!-- Status -->
+            <li>
+
+                <div class="appointment-status">
+
+                    {% if i.status == "Pending" %}
+
+                        <span class="badge bg-warning">
+
+                            Pending
+
+                        </span>
+
+
+                    {% elif i.status == "Approved" %}
+
+                        <span class="badge bg-success">
+
+                            Approved
+
+                        </span>
+
+
+                    {% elif i.status == "Rejected" %}
+
+                        <span class="badge bg-danger">
+
+                            Rejected
+
+                        </span>
+
+
+                    {% elif i.status == "Cancelled" %}
+
+                        <span class="badge bg-warning">
+
+                            Cancelled
+
+                        </span>
+
+
+                    {% elif i.status == "Completed" %}
+
+                        <span class="badge bg-primary">
+
+                            Completed
+
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </li>
+            <!-- /Status -->
+
+
+            <!-- Request Actions -->
+            <li>
+
+                <ul class="request-action">
+
+
+                    <!-- PENDING -->
+                    {% if i.status == "Pending" %}
+
+                        <!-- Accept -->
+                        <li>
+
+                            <a
+                                href="{% url 'approve_appointment' i.id %}"
+                                class="accept-link"
+                                onclick="return confirm('Approve this appointment?');"
+                            >
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Accept
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- Reject -->
+                        <li>
+
+                            <a
+                                href="{% url 'reject_appointment' i.id %}"
+                                class="reject-link"
+                                onclick="return confirm('Reject this appointment?');"
+                            >
+
+                                <i class="fa-solid fa-xmark"></i>
+
+                                Reject
+
+                            </a>
+
+                        </li>
+
+
+                    <!-- APPROVED -->
+                    {% elif i.status == "Approved" %}
+
+                        <li>
+
+                            <span class="badge bg-success">
+
+                                <i class="fa-solid fa-check me-1"></i>
+
+                                Approved
+
+                            </span>
+
+                        </li>
+
+
+                    <!-- REJECTED -->
+                    {% elif i.status == "Rejected" %}
+
+                        <li>
+
+                            <span class="badge bg-danger">
+
+                                <i class="fa-solid fa-xmark me-1"></i>
+
+                                Rejected
+
+                            </span>
+
+                        </li>
+
+
+                    <!-- CANCELLED -->
+                    {% elif i.status == "Cancelled" %}
+
+                        <li>
+
+                            <span class="badge bg-warning">
+
+                                <i class="fa-solid fa-ban me-1"></i>
+
+                                Cancelled by Patient
+
+                            </span>
+
+                        </li>
+
+
+                    <!-- COMPLETED -->
+                    {% elif i.status == "Completed" %}
+
+                        <li>
+
+                            <span class="badge bg-primary">
+
+                                <i class="fa-solid fa-check-double me-1"></i>
+
+                                Completed
+
+                            </span>
+
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+
+            </li>
+            <!-- /Request Actions -->
+
+
+        </ul>
+
+    </div>
+
+    {% endfor %}
+
+
+{% else %}
+
+    <!-- No Appointment -->
+    <div class="appointment-wrap">
+
+        <div class="text-center p-4">
+
+            <h5>No appointments found.</h5>
+
+        </div>
+
+    </div>
+
+{% endif %}
+
+<!-- /Request List -->
 
 
                     <!-- Load More -->
