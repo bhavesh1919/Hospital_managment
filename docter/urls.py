@@ -44,6 +44,8 @@ urlpatterns = [
     views.docter_change_password,
     name="docter_change_password"
 ),
+
+path('add_medical_record/<int:patient_id>/', views.add_medical_record, name='add_medical_record'),
        
        
         

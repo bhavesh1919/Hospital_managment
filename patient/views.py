@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . import urls
 from app1.models import Patient,Profile,Docter
-from docter.models import Availability
+from docter.models import Availability,MedicalRecord
 from .models import appointment,Vital,Favourite
 from datetime import datetime
 from django.contrib import messages 
@@ -133,11 +133,17 @@ def patient_profile(request):
 def patient_invoice(request):
     return render(request, 'patient_invoice.html')
 
-
 def medical_record(request):
+    profile = Profile.objects.get(user=request.user)
+    patient = Patient.objects.get(profile=profile)
 
-    return render(request, 'medical_record.html')
+    records = MedicalRecord.objects.filter(
+        patient=patient
+    ).select_related('doctor').order_by('-record_date')
 
+    return render(request, 'medical_record.html', {
+        'records': records
+    })
 
 def medical_details(request):
 

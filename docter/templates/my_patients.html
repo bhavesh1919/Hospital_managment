@@ -252,6 +252,10 @@
                     {{ patient.city }}, {{ patient.state }}
                 </p>
             </li>
+			<a href="{% url 'add_medical_record' patient.id %}"
+   class="btn btn-primary">
+    Add Medical Record
+</a>
 
             <li class="appointment-action">
                 <div class="patient-book">

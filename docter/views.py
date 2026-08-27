@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render,redirect
 from . import urls
 from app1.models import Docter,Profile,Patient
 from patient.models import appointment as Appointment
-from .models import Availability
+from .models import Availability,MedicalRecord
 from django.contrib import messages
 
 from datetime import date
@@ -271,3 +271,50 @@ def docter_change_password(request):
         return redirect("docter_change_password")
 
     return render(request, "docter_change_password.html")
+
+
+def add_medical_record(request, patient_id):
+
+    patient = get_object_or_404(Patient, id=patient_id)
+
+    profile = get_object_or_404(
+        Profile,
+        user=request.user
+    )
+
+    doctor = get_object_or_404(
+        Docter,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        record_name = request.POST.get("record_name")
+        record_date = request.POST.get("record_date")
+        diagnosis = request.POST.get("diagnosis")
+        treatment = request.POST.get("treatment")
+        comments = request.POST.get("comments")
+        report = request.FILES.get("report")
+
+        MedicalRecord.objects.create(
+            patient=patient,
+            doctor=doctor,
+            record_name=record_name,
+            record_date=record_date,
+            diagnosis=diagnosis,
+            treatment=treatment,
+            comments=comments,
+            report=report
+        )
+
+        return redirect("my_patients")
+
+    return render(
+        request,
+        "add_medical_record.html",
+        {
+            "patient": patient
+        }
+    )
+
+ 
