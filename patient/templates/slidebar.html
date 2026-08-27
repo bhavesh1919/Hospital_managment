@@ -10,15 +10,14 @@
     	<!-- Profile Sidebar -->
 
 							<div class="profile-sidebar patient-sidebar profile-sidebar-new">
-								{% if p%}
+								
 								<div class="widget-profile pro-widget-content">
-									
+								
 									<!-- {% if user.is_authenticated %} -->
 									<div class="profile-info-widget">
 										
 										<a href="\patient_profile\" class="booking-doc-img">
 
-    
 											{% if p and p.profile_photo %}
 												<img src="{{ p.profile_photo.url }}" alt="profile">
 											{% else %}
@@ -26,17 +25,18 @@
 											{% endif %}
 										</a>
 										<div class="profile-det-info">
-											<h3><a href="profile-settings.html">{{p.fname}}</a></h3>
+											<h3><a href="profile-settings.html">{{ p.fname }}</a></h3>
 											<div class="patient-details">
-												<h5 class="mb-0">Patient ID : {{p.user.ID}}</h5>
+												<h5 class="mb-0">Patient ID : {{ p.profile.user.id }}</h5>
 											</div>
 											<span>{{p.gender}} <i class="fa-solid fa-circle"></i> </span>
 										</div>
 
 									</div>
+								
 									<!-- {% endif %} -->
 								</div>
-								{% endif %}
+
 								<div class="dashboard-widget">
 									<nav class="dashboard-menu">
 										<ul>

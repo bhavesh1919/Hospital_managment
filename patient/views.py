@@ -222,12 +222,11 @@ def add_favourite(request, doctor_id):
 
 def sidear(request):
 
-    
     profile = Profile.objects.get(user=request.user)
-    p = Patient.objects.filter(profile=profile).first()
-
+    p = Patient.objects.filter(profile=profile)
 
     return render(request,"sidebar.html" ,{"p":p})
+
 def book_appointment(request, id):
 
     # Get selected availability slot
