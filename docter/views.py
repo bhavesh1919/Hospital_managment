@@ -51,8 +51,10 @@ def reject_appointment(request, id):
 
 
 
-# def docter_Dash(req):
-#     return render(req,'docter_dashboard.html')
+from datetime import date
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
+
 
 def appointments(request):
 
@@ -62,12 +64,30 @@ def appointments(request):
         profile__user=request.user
     )
 
-    # Appointments of this doctor only
+    # Get appointments for this doctor
     appointments = Appointment.objects.filter(
         docter=doctor
-    ).select_related("patient")
+    ).select_related(
+        "patient",
+        "appointment"
+    ).order_by("-id")
 
-    # Unique patients
+
+    # =========================
+    # PAGINATION
+    # =========================
+
+    paginator = Paginator(appointments, 3)
+
+    page_number = request.GET.get("page")
+
+    appointments_page = paginator.get_page(page_number)
+
+
+    # =========================
+    # UNIQUE PATIENTS
+    # =========================
+
     patients = []
     patient_ids = set()
 
@@ -79,7 +99,9 @@ def appointments(request):
 
             # Calculate age
             if patient.dob:
+
                 today = date.today()
+
                 patient.age = (
                     today.year
                     - patient.dob.year
@@ -88,12 +110,33 @@ def appointments(request):
                         < (patient.dob.month, patient.dob.day)
                     )
                 )
+
             else:
+
                 patient.age = ""
 
             patients.append(patient)
+
             patient_ids.add(app.patient_id)
-    return render(request,"appointments.html",{"patients": patients})
+
+
+    # =========================
+    # CONTEXT
+    # =========================
+
+    context = {
+        "appointments": appointments_page,
+        "patients": patients,
+    }
+
+    return render(
+        request,
+        "appointments.html",
+        context
+    )
+
+
+
 
 def docter_request(req):
     return render (req,"request.html")
@@ -317,4 +360,43 @@ def add_medical_record(request, patient_id):
         }
     )
 
- 
+
+
+
+def start_video_call(request, id):
+
+    # Logged-in doctor
+    doctor = get_object_or_404(
+        Docter,
+        profile__user=request.user
+    )
+
+    # Get this doctor's appointment
+    appointment = get_object_or_404(
+        Appointment,
+        id=id,
+        docter=doctor
+    )
+
+    # Only approved appointments can start
+    # the video session
+    if appointment.status != "Approved":
+        return render(
+            request,
+            "video_error.html",
+            {
+                "message": "This appointment is not approved."
+            }
+        )
+
+    # Create a unique room name
+    room_name = f"docure-appointment-{appointment.id}"
+
+    return render(
+        request,
+        "video_call.html",
+        {
+            "appointment": appointment,
+            "room_name": room_name,
+        }
+    )

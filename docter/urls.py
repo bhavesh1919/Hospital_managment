@@ -46,6 +46,18 @@ urlpatterns = [
 ),
 
 path('add_medical_record/<int:patient_id>/', views.add_medical_record, name='add_medical_record'),
+
+    path(
+        "start-video-call/<int:id>/",
+        views.start_video_call,
+        name="start_video_call"
+    ),
+
+path(
+    "appointments/",
+    views.appointments,
+    name="appointments"
+),
        
        
         

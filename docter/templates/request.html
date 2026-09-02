@@ -344,16 +344,15 @@
                         <li>
 
                             <a
-                                href="{% url 'approve_appointment' i.id %}"
-                                class="accept-link"
-                                onclick="return confirm('Approve this appointment?');"
-                            >
+                                                href="{% url 'approve_appointment' i.id %}"
+                                                class="text-success-icon me-2"
+                                                title="Approve Appointment"
+                                                onclick="return confirm('Approve this appointment?');"
+                                            >
 
-                                <i class="fa-solid fa-check"></i>
+                                                <i class="fa-solid fa-check"></i>
 
-                                Accept
-
-                            </a>
+                                            </a>
 
                         </li>
 
@@ -383,9 +382,12 @@
 
                             <span class="badge bg-success">
 
-                                <i class="fa-solid fa-check me-1"></i>
-
-                                Approved
+                                 <a
+                                                href="{% url 'approve_appointment' i.id %}"
+                                                class="text-success-icon me-2"
+                                                title="Approve Appointment"
+                                                onclick="return confirm('Approve this appointment?');"
+                                            >
 
                             </span>
 

@@ -20,10 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('',include('app1.urls')),
     path('',include('docter.urls')),
-    path('',include('patient.urls'))
+    path('',include('patient.urls')),
+    path('', include('admin_panel.urls')),
+   
+    
     
 ]
 

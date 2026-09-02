@@ -28,6 +28,6 @@ urlpatterns = [
 
    path('about-us/',views.about_us),
    path('contact/',views.contact),
-   path('admin_dash/',views.admin_dash),
+    
    
 ]

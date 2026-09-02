@@ -53,4 +53,12 @@ path(
     name="cancel_appointment"
 ),
 
+path(
+    "patient-video-call/<int:id>/",
+    views.patient_video_call,
+    name="patient_video_call"
+),
+
+
 ]
+

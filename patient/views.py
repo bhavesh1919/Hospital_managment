@@ -357,3 +357,37 @@ def book_appointment(request, id):
             "slot": slot
         }
     )
+
+
+def patient_video_call(request, id):
+
+    patient = get_object_or_404(
+        Patient,
+        profile__user=request.user
+    )
+
+    Appointment = get_object_or_404(
+        appointment,
+        id=id,
+        patient=patient
+    )
+
+    if Appointment.status != "Approved":
+        return render(
+            request,
+            "video_error.html",
+            {
+                "message": "This appointment is not approved."
+            }
+        )
+
+    room_name = f"docure-appointment-{Appointment.id}"
+
+    return render(
+        request,
+        "video_call.html",
+        {
+            "appointment": Appointment,
+            "room_name": room_name,
+        }
+    )

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'app1',
     'patient',
     'docter',
-    
+    'admin_panel',
 ]
 
 MIDDLEWARE = [
