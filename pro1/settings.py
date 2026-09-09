@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-iorz6zmd_0+#-emzhzghufbm7h&=07^%^a+26npffs(7f)jqzg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,11 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'app1',
     'patient',
     'docter',
     'admin_panel',
+    'chat',
+    
 ]
+## chat model integration
+
+ASGI_APPLICATION = "pro1.asgi.application"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,3 +148,10 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 import os
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}

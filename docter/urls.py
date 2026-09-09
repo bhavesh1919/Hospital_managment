@@ -26,39 +26,47 @@ urlpatterns = [
     path('account/', views.account, name='account'),
     path('appointment/', views.appointments, name='appointment'),
     path('available_timming/', views.avilable_timming, name='avilable_timming'),
-    path('chat/', views.chat, name='chat'),
+    # path('chat/', views.chat, name='chat'),
     path('docter_blog/', views.docter_blog, name='docter_blog'),
     path('docter_change_password/', views.docter_change_password, name='docter_change_password'),
     path('docter_dash/', views.docter_Dash, name='docter_dash'),
     path('docter_payment/', views.docter_payment, name='docter_payment'),
     path('docter_profile_settings/', views.docter_profile_settings, name='docter_profile_settings'),
-    path('docter_specialties/', views.docter_specialties, name='docter_specialties'),
     path('invoice/', views.invoice, name='invoice'),
     path('my_patients/', views.my_patients, name='my_patients'),
     path('request/', views.request_page, name='request'),
     path('review/', views.review, name='review'),
-    path("approve_appointment/<int:id>/",views.approve,name="approve_appointment"),
-    path( "reject_appointment/<int:id>/", views.reject_appointment,name="reject_appointment"),
-    path(
-    "docter_change_password/",
-    views.docter_change_password,
-    name="docter_change_password"
-),
-
-path('add_medical_record/<int:patient_id>/', views.add_medical_record, name='add_medical_record'),
-
-    path(
-        "start-video-call/<int:id>/",
-        views.start_video_call,
-        name="start_video_call"
-    ),
+    path("approve_appointment/<int:id>/", views.approve, name="approve_appointment"),
+    path("reject_appointment/<int:id>/", views.reject_appointment, name="reject_appointment"),
+    path('add_medical_record/<int:patient_id>/', views.add_medical_record, name='add_medical_record'),
+    path("start-video-call/<int:id>/", views.start_video_call, name="start_video_call"),
+    path("appointments/", views.appointments, name="appointments"),
+    path('docter_specialties/', views.doctor_specialities, name='doctor_specialities'),
+    path('doctor_specialties/', views.doctor_specialities, name='docter_specialties'),
 
 path(
-    "appointments/",
-    views.appointments,
-    name="appointments"
+    "doctor_specialties/add/",
+    views.add_doctor_speciality,
+    name="add_doctor_speciality"
 ),
-       
+
+path(
+    "doctor_specialties/<int:speciality_id>/service/add/",
+    views.add_doctor_service,
+    name="add_doctor_service"
+),
+
+path(
+    "doctor_service/<int:service_id>/delete/",
+    views.delete_doctor_service,
+    name="delete_doctor_service"
+),
+
+path(
+    "doctor_speciality/<int:speciality_id>/delete/",
+    views.delete_doctor_speciality,
+    name="delete_doctor_speciality"
+),
        
         
 ]

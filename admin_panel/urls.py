@@ -17,6 +17,40 @@ urlpatterns = [
     path("settings/", views.settings, name="settings"),
     path("specialities/", views.specialities, name="specialities"),
     path("transactions/", views.transaction_list, name="transaction_list"),
+
+     path(
+        "specialities/",
+        views.specialities,
+        name="specialities"
+    ),
+
+    path(
+        "specialities/add/",
+        views.add_speciality,
+        name="add_speciality"
+    ),
+
+    path(
+        "specialities/<int:speciality_id>/edit/",
+        views.edit_speciality,
+        name="edit_speciality"
+    ),
+
+    path(
+        "specialities/<int:speciality_id>/delete/",
+        views.delete_speciality,
+        name="delete_speciality"
+    ),
+
+    # =====================================================
+    # TRANSACTIONS
+    # =====================================================
+
+    path(
+        "transactions/",
+        views.transaction_list,
+        name="transaction_list"
+    ),
 ]
 
 

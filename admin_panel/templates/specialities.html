@@ -1,165 +1,1085 @@
-{% extends 'base1.html '%}
+{% extends 'base1.html' %}
 {% load static %}
+
 {% block content %}
-			
-			<!-- Page Wrapper -->
-                <div class="page-wrapper">
-                <div class="content container-fluid">
-				
-					<!-- Page Header -->
-					<div class="page-header">
-						<div class="row">
-							<div class="col-sm-7 col-auto">
-								<h3 class="page-title">Specialities</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active">Specialities</li>
-								</ul>
-							</div>
-							<div class="col-sm-5 col">
-								<a href="#Add_Specialities_details" data-bs-toggle="modal" class="btn btn-primary float-end mt-2">Add</a>
-							</div>
-						</div>
-					</div>
-					<!-- /Page Header -->
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="datatable table table-hover table-center mb-0">
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Specialities</th>
-													<th>Actions</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>#SP001</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm me-2">
-																<img class="avatar-img" src="{% static 'assets/img/specialities/specialities-01.png' %}" alt="Speciality">
-															</a>
-															<a href="profile.html">Urology</a>
-														</h2>
-													</td>
-												
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a  data-bs-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#SP002</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm me-2">
-																<img class="avatar-img" src="{% static 'assets/img/specialities/specialities-02.png' %}" alt="Speciality">
-															</a>
-															<a href="profile.html">Neurology</a>
-														</h2>
-													</td>
-												
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a  data-bs-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>	
-												<tr>
-													<td>#SP003</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm me-2">
-																<img class="avatar-img" src="{% static 'assets/img/specialities/specialities-03.png' %}" alt="Speciality">
-															</a>
-															<a href="profile.html">Orthopedic</a>
-														</h2>
-													</td>
-												
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a  data-bs-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#SP004</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm me-2">
-																<img class="avatar-img" src="{% static 'assets/img/specialities/specialities-04.png' %}" alt="Speciality">
-															</a>
-															<a href="profile.html">Cardiologist</a>
-														</h2>
-													</td>
-												
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a  data-bs-toggle="modal" href="#delete_modal" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#SP005</td>
-													
-													<td>
-														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm me-2">
-																<img class="avatar-img" src="{% static 'assets/img/specialities/specialities-05.png' %}" alt="Speciality">
-															</a>
-															<a href="profile.html">Dentist</a>
-														</h2>
-													</td>
-												
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_specialities_details">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a class="btn btn-sm bg-danger-light" data-bs-toggle="modal" href="#delete_modal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>			
-					</div>
-				</div>			
-			</div>
-			<!-- /Page Wrapper -->
-		
+
+<!-- ========================================================= -->
+<!-- PAGE WRAPPER -->
+<!-- ========================================================= -->
+
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+
+
+        <!-- ===================================================== -->
+        <!-- PAGE HEADER -->
+        <!-- ===================================================== -->
+
+        <div class="page-header">
+
+            <div class="row">
+
+                <div class="col-sm-7 col-auto">
+
+                    <h3 class="page-title">
+                        Specialities
+                    </h3>
+                     <h6><li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li></h6>
+
+                </div>
+
+
+                <!-- ADD BUTTON -->
+
+                <div class="col-sm-5 col">
+
+                    <button
+                        type="button"
+                        class="btn btn-primary float-end mt-2"
+                        onclick="openAddSpecialityModal()">
+
+                        Add
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- /PAGE HEADER -->
+        <!-- ===================================================== -->
+
+
+        <!-- ===================================================== -->
+        <!-- MESSAGES -->
+        <!-- ===================================================== -->
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                    role="alert">
+
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        onclick="this.parentElement.remove();">
+
+                    </button>
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+        <!-- ===================================================== -->
+        <!-- /MESSAGES -->
+        <!-- ===================================================== -->
+
+
+        <!-- ===================================================== -->
+        <!-- SPECIALITIES TABLE -->
+        <!-- ===================================================== -->
+
+        <div class="row">
+
+            <div class="col-sm-12">
+
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <table class="datatable table table-hover table-center mb-0">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            #
+                                        </th>
+
+                                        <th>
+                                            Specialities
+                                        </th>
+
+                                        <th>
+                                            Doctors
+                                        </th>
+
+                                        <th>
+                                            Actions
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                    {% for speciality in specialities %}
+
+                                    <tr>
+
+                                        <!-- ================================================= -->
+                                        <!-- SPECIALITY ID -->
+                                        <!-- ================================================= -->
+
+                                        <td>
+
+                                            #SP{{ speciality.id|stringformat:"03d" }}
+
+                                        </td>
+
+
+                                        <!-- ================================================= -->
+                                        <!-- SPECIALITY NAME -->
+                                        <!-- ================================================= -->
+
+                                        <td>
+
+                                            <h2 class="table-avatar">
+
+                                                <a
+                                                    href="javascript:void(0);"
+                                                    class="avatar avatar-sm me-2">
+
+                                                    <img
+                                                        class="avatar-img"
+                                                        src="{% static 'assets/img/specialities/specialities-01.png' %}"
+                                                        alt="Speciality">
+
+                                                </a>
+
+
+                                                <a
+                                                    href="javascript:void(0);">
+
+                                                    {{ speciality.name }}
+
+                                                </a>
+
+                                            </h2>
+
+                                        </td>
+
+
+                                        <!-- ================================================= -->
+                                        <!-- DOCTORS -->
+                                        <!-- ================================================= -->
+
+                                        <td>
+                                            {% for ds in speciality.doctor_specialities.all %}
+                                                <span class="badge badge-pill bg-primary-light me-1 mb-1">
+                                                    {% if ds.doctor.first_name or ds.doctor.last_name %}
+                                                        Dr. {{ ds.doctor.first_name }} {{ ds.doctor.last_name }}
+                                                    {% else %}
+                                                        {{ ds.doctor.display_name|default:ds.doctor.profile.user.username }}
+                                                    {% endif %}
+                                                </span>
+                                            {% empty %}
+                                                <span class="text-muted small">No doctors assigned</span>
+                                            {% endfor %}
+                                        </td>
+
+
+                                        <!-- ================================================= -->
+                                        <!-- ACTIONS -->
+                                        <!-- ================================================= -->
+
+                                        <td>
+
+                                            <div class="actions">
+
+
+                                                <!-- EDIT -->
+
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm bg-success-light"
+                                                    onclick="openEditSpecialityModal(
+                                                        '{{ speciality.id }}',
+                                                        '{{ speciality.name|escapejs }}'
+                                                    )">
+
+                                                    <i class="fe fe-pencil"></i>
+
+                                                    Edit
+
+                                                </button>
+
+
+                                                <!-- DELETE -->
+
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm bg-danger-light"
+                                                    onclick="openDeleteSpecialityModal(
+                                                        '{{ speciality.id }}',
+                                                        '{{ speciality.name|escapejs }}'
+                                                    )">
+
+                                                    <i class="fe fe-trash"></i>
+
+                                                    Delete
+
+                                                </button>
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    {% empty %}
+
+                                    <!-- ================================================= -->
+                                    <!-- NO DATA -->
+                                    <!-- ================================================= -->
+
+                                    <tr>
+
+                                        <td
+                                            colspan="4"
+                                            class="text-center py-4">
+
+                                            No specialities found.
+
+                                        </td>
+
+                                    </tr>
+
+                                    {% endfor %}
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- /SPECIALITIES TABLE -->
+        <!-- ================================================= -->
+
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- /PAGE WRAPPER -->
+<!-- ========================================================= -->
+
+
+
+<!-- ========================================================= -->
+<!-- ADD SPECIALITY MODAL -->
+<!-- ========================================================= -->
+
+<div
+    id="addSpecialityModal"
+    class="custom-modal">
+
+
+    <div class="custom-modal-content">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="custom-modal-header">
+
+            <h4>
+                Add Speciality
+            </h4>
+
+
+            <button
+                type="button"
+                class="custom-close"
+                onclick="closeAddSpecialityModal()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <!-- MODAL BODY -->
+
+        <form
+            method="POST"
+            action="{% url 'add_speciality' %}">
+
+            {% csrf_token %}
+
+
+            <div class="custom-modal-body">
+
+                <div class="form-group">
+
+                    <label>
+                        Speciality Name
+                    </label>
+
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Enter speciality name"
+                        required
+                        autocomplete="off">
+
+                </div>
+
+            </div>
+
+
+            <!-- MODAL FOOTER -->
+
+            <div class="custom-modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeAddSpecialityModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Add Speciality
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- /ADD SPECIALITY MODAL -->
+<!-- ========================================================= -->
+
+
+
+<!-- ========================================================= -->
+<!-- EDIT SPECIALITY MODAL -->
+<!-- ========================================================= -->
+
+<div
+    id="editSpecialityModal"
+    class="custom-modal">
+
+
+    <div class="custom-modal-content">
+
+
+        <!-- HEADER -->
+
+        <div class="custom-modal-header">
+
+            <h4>
+                Edit Speciality
+            </h4>
+
+
+            <button
+                type="button"
+                class="custom-close"
+                onclick="closeEditSpecialityModal()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+            method="POST"
+            id="editSpecialityForm">
+
+            {% csrf_token %}
+
+
+            <div class="custom-modal-body">
+
+                <div class="form-group">
+
+                    <label>
+                        Speciality Name
+                    </label>
+
+
+                    <input
+                        type="text"
+                        name="name"
+                        id="editSpecialityName"
+                        class="form-control"
+                        required
+                        autocomplete="off">
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="custom-modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeEditSpecialityModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Update
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- /EDIT SPECIALITY MODAL -->
+<!-- ========================================================= -->
+
+
+
+<!-- ========================================================= -->
+<!-- DELETE SPECIALITY MODAL -->
+<!-- ========================================================= -->
+
+<div
+    id="deleteSpecialityModal"
+    class="custom-modal">
+
+
+    <div class="custom-modal-content delete-box">
+
+
+        <!-- HEADER -->
+
+        <div class="custom-modal-header">
+
+            <h4>
+                Delete Speciality
+            </h4>
+
+
+            <button
+                type="button"
+                class="custom-close"
+                onclick="closeDeleteSpecialityModal()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <!-- BODY -->
+
+        <div class="custom-modal-body text-center">
+
+
+            <div class="delete-icon">
+
+                <i class="fe fe-trash"></i>
+
+            </div>
+
+
+            <h4>
+                Are you sure?
+            </h4>
+
+
+            <p class="text-muted">
+
+                Do you want to delete
+
+                <strong id="deleteSpecialityName"></strong>
+
+                ?
+
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="custom-modal-footer">
+
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="closeDeleteSpecialityModal()">
+
+                Cancel
+
+            </button>
+
+
+            <form
+                method="POST"
+                id="deleteSpecialityForm">
+
+                {% csrf_token %}
+
+
+                <button
+                    type="submit"
+                    class="btn btn-danger">
+
+                    Delete
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- /DELETE SPECIALITY MODAL -->
+<!-- ========================================================= -->
+
+
+
+<!-- ========================================================= -->
+<!-- CUSTOM CSS -->
+<!-- ========================================================= -->
+
+<style>
+
+.custom-modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 99999;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+
+.custom-modal-content {
+
+    width: 500px;
+
+    max-width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 8px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+
+    animation: modalOpen 0.2s ease;
+
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+.custom-modal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.custom-modal-header h4 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+}
+
+
+.custom-close {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    color: #777777;
+
+}
+
+
+.custom-close:hover {
+
+    color: #000000;
+
+}
+
+
+.custom-modal-body {
+
+    padding: 20px;
+
+}
+
+
+.custom-modal-body label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 500;
+
+}
+
+
+.custom-modal-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 15px 20px;
+
+    border-top: 1px solid #eeeeee;
+
+}
+
+
+.delete-icon {
+
+    margin-bottom: 15px;
+
+}
+
+
+.delete-icon i {
+
+    font-size: 45px;
+
+    color: #dc3545;
+
+}
+
+
+.delete-box {
+
+    width: 450px;
+
+}
+
+
+.custom-modal input {
+
+    height: 45px;
+
+}
+
+
+body.modal-open-custom {
+
+    overflow: hidden;
+
+}
+
+</style>
+
+<!-- ========================================================= -->
+<!-- /CUSTOM CSS -->
+<!-- ========================================================= -->
+
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+
+<script>
+
+
+// =========================================================
+// ADD SPECIALITY
+// =========================================================
+
+function openAddSpecialityModal() {
+
+    const modal = document.getElementById(
+        "addSpecialityModal"
+    );
+
+    if (modal) {
+
+        modal.style.display = "flex";
+
+        document.body.classList.add(
+            "modal-open-custom"
+        );
+
+    }
+
+}
+
+
+function closeAddSpecialityModal() {
+
+    const modal = document.getElementById(
+        "addSpecialityModal"
+    );
+
+    if (modal) {
+
+        modal.style.display = "none";
+
+        document.body.classList.remove(
+            "modal-open-custom"
+        );
+
+    }
+
+}
+
+
+
+// =========================================================
+// EDIT SPECIALITY
+// =========================================================
+
+function openEditSpecialityModal(
+    specialityId,
+    specialityName
+) {
+
+    const modal = document.getElementById(
+        "editSpecialityModal"
+    );
+
+
+    const nameInput = document.getElementById(
+        "editSpecialityName"
+    );
+
+
+    const form = document.getElementById(
+        "editSpecialityForm"
+    );
+
+
+    if (modal && nameInput && form) {
+
+
+        // Put current speciality name in input
+
+        nameInput.value = specialityName;
+
+
+        // Set edit URL
+
+        form.action =
+            "/specialities/" +
+            specialityId +
+            "/edit/";
+
+
+        // Show modal
+
+        modal.style.display = "flex";
+
+
+        document.body.classList.add(
+            "modal-open-custom"
+        );
+
+    }
+
+}
+
+
+function closeEditSpecialityModal() {
+
+    const modal = document.getElementById(
+        "editSpecialityModal"
+    );
+
+    if (modal) {
+
+        modal.style.display = "none";
+
+        document.body.classList.remove(
+            "modal-open-custom"
+        );
+
+    }
+
+}
+
+
+
+// =========================================================
+// DELETE SPECIALITY
+// =========================================================
+
+function openDeleteSpecialityModal(
+    specialityId,
+    specialityName
+) {
+
+    const modal = document.getElementById(
+        "deleteSpecialityModal"
+    );
+
+
+    const nameElement = document.getElementById(
+        "deleteSpecialityName"
+    );
+
+
+    const form = document.getElementById(
+        "deleteSpecialityForm"
+    );
+
+
+    if (modal && nameElement && form) {
+
+
+        // Show speciality name
+
+        nameElement.textContent =
+            specialityName;
+
+
+        // Set delete URL
+
+        form.action =
+            "/specialities/" +
+            specialityId +
+            "/delete/";
+
+
+        // Show modal
+
+        modal.style.display = "flex";
+
+
+        document.body.classList.add(
+            "modal-open-custom"
+        );
+
+    }
+
+}
+
+
+function closeDeleteSpecialityModal() {
+
+    const modal = document.getElementById(
+        "deleteSpecialityModal"
+    );
+
+
+    if (modal) {
+
+        modal.style.display = "none";
+
+        document.body.classList.remove(
+            "modal-open-custom"
+        );
+
+    }
+
+}
+
+
+
+// =========================================================
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+// =========================================================
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+
+        const addModal =
+            document.getElementById(
+                "addSpecialityModal"
+            );
+
+
+        const editModal =
+            document.getElementById(
+                "editSpecialityModal"
+            );
+
+
+        const deleteModal =
+            document.getElementById(
+                "deleteSpecialityModal"
+            );
+
+
+        if (event.target === addModal) {
+
+            closeAddSpecialityModal();
+
+        }
+
+
+        if (event.target === editModal) {
+
+            closeEditSpecialityModal();
+
+        }
+
+
+        if (event.target === deleteModal) {
+
+            closeDeleteSpecialityModal();
+
+        }
+
+    }
+);
+
+
+
+// =========================================================
+// ESC KEY CLOSE
+// =========================================================
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeAddSpecialityModal();
+
+            closeEditSpecialityModal();
+
+            closeDeleteSpecialityModal();
+
+        }
+
+    }
+);
+
+</script>
+
+<!-- ========================================================= -->
+<!-- /JAVASCRIPT -->
+<!-- ========================================================= -->
+
+
 {% endblock %}

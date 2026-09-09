@@ -2,8 +2,16 @@ from django.shortcuts import get_object_or_404, render,redirect
 from . import urls
 from app1.models import Docter,Profile,Patient
 from patient.models import appointment as Appointment
-from .models import Availability,MedicalRecord
+from .models import Availability,MedicalRecord,DoctorService,DoctorSpeciality,Speciality
 from django.contrib import messages
+
+
+from .models import (
+    Docter,
+    Speciality,
+    DoctorSpeciality,
+    DoctorService,
+)
 
 from datetime import date
 from django.shortcuts import render, get_object_or_404
@@ -230,8 +238,6 @@ def docter_profile_settings(request):
     return render(request, "docter_profile_settings.html", {"doctor": doctor})    
 
 
-def docter_specialties(request):
-    return render(request, 'docter_speclities.html')
 
 def invoice(request):
     return render(request, 'invoice.html')
@@ -400,3 +406,190 @@ def start_video_call(request, id):
             "room_name": room_name,
         }
     )
+
+@login_required
+def doctor_specialities(request):
+
+    doctor = get_object_or_404(
+        Docter,
+        profile__user=request.user
+    )
+
+    doctor_specialities = (
+        DoctorSpeciality.objects
+        .filter(doctor=doctor)
+        .select_related("speciality")
+        .prefetch_related("services")
+        .order_by("-id")
+    )
+
+    specialities = Speciality.objects.all().order_by("name")
+
+    return render(
+        request,
+        "docter_speclities.html",
+        {
+            "doctor": doctor,
+            "doctor_specialities": doctor_specialities,
+            "specialities": specialities,
+        }
+    )
+
+
+@login_required
+def add_doctor_speciality(request):
+
+    doctor = get_object_or_404(
+        Docter,
+        profile__user=request.user
+    )
+
+    if request.method == "POST":
+
+        speciality_id = request.POST.get("speciality")
+        custom_name = request.POST.get("custom_speciality", "").strip()
+
+        if not speciality_id and not custom_name:
+            messages.error(
+                request,
+                "Please select or enter a speciality name."
+            )
+            return redirect("doctor_specialities")
+
+        if custom_name:
+            speciality, _ = Speciality.objects.get_or_create(
+                name__iexact=custom_name,
+                defaults={"name": custom_name}
+            )
+        else:
+            speciality = get_object_or_404(
+                Speciality,
+                id=speciality_id
+            )
+
+        doctor_speciality, created = (
+            DoctorSpeciality.objects.get_or_create(
+                doctor=doctor,
+                speciality=speciality
+            )
+        )
+
+        if created:
+            messages.success(
+                request,
+                f"Speciality '{speciality.name}' added successfully."
+            )
+        else:
+            messages.warning(
+                request,
+                f"Speciality '{speciality.name}' is already added to your profile."
+            )
+
+    return redirect("doctor_specialities")
+
+
+@login_required
+def add_doctor_service(request, speciality_id):
+
+    doctor = get_object_or_404(
+        Docter,
+        profile__user=request.user
+    )
+
+    doctor_speciality = get_object_or_404(
+        DoctorSpeciality,
+        id=speciality_id,
+        doctor=doctor
+    )
+
+    if request.method == "POST":
+
+        service_name = request.POST.get(
+            "service_name"
+        )
+
+        price = request.POST.get(
+            "price"
+        )
+
+        about_service = request.POST.get(
+            "about_service"
+        )
+
+        if not service_name or not price:
+
+            messages.error(
+                request,
+                "Service name and price are required."
+            )
+
+            return redirect(
+                "doctor_specialities"
+            )
+
+        DoctorService.objects.create(
+
+            doctor_speciality=doctor_speciality,
+
+            service_name=service_name,
+
+            price=price,
+
+            about_service=about_service
+        )
+
+        messages.success(
+            request,
+            "Service added successfully."
+        )
+
+    return redirect(
+        "doctor_specialities"
+    )
+
+@login_required
+def delete_doctor_service(request, service_id):
+
+    doctor = get_object_or_404(
+        Docter,
+        profile__user=request.user
+    )
+
+    service = get_object_or_404(
+        DoctorService,
+        id=service_id,
+        doctor_speciality__doctor=doctor
+    )
+
+    service.delete()
+
+    messages.success(
+        request,
+        "Service deleted successfully."
+    )
+
+    return redirect("doctor_specialities")
+
+
+@login_required
+def delete_doctor_speciality(request, speciality_id):
+
+    doctor = get_object_or_404(
+        Docter,
+        profile__user=request.user
+    )
+
+    doctor_speciality = get_object_or_404(
+        DoctorSpeciality,
+        id=speciality_id,
+        doctor=doctor
+    )
+
+    doctor_speciality.delete()
+
+    messages.success(
+        request,
+        "Speciality deleted successfully."
+    )
+
+    return redirect("doctor_specialities")

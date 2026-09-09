@@ -1,345 +1,377 @@
-{% extends 'base.html'%}
-{% load static%}
-{% block content%}
-		<!-- Page Content -->
-		<div class="content doctor-content">
-			<div class="container">
+{% extends 'base.html' %}
+{% load static %}
 
-				<div class="row">
-					<div class="col-lg-4 col-xl-3 theiaStickySidebar">
-					
-						<!-- Profile Sidebar -->
-						<!-- <div class="profile-sidebar doctor-sidebar profile-sidebar-new">
-							<div class="widget-profile pro-widget-content">
-								<div class="profile-info-widget">
-									<a href="doctor-profile.html" class="booking-doc-img">
-										<img src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}" alt="User Image">
-									</a>
-									<div class="profile-det-info">
-										<h3><a href="doctor-profile.html">Dr Edalin Hendry</a></h3>
-										<div class="patient-details">
-											<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
-										</div>
-										<span class="badge doctor-role-badge"><i class="fa-solid fa-circle"></i>Dentist</span>
-									</div>
-								</div>
-							</div>
-							<div class="doctor-available-head">
-								<div class="input-block input-block-new">
-									<label class="form-label">Availability <span class="text-danger">*</span></label>
-									<select class="select form-control">
-										<option>I am Available Now</option>
-										<option>Not Available</option>
-									</select>
-								</div>
-							</div>
-							<div class="dashboard-widget">
-								<nav class="dashboard-menu">
-									<ul>
-										<li>
-											<a href="doctor-dashboard.html">
-												<i class="isax isax-category-2"></i>
-												<span>Dashboard</span>
-											</a>
-										</li>
-										<li>
-											<a href="doctor-request.html">
-												<i class="isax isax-clipboard-tick"></i>
-												<span>Requests</span>
-												<small class="unread-msg">2</small>
-											</a>
-										</li>
-										<li>
-											<a href="appointments.html">
-												<i class="isax isax-calendar-1"></i>
-												<span>Appointments</span>
-											</a>
-										</li>
-										<li>
-											<a href="available-timings.html">
-												<i class="isax isax-calendar-tick"></i>
-												<span>Available Timings</span>
-											</a>
-										</li>
-										<li>
-											<a href="my-patients.html">
-												<i class="fa-solid fa-user-injured"></i>
-												<span>My Patients</span>
-											</a>
-										</li>
-										<li class="active">
-											<a href="doctor-specialities.html">
-												<i class="isax isax-clock"></i>
-												<span>Specialties & Services</span>
-											</a>
-										</li>
-										<li>
-											<a href="reviews.html">
-												<i class="isax isax-star-1"></i>
-												<span>Reviews</span>
-											</a>
-										</li>
-										<li>
-											<a href="accounts.html">
-												<i class="isax isax-profile-tick"></i>
-												<span>Accounts</span>
-											</a>
-										</li>
-										<li>
-											<a href="invoices.html">
-												<i class="isax isax-document-text"></i>
-												<span>Invoices</span>
-											</a>
-										</li>
-										<li>
-											<a href="doctor-payment.html">
-												<i class="fa-solid fa-money-bill-1"></i>
-												<span>Payout Settings</span>
-											</a>
-										</li>																																				
-										<li>
-											<a href="chat-doctor.html">
-												<i class="isax isax-messages-1"></i>
-												<span>Message</span>
-												<small class="unread-msg">7</small>
-											</a>
-										</li>
-										<li>
-											<a href="doctor-profile-settings.html">
-												<i class="isax isax-setting-2"></i>
-												<span>Profile Settings</span>
-											</a>
-										</li>
-										<li>
-											<a href="social-media.html">
-												<i class="fa-solid fa-shield-halved"></i>
-												<span>Social Media</span>
-											</a>
-										</li>
-										<li>
-											<a href="doctor-change-password.html">
-												<i class="isax isax-key"></i>
-												<span>Change Password</span>
-											</a>
-										</li>
-										<li>
-											<a href="login.html">
-												<i class="isax isax-logout"></i>
-												<span>Logout</span>
-											</a>
-										</li>
-									</ul>
-								</nav>
-							</div>
-						</div> -->
-						<!-- /Profile Sidebar -->
-						 
-							  {% include 'sidebar.html' %}
-						
-					</div>
-					
-					<div class="col-lg-8 col-xl-9">
-						
-						<div class="dashboard-header">
-							<h3>Speciality & Services</h3>
-							<ul>
-								<li>
-									<a href="#" class="btn btn-primary prime-btn add-speciality">Add New Speciality</a>
-								</li>
-							</ul>
-						</div>
-						
-						<div class="accordions" id="list-accord">
+{% block content %}
 
-							<!-- Spaciality Item -->
-							<div class="user-accordion-item">
-								<a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#cardiology">Cardiology<span>Delete</span></a>
-								<div class="accordion-collapse collapse show" id="cardiology" data-bs-parent="#list-accord">
-									<div class="content-collapse">
-										<div class="add-service-info">
-											<div class="add-info">
-												<div class="row">
-													<div class="col-md-4">
-														<div class="form-wrap">
-															<label class="form-label">Speciality <span class="text-danger">*</span></label>
-															<select class="select">
-																<option>Cardiology</option>
-																<option>Neurology</option>
-																<option>Urology</option>
-															</select>
-														</div>													
-													</div>
-												</div>
-												<div class="row service-cont">
-													<div class="col-md-3">
-														<div class="form-wrap">
-															<label class="form-label">Service <span class="text-danger">*</span></label>
-															<select class="select">
-																<option>Select Service</option>
-																<option>Surgery</option>
-																<option>General Checkup</option>
-															</select>
-														</div>													
-													</div>
-													<div class="col-md-2">
-														<div class="form-wrap">
-															<label class="form-label">Price ($) <span class="text-danger">*</span></label>
-															<input type="text" class="form-control" placeholder="454">
-														</div>													
-													</div>
-													<div class="col-md-7">
-														<div class="d-flex align-items-center">
-															<div class="form-wrap w-100">
-																<label class="form-label">About Service</label>
-																<input type="text" class="form-control">
-															</div>
-															<div class="form-wrap ms-2">
-																<label class="col-form-label d-block">&nbsp;</label>
-																<a href="#" class="trash-icon trash">Delete</a>
-															</div>												
-														</div>													
-													</div>
-												</div>
-											</div>
-											<div class="text-end">
-												<a href="#" class="add-serv more-item mb-0">Add New Service</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Spaciality Item -->
+<!-- Page Content -->
+<div class="content doctor-content">
+    <div class="container">
 
-							<!-- Spaciality Item -->
-							<div class="user-accordion-item">
-								<a href="#" class="accordion-wrap collapsed" data-bs-toggle="collapse" data-bs-target="#neurology">Neurology<span>Delete</span></a>
-								<div class="accordion-collapse" id="neurology" data-bs-parent="#list-accord">
-									<div class="content-collapse">
-										<div class="add-service-info">
-											<div class="add-info">
-												<div class="row">
-													<div class="col-md-4">
-														<div class="form-wrap">
-															<label class="form-label">Speciality <span class="text-danger">*</span></label>
-															<select class="select">
-																<option>Cardiology</option>
-																<option selected>Neurology</option>
-																<option>Urology</option>
-															</select>
-														</div>													
-													</div>
-												</div>
-												<div class="row service-cont">
-													<div class="col-md-3">
-														<div class="form-wrap">
-															<label class="form-label">Service <span class="text-danger">*</span></label>
-															<select class="select">
-																<option>Select Service</option>
-																<option>Surgery</option>
-																<option>General Checkup</option>
-															</select>
-														</div>													
-													</div>
-													<div class="col-md-2">
-														<div class="form-wrap">
-															<label class="form-label">Price ($) <span class="text-danger">*</span></label>
-															<input type="text" class="form-control" placeholder="454">
-														</div>													
-													</div>
-													<div class="col-md-7">
-														<div class="d-flex align-items-center">
-															<div class="form-wrap w-100">
-																<label class="form-label">About Service</label>
-																<input type="text" class="form-control">
-															</div>
-															<div class="form-wrap ms-2">
-																<label class="col-form-label d-block">&nbsp;</label>
-																<a href="#" class="trash-icon trash">Delete</a>
-															</div>												
-														</div>													
-													</div>
-												</div>
-											</div>
-											<div class="text-end">
-												<a href="#" class="add-serv more-item mb-0">Add New Service</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Spaciality Item -->
+        <div class="row">
 
-							<!-- Spaciality Item -->
-							<div class="user-accordion-item">
-								<a href="#" class="accordion-wrap collapsed" data-bs-toggle="collapse" data-bs-target="#urology">Urology<span>Delete</span></a>
-								<div class="accordion-collapse" id="urology" data-bs-parent="#list-accord">
-									<div class="content-collapse">
-										<div class="add-service-info">
-											<div class="add-info">
-												<div class="row">
-													<div class="col-md-4">
-														<div class="form-wrap">
-															<label class="form-label">Speciality <span class="text-danger">*</span></label>
-															<select class="select">
-																<option>Cardiology</option>
-																<option>Neurology</option>
-																<option selected>Urology</option>
-															</select>
-														</div>													
-													</div>
-												</div>
-												<div class="row service-cont">
-													<div class="col-md-3">
-														<div class="form-wrap">
-															<label class="form-label">Service <span class="text-danger">*</span></label>
-															<select class="select">
-																<option>Select Service</option>
-																<option>Surgery</option>
-																<option>General Checkup</option>
-															</select>
-														</div>													
-													</div>
-													<div class="col-md-2">
-														<div class="form-wrap">
-															<label class="form-label">Price ($) <span class="text-danger">*</span></label>
-															<input type="text" class="form-control" placeholder="454">
-														</div>													
-													</div>
-													<div class="col-md-7">
-														<div class="d-flex align-items-center">
-															<div class="form-wrap w-100">
-																<label class="form-label">About Service</label>
-																<input type="text" class="form-control">
-															</div>
-															<div class="form-wrap ms-2">
-																<label class="col-form-label d-block">&nbsp;</label>
-																<a href="#" class="trash-icon trash">Delete</a>
-															</div>												
-														</div>													
-													</div>
-												</div>
-											</div>
-											<div class="text-end">
-												<a href="#" class="add-serv more-item mb-0">Add New Service</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Spaciality Item -->
+            <!-- ================= PROFILE SIDEBAR ================= -->
+            <div class="col-lg-4 col-xl-3 theiaStickySidebar">
+                {% include 'sidebar.html' %}
+            </div>
 
-						</div>
+            <!-- ================= MAIN CONTENT ================= -->
+            <div class="col-lg-8 col-xl-9">
 
-						<div class="modal-btn text-end">
-							<a href="#" class="btn btn-gray">Cancel</a>
-							<button class="btn btn-primary prime-btn">Save Changes</button>
-						</div>
+                <!-- Header -->
+                <div class="dashboard-header">
+                    <h3>Speciality & Services</h3>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);"
+                               id="addSpecialityBtn"
+                               class="btn btn-primary prime-btn add-speciality"
+                               data-bs-toggle="modal"
+                               data-bs-target="#add-speciality">
+                                <i class="fa-solid fa-plus me-1"></i> Add New Speciality
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-					</div>
-				</div>
+                <!-- Messages -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
-			</div>
+                <!-- ================= ACCORDION ================= -->
+                <div class="accordions" id="list-accord">
 
-		</div>		
-		<!-- /Page Content -->
-{% endblock%}
+                    {% for item in doctor_specialities %}
+
+                    <!-- SPECIALITY ITEM -->
+                    <div class="user-accordion-item mb-3">
+
+                        <!-- Speciality Header -->
+                        <div class="accordion-wrap d-flex justify-content-between align-items-center {% if not forloop.first %}collapsed{% endif %}"
+                             data-bs-toggle="collapse"
+                             data-bs-target="#speciality-{{ item.id }}"
+                             role="button"
+                             aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+                             style="cursor: pointer;">
+
+                            <span class="fw-bold fs-6">
+                                <i class="fa-solid fa-stethoscope me-2 text-primary"></i>
+                                {{ item.speciality.name }}
+                            </span>
+
+                            <span>
+                                <a href="{% url 'delete_doctor_speciality' item.id %}"
+                                   onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this speciality? All associated services will also be deleted.');"
+                                   class="btn btn-sm btn-outline-danger ms-2">
+                                    <i class="fa-solid fa-trash-can me-1"></i> Delete
+                                </a>
+                            </span>
+
+                        </div>
+
+                        <!-- Speciality Content -->
+                        <div class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                             id="speciality-{{ item.id }}"
+                             data-bs-parent="#list-accord">
+
+                            <div class="content-collapse p-3 bg-light rounded-bottom border border-top-0">
+
+                                <div class="add-service-info">
+
+                                    <div class="add-info">
+
+                                        <!-- Speciality Name -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <div class="form-wrap mb-0">
+                                                    <label class="form-label fw-bold">Speciality</label>
+                                                    <input type="text" class="form-control" value="{{ item.speciality.name }}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Services List -->
+                                        <h6 class="fw-bold text-secondary mb-2">Services in {{ item.speciality.name }}:</h6>
+
+                                        {% for service in item.services.all %}
+                                        <div class="row service-cont align-items-center mb-2 p-2 bg-white rounded border">
+
+                                            <!-- Service -->
+                                            <div class="col-md-4">
+                                                <div class="form-wrap mb-0">
+                                                    <label class="form-label small text-muted">Service</label>
+                                                    <input type="text" class="form-control form-control-sm" value="{{ service.service_name }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            <!-- Price -->
+                                            <div class="col-md-3">
+                                                <div class="form-wrap mb-0">
+                                                    <label class="form-label small text-muted">Price ($)</label>
+                                                    <input type="text" class="form-control form-control-sm" value="{{ service.price }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            <!-- About Service -->
+                                            <div class="col-md-4">
+                                                <div class="form-wrap mb-0">
+                                                    <label class="form-label small text-muted">About Service</label>
+                                                    <input type="text" class="form-control form-control-sm" value="{{ service.about_service }}" readonly>
+                                                </div>
+                                            </div>
+
+                                            <!-- Delete Action -->
+                                            <div class="col-md-1 text-end">
+                                                <div class="form-wrap mb-0">
+                                                    <a href="{% url 'delete_doctor_service' service.id %}"
+                                                       class="btn btn-sm btn-outline-danger"
+                                                       title="Delete Service"
+                                                       onclick="return confirm('Are you sure you want to delete this service?');">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {% empty %}
+                                        <div class="row mb-2">
+                                            <div class="col-md-12">
+                                                <p class="text-muted fst-italic mb-0">No services added yet for this speciality.</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+                                        <!-- Add Service Form -->
+                                        <div class="card mt-3 border">
+                                            <div class="card-header bg-white py-2">
+                                                <span class="fw-bold small text-primary">
+                                                    <i class="fa-solid fa-circle-plus me-1"></i> Add New Service
+                                                </span>
+                                            </div>
+                                            <div class="card-body py-3">
+                                                <form method="POST" action="{% url 'add_doctor_service' item.id %}">
+                                                    {% csrf_token %}
+
+                                                    <div class="row g-2 align-items-end">
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-wrap mb-0">
+                                                                <label class="form-label small fw-bold">Service Name <span class="text-danger">*</span></label>
+                                                                <input type="text"
+                                                                       class="form-control form-control-sm"
+                                                                       name="service_name"
+                                                                       placeholder="e.g. General Consultation, Root Canal"
+                                                                       required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-wrap mb-0">
+                                                                <label class="form-label small fw-bold">Price ($) <span class="text-danger">*</span></label>
+                                                                <input type="number"
+                                                                       step="0.01"
+                                                                       min="0"
+                                                                       name="price"
+                                                                       class="form-control form-control-sm"
+                                                                       placeholder="50.00"
+                                                                       required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-wrap mb-0">
+                                                                <label class="form-label small fw-bold">About Service</label>
+                                                                <input type="text"
+                                                                       name="about_service"
+                                                                       class="form-control form-control-sm"
+                                                                       placeholder="Brief description">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class="form-wrap mb-0">
+                                                                <button type="submit" class="btn btn-sm btn-primary w-100">
+                                                                    Add Service
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /SPECIALITY ITEM -->
+
+                    {% empty %}
+
+                    <!-- NO SPECIALITY -->
+                    <div class="card text-center py-5 shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fa-solid fa-stethoscope text-muted" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="text-secondary">No Specialities Added Yet</h5>
+                            <p class="text-muted">Click the button below to add your specialities and offered services.</p>
+                            <a href="javascript:void(0);"
+                               class="btn btn-primary"
+                               data-bs-toggle="modal"
+                               data-bs-target="#add-speciality">
+                                <i class="fa-solid fa-plus me-1"></i> Add New Speciality
+                            </a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /Page Content -->
+
+
+<!-- =========================================================
+     ADD SPECIALITY MODAL
+     ========================================================= -->
+<div class="modal fade"
+     id="add-speciality"
+     tabindex="-1"
+     aria-labelledby="addSpecialityLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSpecialityLabel">
+                    <i class="fa-solid fa-stethoscope text-primary me-2"></i>Add New Speciality
+                </h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+            </div>
+
+            <form method="POST" action="{% url 'add_doctor_speciality' %}">
+                {% csrf_token %}
+
+                <div class="modal-body">
+
+                    <!-- Choose from existing -->
+                    <div class="form-wrap mb-3">
+                        <label class="form-label fw-bold">
+                            Select From Existing Specialities
+                        </label>
+                        <select name="speciality" class="form-select form-control" id="specialitySelect">
+                            <option value="">-- Choose Existing Speciality --</option>
+                            {% for speciality in specialities %}
+                                <option value="{{ speciality.id }}">{{ speciality.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <small class="text-muted">Select if already available in the hospital system.</small>
+                    </div>
+
+                    <div class="d-flex align-items-center my-3">
+                        <hr class="flex-grow-1 my-0">
+                        <span class="px-2 text-muted fw-semibold small">OR ENTER NEW</span>
+                        <hr class="flex-grow-1 my-0">
+                    </div>
+
+                    <!-- Custom speciality -->
+                    <div class="form-wrap">
+                        <label class="form-label fw-bold">
+                            Enter New Speciality Name
+                        </label>
+                        <input type="text"
+                               name="custom_speciality"
+                               class="form-control"
+                               placeholder="e.g. Cardiology, Dermatology, Orthopedics...">
+                        <small class="text-muted">Type a new speciality name if not listed above.</small>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                            class="btn btn-primary prime-btn">
+                        <i class="fa-solid fa-check me-1"></i> Add Speciality
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal Trigger Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("addSpecialityBtn");
+    const modalEl = document.getElementById("add-speciality");
+
+    if (button && modalEl) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+                const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+                modalInstance.show();
+            } else if (typeof jQuery !== "undefined" && typeof jQuery.fn.modal !== "undefined") {
+                jQuery(modalEl).modal("show");
+            } else {
+                modalEl.style.display = "block";
+                modalEl.classList.add("show");
+                document.body.classList.add("modal-open");
+            }
+        });
+
+        const closeBtns = modalEl.querySelectorAll('[data-bs-dismiss="modal"]');
+        closeBtns.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+                    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+                    modalInstance.hide();
+                } else if (typeof jQuery !== "undefined" && typeof jQuery.fn.modal !== "undefined") {
+                    jQuery(modalEl).modal("hide");
+                } else {
+                    modalEl.style.display = "none";
+                    modalEl.classList.remove("show");
+                    document.body.classList.remove("modal-open");
+                }
+            });
+        });
+    }
+});
+</script>
+
+{% endblock %}

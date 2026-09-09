@@ -94,8 +94,8 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="/docter_specialties">
+                <li class="{% if 'special' in request.path %}active{% endif %}">
+                    <a href="{% url 'doctor_specialities' %}">
                         <i class="isax isax-clock"></i>
                         <span>Specialties & Services</span>
                     </a>
@@ -129,13 +129,17 @@
                     </a>
                 </li>
 
-                <!-- <li>
-                    <a href="{% url 'chat' %}">
-                        <i class="isax isax-messages-1"></i>
-                        <span>Message</span>
-                        <small class="unread-msg">7</small>
-                    </a> -->
-                <!-- </li> -->
+                <li>
+                  {% for appointment in appointments %}
+
+    <p>{{ appointment.patient.fname }} {{ appointment.patient.lname }}</p>
+
+    <a href="{% url 'chat_page' user_id=appointment.patient.profile.user.id %}">
+        💬 Chat  chat
+    </a>
+
+{% endfor %}
+                </li>
 
                 <!-- <li>
                     <a href="{% url 'docter_blog' %}">
