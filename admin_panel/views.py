@@ -2,20 +2,18 @@ from django.shortcuts import render
 from app1.models import Docter,Patient
 from docter.models import Availability
 from patient.models import appointment
-
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from .models import WebsiteSetting
-
 from django.shortcuts import get_object_or_404, redirect
-
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from docter.models import Speciality
 
 
 
+from django.contrib.auth import update_session_auth_hash
+from .models import AdminProfile
 
 
 def website_settings(request):
@@ -25,8 +23,6 @@ def website_settings(request):
         "website_setting": website
     }
     
-
-
 def Logout(request):
     logout(request)
     return redirect("/login/")
@@ -93,17 +89,7 @@ def patient_copy(request):
     return render(request, "patient copy 8.html")
 
 
-from django.contrib.auth import update_session_auth_hash
-from django.contrib import messages
-from django.shortcuts import render, redirect
 
-
-
-from django.contrib.auth import update_session_auth_hash
-from django.contrib import messages
-from django.shortcuts import render, redirect
-
-from .models import AdminProfile
 
 
 def profile(request):
@@ -117,7 +103,7 @@ def profile(request):
         user=admin
     )
 
-    # EDIT PROFILE
+   
     if request.method == "POST" and "update_profile" in request.POST:
 
         admin.first_name = request.POST.get("first_name", "")
@@ -137,7 +123,7 @@ def profile(request):
 
         return redirect("/profile/")
 
-    # CHANGE PASSWORD
+
     if request.method == "POST" and "change_password" in request.POST:
 
         old_password = request.POST.get("old_password")

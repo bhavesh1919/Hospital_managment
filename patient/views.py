@@ -6,15 +6,7 @@ from .models import appointment,Vital,Favourite
 from datetime import datetime
 from django.contrib import messages 
 from django.db.models import Case, When, IntegerField
-
-# Create your views here.
 from django.contrib.auth.decorators import login_required
-
-from django.db.models import Case, When, IntegerField
-
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.db.models import Case, When, IntegerField
 
 @login_required(login_url="/login/")
 def patient_dashboard(req):
@@ -192,11 +184,7 @@ def favourites(request):
     patient = Patient.objects.get(
         profile__user=request.user
     )
-
-    # Show ALL doctors
     docters = Docter.objects.all()
-
-    # Get favourite doctor IDs of current patient
     favourite_ids = Favourite.objects.filter(
         patient=patient
     ).values_list("docter_id", flat=True)
@@ -252,7 +240,7 @@ def book_appointment(request, id):
         profile__user=request.user
     )
 
-    # Get doctor from availability
+    
     doctor_obj = get_object_or_404(
         Docter,
         profile__user=slot.doctor
@@ -262,7 +250,7 @@ def book_appointment(request, id):
 
         selected_date = request.POST.get("appointment_date")
 
-        # Date is required
+       
         if not selected_date:
             messages.error(
                 request,
@@ -277,7 +265,7 @@ def book_appointment(request, id):
                 }
             )
 
-        # Convert HTML date to Python date
+     
         try:
             appointment_date = datetime.strptime(
                 selected_date,
@@ -298,8 +286,7 @@ def book_appointment(request, id):
                 }
             )
 
-        # Check that selected date is the same day
-        # as the Availability day
+        
         if appointment_date.strftime("%A") != slot.day:
             messages.error(
                 request,
@@ -314,7 +301,7 @@ def book_appointment(request, id):
                 }
             )
 
-        # Prevent booking the same doctor/time/date twice
+       
         already_booked = appointment.objects.filter(
             docter=doctor_obj,
             appointment_date=appointment_date,
@@ -336,7 +323,7 @@ def book_appointment(request, id):
                 }
             )
 
-        # Create appointment
+        
         appointment.objects.create(
             patient=patient,
             docter=doctor_obj,
