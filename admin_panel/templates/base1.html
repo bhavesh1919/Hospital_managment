@@ -1,4 +1,7 @@
 {% load static %}
+{% load website_tags %}
+
+{% get_website_setting as website_setting %}
 <!DOCTYPE html>
 <html lang="en">
     
@@ -49,28 +52,44 @@
             <div class="header">
 			
 				<!-- Logo -->
-                <div class="header-left">
-                    <a href="index.html" class="logo">
-						<img src="{% static 'assets/img/logo.png' %}" alt="Logo">
-					</a>
-					<a href="index.html" class="logo logo-small">
-						<img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30">
-					</a>
-                </div>
-				<!-- /Logo -->
+{% get_website_setting as website_setting %}
+
+<div class="header-left">
+    <a href="index.html" class="logo">
+        {% if website_setting and website_setting.website_logo %}
+            <img src="{{ website_setting.website_logo.url }}" alt="Logo">
+        {% else %}
+            <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
+        {% endif %}
+    </a>
+
+    <a href="index.html" class="logo logo-small">
+        {% if website_setting and website_setting.website_logo %}
+            <img src="{{ website_setting.website_logo.url }}"
+                 alt="Logo"
+                 width="30"
+                 height="30">
+        {% else %}
+            <img src="{% static 'assets/img/logo-small.png' %}"
+                 alt="Logo"
+                 width="30"
+                 height="30">
+        {% endif %}
+    </a>
+</div>	<!-- /Logo -->
 				
 				<a href="javascript:void(0);" id="toggle_btn">
 					<i class="fe fe-text-align-left"></i>
 				</a>
 				
-				<div class="top-nav-search">
+				<!-- <div class="top-nav-search">
 					<form>
 						<input type="text" class="form-control" placeholder="Search here">
 						<button class="btn" type="submit"><i class="fa fa-search"></i></button>
 						
 						
 					</form>
-				</div>
+				</div> -->
 				
 				<!-- Mobile Menu Toggle -->
 				<a class="mobile_btn" id="mobile_btn">
@@ -80,9 +99,9 @@
 				
 				<!-- Header Right Menu -->
 				<ul class="nav user-menu">
-
+					
 					<!-- Notifications -->
-					<li class="nav-item dropdown noti-dropdown">
+					<!-- <li class="nav-item dropdown noti-dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 							<i class="fe fe-bell"></i> <span class="badge rounded-pill">3</span>
 						</a>
@@ -151,29 +170,98 @@
 								<a href="#">View all Notifications</a>
 							</div>
 						</div>
-					</li>
+					</li> -->
 					<!-- /Notifications -->
 					
 					<!-- User Menu -->
 					<li class="nav-item dropdown has-arrow">
-						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-							<span class="user-img"><img class="rounded-circle" src="{% static 'assets/img/profiles/avatar-01.jpg' %}" width="31" alt="Ryan Taylor"></span>
-						</a>
-						<div class="dropdown-menu">
-							<div class="user-header">
-								<div class="avatar avatar-sm">
-									<img src="{% static 'assets/img/profiles/avatar-01.jpg' %}" alt="User Image" class="avatar-img rounded-circle">
-								</div>
-								<div class="user-text">
-									<h6>Ryan Taylor</h6>
-									<p class="text-muted mb-0">Administrator</p>
-								</div>
-							</div>
-							<a class="dropdown-item" href="profile.html">My Profile</a>
-							<a class="dropdown-item" href="settings.html">Settings</a>
-							<a class="dropdown-item" href="login.html">Logout</a>
-						</div>
-					</li>
+
+    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+
+        <span class="user-img">
+
+            {% if request.user.adminprofile.profile_photo %}
+                <img
+                    class="rounded-circle"
+                    src="{{ request.user.adminprofile.profile_photo.url }}"
+                    width="31"
+                    height="31"
+                    alt="Admin">
+            {% else %}
+                <img
+                    class="rounded-circle"
+                    src="{% static 'assets/img/profiles/avatar-01.jpg' %}"
+                    width="31"
+                    height="31"
+                    alt="Admin">
+            {% endif %}
+
+        </span>
+
+    </a>
+
+
+    <div class="dropdown-menu">
+
+        <!-- USER HEADER -->
+        <div class="user-header">
+
+            <div class="avatar avatar-sm">
+
+                {% if request.user.adminprofile.profile_photo %}
+
+                    <img
+                        src="{{ request.user.adminprofile.profile_photo.url }}"
+                        alt="User Image"
+                        class="avatar-img rounded-circle">
+
+                {% else %}
+
+                    <img
+                        src="{% static 'assets/img/profiles/avatar-01.jpg' %}"
+                        alt="User Image"
+                        class="avatar-img rounded-circle">
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="user-text">
+
+                <h6>
+                    {% if request.user.get_full_name %}
+                        {{ request.user.get_full_name }}
+                    {% else %}
+                        {{ request.user.username }}
+                    {% endif %}
+                </h6>
+
+                <p class="text-muted mb-0">
+                    Administrator
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <a class="dropdown-item" href="/profile/">
+            My Profile
+        </a>
+
+        <a class="dropdown-item" href="/settings/">
+            Settings
+        </a>
+
+        <a class="dropdown-item" href="{% url 'logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</li>
 					<!-- /User Menu -->
 					
 				</ul>
@@ -197,22 +285,26 @@
 		
 		<!-- jQuery -->
 
-  <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>
-		
-		<!-- Bootstrap Core JS -->
-        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>
-		
-		<!-- Slimscroll JS -->
-        <script src="{% static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>
-		
-		<script src="{% static 'assets/plugins/raphael/raphael.min.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>    
-		<script src="{% static 'assets/plugins/morris/morris.min.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>  
-		<script src="{% static 'assets/js/chart.morris.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>
-		
-		<!-- Custom JS -->
-		<script src="{% static 'assets/js/script.js' %}" type="23c13b44c9a0530a8b8edaf2-text/javascript"></script>
+<!-- jQuery -->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
 
-		
+<!-- Bootstrap Core JS -->
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Slimscroll JS -->
+<script src="{% static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Raphael JS -->
+<script src="{% static 'assets/plugins/raphael/raphael.min.js' %}"></script>
+
+<!-- Morris JS -->
+<script src="{% static 'assets/plugins/morris/morris.min.js' %}"></script>
+
+<!-- Chart Morris JS -->
+<script src="{% static 'assets/js/chart.morris.js' %}"></script>
+
+<!-- Custom JS -->
+<script src="{% static 'assets/js/script.js' %}"></script>
     
 <!-- Mirrored from doccure.dreamstechnologies.com/html/template/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:11:22 GMT -->
 </html>

@@ -3,13 +3,34 @@ from app1.models import Docter,Patient
 from docter.models import Availability
 from patient.models import appointment
 
-
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
+from .models import WebsiteSetting
+
+from django.shortcuts import get_object_or_404, redirect
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from docter.models import Speciality
 
 
 
-# Create your views here.
+
+
+def website_settings(request):
+    website = WebsiteSetting.objects.first()
+
+    return {
+        "website_setting": website
+    }
+    
+
+
+def Logout(request):
+    logout(request)
+    return redirect("/login/")
+
 def admindashboard(request):
     doctors = Docter.objects.prefetch_related(
         "doctor_specialities__speciality"
@@ -72,8 +93,91 @@ def patient_copy(request):
     return render(request, "patient copy 8.html")
 
 
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+
+
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+from .models import AdminProfile
+
+
 def profile(request):
-    return render(request, "profile.html")
+
+    if not request.user.is_superuser:
+        return redirect("/")
+
+    admin = request.user
+
+    admin_profile, created = AdminProfile.objects.get_or_create(
+        user=admin
+    )
+
+    # EDIT PROFILE
+    if request.method == "POST" and "update_profile" in request.POST:
+
+        admin.first_name = request.POST.get("first_name", "")
+        admin.last_name = request.POST.get("last_name", "")
+        admin.email = request.POST.get("email", "")
+
+        if request.FILES.get("profile_photo"):
+            admin_profile.profile_photo = request.FILES["profile_photo"]
+
+        admin.save()
+        admin_profile.save()
+
+        messages.success(
+            request,
+            "Profile updated successfully."
+        )
+
+        return redirect("/profile/")
+
+    # CHANGE PASSWORD
+    if request.method == "POST" and "change_password" in request.POST:
+
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+
+        if not admin.check_password(old_password):
+            messages.error(request, "Old password is incorrect.")
+            return redirect("/profile/")
+
+        if new_password != confirm_password:
+            messages.error(
+                request,
+                "New password and confirm password do not match."
+            )
+            return redirect("/profile/")
+
+        if len(new_password) < 8:
+            messages.error(
+                request,
+                "Password must contain at least 8 characters."
+            )
+            return redirect("/profile/")
+
+        admin.set_password(new_password)
+        admin.save()
+
+        update_session_auth_hash(request, admin)
+
+        messages.success(
+            request,
+            "Password changed successfully."
+        )
+
+        return redirect("/profile/")
+
+    return render(request, "profile.html", {
+        "admin": admin,
+        "admin_profile": admin_profile,
+    })
 
 
 def report(request):
@@ -83,9 +187,32 @@ def report(request):
 def review(request):
     return render(request, "review1.html")
 
-
 def settings(request):
-    return render(request, "settings.html")
+
+    setting, created = WebsiteSetting.objects.get_or_create(id=1)
+
+    if request.method == "POST":
+
+        setting.website_name = request.POST.get("website_name")
+
+        if request.FILES.get("website_logo"):
+            setting.website_logo = request.FILES.get("website_logo")
+
+        if request.FILES.get("favicon"):
+            setting.favicon = request.FILES.get("favicon")
+
+        setting.save()
+
+        return redirect("/settings/")
+
+    return render(
+        request,
+        "settings.html",
+        {
+            "setting": setting,
+            "website_setting": setting,
+        }
+    )
 
 
 def specialities(request):
@@ -98,16 +225,7 @@ def transaction_list(request):
 
 
 
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
 
-from docter.models import Speciality
-
-
-# =========================================================
-# ADMIN SPECIALITIES
-# =========================================================
 
 @login_required
 def specialities(request):
@@ -125,11 +243,6 @@ def specialities(request):
         "specialities.html",
         context
     )
-
-
-# =========================================================
-# ADD SPECIALITY
-# =========================================================
 
 @login_required
 def add_speciality(request):
@@ -172,9 +285,6 @@ def add_speciality(request):
     return redirect("specialities")
 
 
-# =========================================================
-# EDIT SPECIALITY
-# =========================================================
 
 @login_required
 def edit_speciality(request, speciality_id):
@@ -223,9 +333,6 @@ def edit_speciality(request, speciality_id):
     return redirect("specialities")
 
 
-# =========================================================
-# DELETE SPECIALITY
-# =========================================================
 
 @login_required
 def delete_speciality(request, speciality_id):
@@ -243,3 +350,70 @@ def delete_speciality(request, speciality_id):
     )
 
     return redirect("specialities")
+
+
+
+def delete_doctor(request, id):
+
+    if request.method == "POST":
+
+        doctor = get_object_or_404(Docter, id=id)
+
+        user = doctor.profile.user
+
+        doctor.delete()
+
+        user.delete()
+
+    return redirect('/doctors/')
+
+
+
+
+def delete_patient(request, id):
+
+    if request.method == "POST":
+
+        patient = get_object_or_404(Patient, id=id)
+
+        patient.delete()
+
+    return redirect('/patients/')
+
+
+
+from patient.models import appointment as Appointment
+
+
+@login_required(login_url="/login/")
+def approve_appointment(request, id):
+
+    if not request.user.is_superuser:
+        messages.error(request, "You are not authorized.")
+        return redirect("/")
+
+    app = get_object_or_404(Appointment, id=id)
+
+    app.status = "Approved"
+    app.save()
+
+    messages.success(request, "Appointment approved successfully.")
+
+    return redirect("/appointments_list/")
+
+
+@login_required(login_url="/login/")
+def reject_appointment(request, id):
+
+    if not request.user.is_superuser:
+        messages.error(request, "You are not authorized.")
+        return redirect("/")
+
+    app = get_object_or_404(Appointment, id=id)
+
+    app.status = "Rejected"
+    app.save()
+
+    messages.success(request, "Appointment rejected successfully.")
+
+    return redirect("/appointments_list/")

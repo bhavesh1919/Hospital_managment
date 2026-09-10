@@ -22,6 +22,14 @@
 										<div class="login-header">
 											<h3>Login <span>Doccure</span></h3>
 										</div>
+
+										{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 										<form method="post" >
 											{% csrf_token %}
 											<div class="mb-3">

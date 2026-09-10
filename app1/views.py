@@ -29,11 +29,17 @@ def Login(req):
 
         if user is not None:
             login(req,user)
+
+            if user.is_superuser:
+                return redirect ("/admin_dash/")
+
+
             try:
                 profile =Profile.objects.get(user=user)
 
                 if profile.role=='Docter':
                     return redirect("/docter_dash")
+
 
                 elif profile.role=='Pateint':
                     return redirect("/patient/")
@@ -94,16 +100,16 @@ def Registr(req):
         messages.success(req,"registration will be successfully")
 
 
-       #welcom email
+      # welcom email
 
-        # subject="welcome to Hospital Managment system"
-        # message="Hello"+myuser.first_name+myuser.last_name+"\n"+"welcome\n "+"your are succesfully Regiter in our system"
-        # from_email=info.EMAIL_HOST_USER
-        # to_list=[myuser.email]
-        # print(myuser.email)
-        # send_mail(subject,message,from_email,to_list,fail_silently=False)
+        subject="welcome to Hospital Managment system"
+        message="Hello"+user.first_name+user.last_name+"\n"+"welcome\n "+"your are succesfully Regiter in our system"
+        from_email=info.EMAIL_HOST_USER
+        to_list=[user.email]
+        print(user.email)
+        send_mail(subject,message,from_email,to_list,fail_silently=False)
 
-        # register = Register.objects.create(name=name,phone=phone,email=email,password=password)
+        register = Register.objects.create(name=name,phone=phone,email=email,password=password)
 
         return redirect('/login/')
     return render(req,'Register.html')

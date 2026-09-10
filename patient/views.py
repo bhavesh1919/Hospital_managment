@@ -8,23 +8,29 @@ from django.contrib import messages
 from django.db.models import Case, When, IntegerField
 
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 
+from django.db.models import Case, When, IntegerField
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.db.models import Case, When, IntegerField
+
+@login_required(login_url="/login/")
 def patient_dashboard(req):
+
+    patient = Patient.objects.get(profile__user=req.user)
+
     doctors = Docter.objects.all()
-    patient=Patient.objects.get(profile__user=req.user)
-
-    # av = appointment.objects.all()
-    # availability = Availability.objects.filter(
-    #         status="Available"
-    #     ).select_related("doctor")
-
 
     av = appointment.objects.filter(
-    patient=patient,
-    status__in=["Pending", "Approved"]
-    ).select_related('docter').order_by(
+        patient=patient,
+        status__in=["Pending", "Approved"]
+    ).select_related(
+        "docter"
+    ).order_by(
         Case(
-            When(status="Approved",then=0),
+            When(status="Approved", then=0),
             When(status="Pending", then=1),
             output_field=IntegerField(),
         )
@@ -34,21 +40,19 @@ def patient_dashboard(req):
         patient=patient
     ).order_by("-id").first()
 
-       
-    
-
-    # Get only this patient's favourite doctors
     favourites = Favourite.objects.filter(
         patient=patient
     ).select_related("docter")
 
-
-    
-
-
-    return render(req,"patient_dashboard.html",{"av":av,"health_record": health_record,"favourites": favourites,})
-
-
+    return render(
+        req,
+        "patient_dashboard.html",
+        {
+            "av": av,
+            "health_record": health_record,
+            "favourites": favourites,
+        }
+    )
 
 def cancel_appointment(request, id):
 

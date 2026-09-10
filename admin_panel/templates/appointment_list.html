@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h3 class="page-title">Appointments</h3>
-                    <h6><li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li></h6>
+                    <h6><a href="{% url 'admin_dashboard' %}">Dashboard</a></h6>
                     
                     
                 </div>
@@ -32,11 +32,12 @@
                                 <thead>
                                     <tr>
                                         <th>Doctor Name</th>
-                                        <th>Speciality</th>
+                                        
                                         <th>Patient Name</th>
                                         <th>Appointment Date & Time</th>
                                         <th>Status</th>
                                         <th>Amount</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,7 +64,7 @@
                                         </td>
 
                                         <!-- Doctor Speciality -->
-                                        <td>
+                                        <!-- <td>
                                             {% for ds in app.docter.doctor_specialities.all %}
                                                 <span class="badge badge-pill bg-primary-light me-1 mb-1">{{ ds.speciality.name }}</span>
                                             {% empty %}
@@ -73,7 +74,7 @@
                                                     <span class="text-muted">-</span>
                                                 {% endif %}
                                             {% endfor %}
-                                        </td>
+                                        </td> -->
 
                                         <!-- Patient Name -->
                                         <td>
@@ -131,6 +132,42 @@
                                         <td class="fw-bold">
                                             ₹{{ app.appointment.fee|default:"0.00" }}
                                         </td>
+
+                                        <td>
+    <div class="d-flex gap-1">
+
+        <!-- Approve -->
+        {% if app.status == 'Pending' %}
+       <form method="POST"
+      action="{% url 'admin_approve_appointment' app.id %}">
+    {% csrf_token %}
+
+    <button type="submit"
+            class="btn btn-sm btn-success"
+            title="Approve">
+        <i class="fe fe-check"></i>
+    </button>
+</form>
+        {% endif %}
+
+        <!-- Cancel -->
+        {% if app.status == 'Pending' or app.status == 'Approved' %}
+        <form method="POST"
+      action="{% url 'admin_reject_appointment' app.id %}">
+    {% csrf_token %}
+
+    <button type="submit"
+            class="btn btn-sm btn-danger"
+            title="Reject">
+        <i class="fe fe-x-circle"></i>
+    </button>
+</form>
+        {% endif %}
+
+    
+
+    </div>
+</td>
                                     </tr>
                                     {% empty %}
                                     <tr>

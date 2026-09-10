@@ -1,4 +1,9 @@
 {% load static %}
+{% load website_tags %}
+
+{% get_website_setting as website_setting %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 	
@@ -135,19 +140,38 @@
 							<a id="mobile_btn" href="#" role="button" aria-label="Open menu">
 								<i class="fa-solid fa-bars"></i>
 							</a>
-							<a href="/" class="navbar-brand logo">
-								<img src="{% static 'assets/img/logo.svg' %}" class="img-fluid" alt="Logo">
-							</a>
+							
 						</div>
 						<div class="header-menu">
 							<div class="main-menu-wrapper">
 								<div class="menu-header">
-									<a href="index.html" class="menu-logo">
-										<img src="{% static 'assets/img/logo.svg' %}" class="img-fluid" alt="Logo">
-									</a>
-									<a id="menu_close" class="menu-close" href="#" role="button" aria-label="Close menu">
-										<i class="fas fa-times"></i>
-									</a>
+<style>
+    .menu-logo img {
+        width: 140px;
+        height: 70px;
+        object-fit: contain;
+    }
+</style>
+
+<a href="index.html" class="logo">
+    {% if website_setting and website_setting.website_logo %}
+        <img src="{{ website_setting.website_logo.url }}"
+             class="img-fluid"
+             alt="Hospital Logo">
+    {% else %}
+        <img src="{% static 'assets/img/logo.png' %}"
+             class="img-fluid"
+             alt="Logo">
+    {% endif %}
+</a>
+
+<a id="menu_close"
+   class="menu-close"
+   href="#"
+   role="button"
+   aria-label="Close menu">
+    <i class="fas fa-times"></i>
+</a>
 								</div>
 								<ul class="main-nav">
 									<li class="has-submenu megamenu active">
