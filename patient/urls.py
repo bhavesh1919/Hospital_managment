@@ -41,24 +41,9 @@ urlpatterns = [
     path('book_appointment/<int:id>/', views.book_appointment, name='book_appointment'),
 
     path('add-vital/<int:patient_id>/', views.add_vital, name='add_vital'),
-path(
-    "add-favourite/<int:doctor_id>/",
-    views.add_favourite,
-    name="add_favourite"
-),
 
-path(
-    "cancel_appointment/<int:id>/",
-    views.cancel_appointment,
-    name="cancel_appointment"
-),
-
-path(
-    "patient-video-call/<int:id>/",
-    views.patient_video_call,
-    name="patient_video_call"
-),
-
-
+    path("add-favourite/<int:doctor_id>/", views.add_favourite, name="add_favourite"),
+    path("cancel_appointment/<int:id>/", views.cancel_appointment, name="cancel_appointment"), 
+    path("patient-video-call/<int:id>/", views.patient_video_call, name="patient_video_call"),
 ]
 

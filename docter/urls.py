@@ -43,30 +43,9 @@ urlpatterns = [
     path("appointments/", views.appointments, name="appointments"),
     path('docter_specialties/', views.doctor_specialities, name='doctor_specialities'),
     path('doctor_specialties/', views.doctor_specialities, name='docter_specialties'),
-
-path(
-    "doctor_specialties/add/",
-    views.add_doctor_speciality,
-    name="add_doctor_speciality"
-),
-
-path(
-    "doctor_specialties/<int:speciality_id>/service/add/",
-    views.add_doctor_service,
-    name="add_doctor_service"
-),
-
-path(
-    "doctor_service/<int:service_id>/delete/",
-    views.delete_doctor_service,
-    name="delete_doctor_service"
-),
-
-path(
-    "doctor_speciality/<int:speciality_id>/delete/",
-    views.delete_doctor_speciality,
-    name="delete_doctor_speciality"
-),
-       
+path("doctor_specialties/add/", views.add_doctor_speciality, name="add_doctor_speciality"),
+path("doctor_specialties/<int:speciality_id>/service/add/", views.add_doctor_service, name="add_doctor_service"),
+path("doctor_service/<int:service_id>/delete/", views.delete_doctor_service, name="delete_doctor_service"),
+path("doctor_speciality/<int:speciality_id>/delete/", views.delete_doctor_speciality, name="delete_doctor_speciality"),
         
 ]

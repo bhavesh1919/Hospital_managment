@@ -1,7 +1,8 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
+
+from django.contrib.auth.models import User
 
 
 class WebsiteSetting(models.Model):
@@ -21,8 +22,7 @@ class WebsiteSetting(models.Model):
         return self.website_name
 
 
-from django.db import models
-from django.contrib.auth.models import User
+
 
 
 class AdminProfile(models.Model):

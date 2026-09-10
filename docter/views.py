@@ -81,10 +81,6 @@ def appointments(request):
     ).order_by("-id")
 
 
-    # =========================
-    # PAGINATION
-    # =========================
-
     paginator = Paginator(appointments, 3)
 
     page_number = request.GET.get("page")
@@ -92,9 +88,7 @@ def appointments(request):
     appointments_page = paginator.get_page(page_number)
 
 
-    # =========================
-    # UNIQUE PATIENTS
-    # =========================
+   
 
     patients = []
     patient_ids = set()
@@ -128,9 +122,7 @@ def appointments(request):
             patient_ids.add(app.patient_id)
 
 
-    # =========================
-    # CONTEXT
-    # =========================
+    
 
     context = {
         "appointments": appointments_page,
@@ -244,15 +236,15 @@ def invoice(request):
 
 def my_patients(request):
 
-    # Get currently logged-in doctor
+  
     doctor = Docter.objects.get(profile__user=request.user)
 
-    # Get appointments belonging to this doctor
+    
     appointments = Appointment.objects.filter(
         docter=doctor
     ).select_related("patient")
 
-    # Get unique patients
+  
     patients = []
     patient_ids = set()
 

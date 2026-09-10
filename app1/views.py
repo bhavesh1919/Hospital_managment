@@ -15,7 +15,7 @@ from .models import Profile,Docter,Patient
 from django.core.mail import send_mail
 
 
-# Create your views here.
+
 def index(req ):
     return render(req,'index.html')
 
