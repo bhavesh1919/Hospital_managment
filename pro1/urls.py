@@ -26,6 +26,7 @@ urlpatterns = [
     path('',include('docter.urls')),
     path('',include('patient.urls')),
     path('', include('admin_panel.urls')),
+    path('',include('pharma.urls'))
    
     
     

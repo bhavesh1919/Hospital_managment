@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'docter',
     'admin_panel',
     'chat',
+    'pharma',
     
 ]
 ## chat model integration

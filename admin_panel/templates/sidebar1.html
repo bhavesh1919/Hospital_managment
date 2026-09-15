@@ -58,7 +58,134 @@
                     </a>
                 </li> -->
 
-                <li>
+              
+
+<!-- 
+                profile -->
+
+<li class="menu-title">
+    <span>PHarma</span>
+</li>
+
+
+
+                <li class="submenu">
+    <a href="#">
+        <i class="fe fe-document"></i>
+        <span> Products</span>
+        <span class="menu-arrow"></span>
+    </a>
+
+    <ul style="display: none;">
+        <li>
+            <a href="/products/">Products</a>
+        </li>
+
+        <li>
+            <a href="{% url 'add_product' %}">Add Product</a>
+        </li>
+
+        <li>
+            <a href="{% url 'outstock' %}">Out-Stock</a>
+        </li>
+
+        <li>
+            <a href="{% url 'expired' %}">Expired</a>
+        </li>
+    </ul>
+</li>
+
+
+<li>
+    <a href="{% url 'categories' %}">
+        <i class="fe fe-layout"></i>
+        <span>Categories</span>
+    </a>
+</li>
+
+
+<li class="submenu">
+    <a href="#">
+        <i class="fe fe-star-o"></i>
+        <span> Purchase</span>
+        <span class="menu-arrow"></span>
+    </a>
+
+    <ul style="display: none;">
+
+        <li>
+            <a href="{% url 'purchase' %}">Purchase</a>
+        </li>
+
+        <li>
+            <a href="{% url 'add_purchase' %}">Add Purchase</a>
+        </li>
+
+        <li>
+            <a href="">Orders</a>
+        </li>
+
+    </ul>
+</li>
+
+
+<li>
+    <a href="{% url 'sales' %}">
+        <i class="fe fe-activity"></i>
+        <span>Sales</span>
+    </a>
+</li>
+
+
+<li class="submenu">
+    <a href="#">
+        <i class="fe fe-user"></i>
+        <span> Supplier</span>
+        <span class="menu-arrow"></span>
+    </a>
+
+    <ul style="display: none;">
+
+        <li>
+            <a href="">Supplier</a>
+        </li>
+
+        <li>
+            <a href="{% url 'add_supplier' %}">Add Supplier</a>
+        </li>
+
+    </ul>
+</li>
+
+
+<li>
+    <a href="/transactions/">
+        <i class="fe fe-table"></i>
+        <span>Transaction</span>
+    </a>
+</li>
+
+
+<li class="submenu">
+    <a href="#">
+        <i class="fe fe-document"></i>
+        <span> Reports</span>
+        <span class="menu-arrow"></span>
+    </a>
+
+    <ul style="display: none;">
+
+      
+
+    </ul>
+</li>
+
+
+<li class="menu-title">
+    <span>Pages</span>
+</li>
+
+  <li>
                     <a href="{% url 'settings' %}">
                         <i class="fe fe-vector"></i>
                         <span>Settings</span>

@@ -1,0 +1,371 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html> 
+<html lang="en">
+	
+<!-- Mirrored from doccure.dreamstechnologies.com/html/template/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:10:28 GMT -->
+<head>
+		
+		<meta charset="utf-8">
+		<title>Doccure</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+		<meta name="keywords" content="practo clone, doccure, doctor appointment, Practo clone html template, doctor booking template">
+		<meta name="author" content="Practo Clone HTML Template - Doctor Booking Template">
+		<meta property="og:url" content="https://doccure.dreamstechnologies.com/html/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Doctors Appointment HTML Website Templates | Doccure">
+		<meta property="og:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+		<meta property="og:image" content="assets/img/preview-banner.jpg">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:domain" content="https://doccure.dreamstechnologies.com/html/">
+		<meta property="twitter:url" content="https://doccure.dreamstechnologies.com/html/">
+		<meta name="twitter:title" content="Doctors Appointment HTML Website Templates | Doccure">
+		<meta name="twitter:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+		<meta name="twitter:image" content="assets/img/preview-banner.jpg">	
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+		<!-- Apple Touch Icon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+		<!-- Theme Settings Js -->
+		<script src="{% static 'assets/js/theme-script.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+
+		<!-- Iconsax CSS-->
+		<link rel="stylesheet" href="{% static 'assets/css/iconsax.css' %}">
+
+		<!-- Feathericon CSS -->
+    	<link rel="stylesheet" href="{% static 'assets/css/feather.css' %}">
+		
+		<!-- Fancybox CSS -->
+		<link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jquery.fancybox.min.css' %}">
+		
+		<!-- Fancybox CSS -->	
+    	<link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jquery.fancybox.min.css' %}">
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}">
+		
+	</head>
+	<body><a href="https://doccure.dreamstechnologies.com/cdn-cgi/content?id=sE.IASnTIoxGl0gJvDAoIE4XQjZgu1hemE63f2Io0Jc-1779080560.4937875-1.0.1.1-d33paV1VI_9eqg2tjUFlhGTQ1gH_cm7BbxagyuyJxmc" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+			<div class="header-theme header-theme-two">
+				<button type="button" id="dark-mode-toggle" class="theme-toggle moon" aria-label="dark mode">
+					<i class="isax isax-moon5"></i>
+				</button>
+				<button type="button" id="light-mode-toggle" class="theme-toggle sun" aria-label="light mode">
+					<i class="isax isax-sun-15"></i>
+				</button>
+			</div>
+			
+			
+
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container">
+					<div class="row align-items-center inner-banner">
+						<div class="col-md-12 col-12 text-center">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/pharma/" aria-label="home"><i class="isax isax-home-15"></i></a></li>
+									<li class="breadcrumb-item" aria-current="page">Pharmacy</li>
+									<li class="breadcrumb-item active">Cart</li>
+								</ol>
+								<h2 class="breadcrumb-title">Cart</h2>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="breadcrumb-bg">
+					<img src="{% static 'assets/img/bg/breadcrumb-bg-01.png' %}" alt="img" class="breadcrumb-bg-01">
+					<img src="{% static 'assets/img/bg/breadcrumb-bg-02.png' %}" alt="img" class="breadcrumb-bg-02">
+					<img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}" alt="img" class="breadcrumb-bg-03">
+					<img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}" alt="img" class="breadcrumb-bg-04">
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container">			
+					
+					<div class="card card-table">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-hover table-center mb-0">
+									<thead>
+										<tr>
+											<th>Product</th>
+											<th>SKU</th>
+											<th>Price</th>
+											<th class="text-center">Quantity</th>
+											<th>Total</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="product-description.html" class="avatar avatar-sm me-2"><img class="avatar-img" src="{% static 'assets/img/products/product.jpg' %}" alt="User Image"></a>
+												</h2>
+												<a href="product-description.html">Benzaxapine Croplex</a>
+											</td>
+											<td>26565</td>
+											<td>$19</td>					
+											<td>
+											<div class="custom-increment cart">
+			                                    <div class="input-group1">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+				                                          <span><i class="fas fa-minus"></i></span>
+				                                        </button>
+				                                    </span>
+				                                    <input type="text" id="quantity" name="quantity" class=" input-number" value="10">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+				                                            <span><i class="fas fa-plus"></i></span>
+				                                        </button>
+				                                    </span>
+			                                	</div>
+		                        			</div>
+											</td>
+											<td>$19</td>
+											<td>
+												<div class="table-action">
+													<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+														<i class="fas fa-times"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="product-description.html" class="avatar avatar-sm me-2"><img class="avatar-img" src="{% static 'assets/img/products/product1.jpg' %}" alt="User Image"></a>
+												</h2>
+												<a href="product-description.html">Ombinazol Bonibamol</a>
+											</td>
+											<td>865727</td>
+											<td>$22</td>					
+											<td>
+											<div class="custom-increment cart">
+			                                    <div class="input-group1">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-left-minus2 btn btn-danger btn-number"  data-type="minus" data-field="">
+				                                          <span><i class="fas fa-minus"></i></span>
+				                                        </button>
+				                                    </span>
+				                                    <input type="text" id="quantity2" name="quantity2" class=" input-number" value="10">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-right-plus2 btn btn-success btn-number" data-type="plus" data-field="">
+				                                            <span><i class="fas fa-plus"></i></span>
+				                                        </button>
+				                                    </span>
+			                                	</div>
+		                        			</div>
+											</td>
+											<td>$22</td>
+											<td>
+												<div class="table-action">
+													<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+														<i class="fas fa-times"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="product-description.html" class="avatar avatar-sm me-2"><img class="avatar-img" src="{% static 'assets/img/products/product2.jpg' %}" alt="User Image"></a>
+												</h2>
+												<a href="product-description.html">Dantotate Dantodazole</a>
+											</td>
+											<td>978656</td>
+											<td>$10</td>					
+											<td>
+											<div class="custom-increment cart">
+			                                    <div class="input-group1">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-left-minus3 btn btn-danger btn-number"  data-type="minus" data-field="">
+				                                          <span><i class="fas fa-minus"></i></span>
+				                                        </button>
+				                                    </span>
+				                                    <input type="text" id="quantity3" name="quantity3" class=" input-number" value="10">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-right-plus3 btn btn-success btn-number" data-type="plus" data-field="">
+				                                            <span><i class="fas fa-plus"></i></span>
+				                                        </button>
+				                                    </span>
+			                                	</div>
+		                        			</div>
+											</td>
+											<td>$10</td>
+											<td>
+												<div class="table-action">
+													<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+														<i class="fas fa-times"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="product-description.html" class="avatar avatar-sm me-2"><img class="avatar-img" src="{% static 'assets/img/products/product3.jpg' %}" alt="User Image"></a>
+												</h2>
+												<a href="product-description.html">Alispirox Aerorenone</a>
+											</td>
+											<td>543252</td>
+											<td>$26</td>					
+											<td>
+											<div class="custom-increment cart">
+			                                    <div class="input-group1">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-left-minus4 btn btn-danger btn-number"  data-type="minus" data-field="">
+				                                          <span><i class="fas fa-minus"></i></span>
+				                                        </button>
+				                                    </span>
+				                                    <input type="text" id="quantity4" name="quantity4" class=" input-number" value="10">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-right-plus4 btn btn-success btn-number" data-type="plus" data-field="">
+				                                            <span><i class="fas fa-plus"></i></span>
+				                                        </button>
+				                                    </span>
+			                                	</div>
+		                        			</div>
+											</td>
+											<td>$26</td>
+											<td>
+												<div class="table-action">
+													<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+														<i class="fas fa-times"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="product-description.html" class="avatar avatar-sm me-2"><img class="avatar-img" src="{% static 'assets/img/products/product4.jpg' %}" alt="User Image"></a>
+												</h2>
+												<a href="product-description.html">Nitrolozin Zithrotropin</a>
+											</td>
+											<td>634534</td>
+											<td>$12</td>					
+											<td>
+											<div class="custom-increment cart">
+			                                    <div class="input-group1">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-left-minus5 btn btn-danger btn-number"  data-type="minus" data-field="">
+				                                          <span><i class="fas fa-minus"></i></span>
+				                                        </button>
+				                                    </span>
+				                                    <input type="text" id="quantity5" name="quantity5" class=" input-number" value="10">
+				                                    <span class="input-group-btn">
+				                                        <button type="button" class="quantity-right-plus5 btn btn-success btn-number" data-type="plus" data-field="">
+				                                            <span><i class="fas fa-plus"></i></span>
+				                                        </button>
+				                                    </span>
+			                                	</div>
+		                        			</div>
+											</td>
+											<td>$12</td>
+											<td>
+												<div class="table-action">
+													<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+														<i class="fas fa-times"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>		
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-7 col-lg-8">
+						</div>
+						
+						<div class="col-md-5 col-lg-4">
+						
+							<!-- Booking Summary -->
+							<div class="card booking-card">
+								<div class="card-header">
+									<h4 class="card-title">Cart Total</h4>
+								</div>
+								<div class="card-body">
+									
+									<div class="booking-summary">
+										<div class="booking-item-wrap">
+											<ul class="booking-date d-block pb-0">
+												<li>Subtotal <span>$5,877.00</span></li>
+												<li>Shipping <span>$25.00<a href="#">Calculate shipping</a></span></li>
+											</ul>
+											<ul class="booking-fee pt-4">
+												<li>Tax <span>$0.00</span></li>
+											</ul>
+											<div class="booking-total">
+												<ul class="booking-total-list">
+													<li>
+														<span>Total</span>
+														<span class="total-cost">$160</span>
+													</li>
+													<li>
+														<div class="clinic-booking pt-4">
+															<a class="btn btn-primary" href="/checkout/">Proceed to checkout</a>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Booking Summary -->
+							
+						</div>
+					</div>
+
+				</div>
+			</div>		
+			<!-- /Page Content -->
+   
+	
+		
+		<!-- jQuery -->
+		<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
+		
+		<!-- Fancybox JS -->
+		<script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
+		
+		<!-- Fancybox JS -->
+		<script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
+		
+		<!-- Custom JS -->
+		<script src="{% static 'assets/js/script.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
+		
+	<script src="{% static '../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="fdf6c02887c0c1ddc8c47fe6-|49" defer></script></body>
+
+<!-- Mirrored from doccure.dreamstechnologies.com/html/template/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:10:28 GMT -->
+</html>
+{% endblock %}

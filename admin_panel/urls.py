@@ -27,6 +27,96 @@ urlpatterns = [
     path('transactions/', views.transaction_list, name='transaction_list'),
     path('approve-appointment/<int:id>/', views.approve_appointment, name='admin_approve_appointment'),
     path('reject-appointment/<int:id>/', views.reject_appointment, name='admin_reject_appointment'),
+
+
+   path(
+        'categories/',
+        views.categories,
+        name='categories'
+    ),
+
+    path(
+        'products/',
+        views.products,
+        name='products'
+    ),
+
+    path(
+        'purchase/',
+        views.purchase,
+        name='purchase'
+    ),
+
+    path(
+        'sales/',
+        views.sales,
+        name='sales'
+    ),
+
+    path(
+        'transactions/',
+        views.transactions_list,
+        name='transactions_list'
+    ),
+
+
+    path('outstock/', views.outstock, name='outstock'),
+
+
+# =========================
+# ADD
+# =========================
+
+path(
+    'products/add/',
+    views.add_product,
+    name='add_product'
+),
+
+path(
+    'purchase/add/',
+    views.add_purchase,
+    name='add_purchase'
+),
+
+path(
+    'supplier/add/',
+    views.add_supplier,
+    name='add_supplier'
+),
+
+# =========================
+# EDIT
+# =========================
+
+path(
+    'products/edit/<int:id>/',
+    views.edit_product,
+    name='edit_product'
+),
+
+path(
+    'purchase/edit/<int:id>/',
+    views.edit_purchase,
+    name='edit_purchase'
+),
+
+# =========================
+# EXPIRED
+# =========================
+
+path(
+    'expired/',
+    views.expired,
+    name='expired'
+),
+
+
+
+
+
+
+
 ]
 
 

@@ -22,9 +22,6 @@ class WebsiteSetting(models.Model):
         return self.website_name
 
 
-
-
-
 class AdminProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.ImageField(

@@ -403,3 +403,63 @@ def reject_appointment(request, id):
     messages.success(request, "Appointment rejected successfully.")
 
     return redirect("/appointments_list/")
+
+
+
+def categories(request):
+    return render(request, 'categories.html')
+
+
+def products(request):
+    return render(request, 'products.html')
+
+
+def purchase(request):
+    return render(request, 'purchase.html')
+
+
+def sales(request):
+    return render(request, 'sales.html')
+
+
+def transactions_list(request):
+    return render(request, 'transactions-list.html')
+
+
+# =========================
+# ADD PAGES
+# =========================
+
+def add_product(request):
+    return render(request, 'add-product.html')
+
+
+def add_purchase(request):
+    return render(request, 'add-purchase.html')
+
+
+def add_supplier(request):
+    return render(request, 'add-supplier.html')
+
+
+# =========================
+# EDIT PAGES
+# =========================
+
+def edit_product(request, id):
+    return render(request, 'edit-product.html')
+
+
+def edit_purchase(request, id):
+    return render(request, 'edit-purchase.html')
+
+
+# =========================
+# EXPIRED PRODUCTS
+# =========================
+
+def expired(request):
+    return render(request, 'expired.html')
+
+def outstock(request):
+    return render(request, 'outstock.html')
