@@ -45,5 +45,10 @@ urlpatterns = [
     path("add-favourite/<int:doctor_id>/", views.add_favourite, name="add_favourite"),
     path("cancel_appointment/<int:id>/", views.cancel_appointment, name="cancel_appointment"), 
     path("patient-video-call/<int:id>/", views.patient_video_call, name="patient_video_call"),
+   path(
+    'logout/',
+    views.Logout,
+    name='logout'
+),
 ]
 

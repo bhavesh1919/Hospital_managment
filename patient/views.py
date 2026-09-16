@@ -382,3 +382,10 @@ def patient_video_call(request, id):
             "room_name": room_name,
         }
     )
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def Logout(request):
+    logout(request)
+    return redirect('login')

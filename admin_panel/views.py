@@ -16,6 +16,15 @@ from django.contrib.auth import update_session_auth_hash
 from .models import AdminProfile
 
 
+
+from django.shortcuts import render, redirect
+
+from django.utils import timezone
+
+from pharma.models import Product, Category ,Supplier,Purchase,Sale
+
+
+
 def website_settings(request):
     website = WebsiteSetting.objects.first()
 
@@ -406,17 +415,44 @@ def reject_appointment(request, id):
 
 
 
-def categories(request):
-    return render(request, 'categories.html')
-
-
-def products(request):
-    return render(request, 'products.html')
-
 
 def purchase(request):
-    return render(request, 'purchase.html')
+    purchases = Purchase.objects.all().order_by('-id')
 
+    return render(request, 'purchase.html', {
+        'purchases': purchases
+    })
+
+
+
+
+
+
+def add_purchase(request):
+
+    suppliers = Supplier.objects.all()
+    products = Product.objects.all()
+
+    if request.method == "POST":
+
+        supplier_id = request.POST.get("supplier")
+        product_id = request.POST.get("product")
+        quantity = request.POST.get("quantity")
+        purchase_price = request.POST.get("purchase_price")
+
+        Purchase.objects.create(
+            supplier_id=supplier_id,
+            product_id=product_id,
+            quantity=quantity,
+            purchase_price=purchase_price
+        )
+
+        return redirect("purchase")
+
+    return render(request, "add-purchase.html", {
+        "suppliers": suppliers,
+        "products": products
+    })
 
 def sales(request):
     return render(request, 'sales.html')
@@ -430,15 +466,28 @@ def transactions_list(request):
 # ADD PAGES
 # =========================
 
-def add_product(request):
-    return render(request, 'add-product.html')
 
 
-def add_purchase(request):
-    return render(request, 'add-purchase.html')
 
 
 def add_supplier(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        email = request.POST.get("email")
+        address = request.POST.get("address")
+
+        Supplier.objects.create(
+            name=name,
+            phone=phone,
+            email=email,
+            address=address
+        )
+
+        return redirect('/supplier/add/')
+
     return render(request, 'add-supplier.html')
 
 
@@ -459,7 +508,219 @@ def edit_purchase(request, id):
 # =========================
 
 def expired(request):
-    return render(request, 'expired.html')
+    products = Product.objects.filter(
+        expiry_date__lt=timezone.now().date()
+    )
+
+    return render(request, 'expired.html', {
+        'products': products
+    })
 
 def outstock(request):
     return render(request, 'outstock.html')
+
+
+
+
+
+
+# =========================
+# Pharma PRODUCTS
+# =========================
+
+
+def products(request):
+
+    products = Product.objects.select_related(
+        'category'
+    ).all().order_by('-id')
+
+    return render(
+        request,
+        'products.html',
+        {
+            'products': products
+        }
+    )
+
+
+def add_product(request):
+
+    categories = Category.objects.all()
+
+    if request.method == 'POST':
+
+        name = request.POST.get('brand_name2')
+        category_id = request.POST.get('category')
+        price = request.POST.get('Price2')
+        stock = request.POST.get('quantity2')
+        discount = request.POST.get('discount2')
+        description = request.POST.get('about')
+
+        image = request.FILES.get('images[]')
+
+        expiry_date = request.POST.get('expiry_date')
+
+        # Check required fields
+        if not name:
+            messages.error(request, 'Product name is required.')
+            return render(
+                request,
+                'add_product.html',
+                {'categories': categories}
+            )
+
+        if not category_id:
+            messages.error(request, 'Please select a category.')
+            return render(
+                request,
+                'add_product.html',
+                {'categories': categories}
+            )
+
+        if not price:
+            messages.error(request, 'Price is required.')
+            return render(
+                request,
+                'add_product.html',
+                {'categories': categories}
+            )
+
+        if not stock:
+            messages.error(request, 'Quantity is required.')
+            return render(
+                request,
+                'add_product.html',
+                {'categories': categories}
+            )
+
+        # Get category
+        category = Category.objects.get(
+            id=category_id
+        )
+
+        # Create product
+        Product.objects.create(
+            name=name,
+            category=category,
+            price=price,
+            stock=stock,
+            discount=discount or 0,
+            description=description or '',
+            expiry_date=expiry_date or None,
+            image=image
+        )
+
+        messages.success(
+            request,
+            'Product added successfully.'
+        )
+
+        return redirect('products')
+
+    return render(
+        request,
+        'add-product.html',
+        {
+            'categories': categories
+        }
+    )
+
+
+
+def delete_product(request, id):
+
+    product = get_object_or_404(Product, id=id)
+
+    if request.method == 'POST':
+        product.delete()
+        messages.success(request, 'Product deleted successfully.')
+
+    return redirect('products')
+
+
+from django.shortcuts import render
+
+from django.utils import timezone
+
+
+def outstock(request):
+
+    products = Product.objects.select_related('category').filter(
+        stock__lte=5
+    ).order_by('stock')
+
+    return render(
+        request,
+        'outstock.html',
+        {
+            'products': products,
+            'today': timezone.localdate(),
+        }
+    )
+
+
+
+def categories(request):
+    category_list = Category.objects.all().order_by('-id')
+
+    return render(
+        request,
+        'categories.html',
+        {
+            'categories': category_list
+        }
+    )
+
+
+def add_category(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        if not name:
+            messages.error(request, 'Category name is required.')
+            return redirect('categories')
+
+        if Category.objects.filter(name=name).exists():
+            messages.error(request, 'Category already exists.')
+            return redirect('categories')
+
+        Category.objects.create(name=name)
+
+        messages.success(request, 'Category added successfully.')
+        return redirect('categories')
+
+    return redirect('categories')
+
+
+def edit_category(request, id):
+    category = get_object_or_404(Category, id=id)
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        if not name:
+            messages.error(request, 'Category name is required.')
+            return redirect('categories')
+
+        if Category.objects.filter(name=name).exclude(id=id).exists():
+            messages.error(request, 'Category already exists.')
+            return redirect('categories')
+
+        category.name = name
+        category.save()
+
+        messages.success(request, 'Category updated successfully.')
+        return redirect('categories')
+
+    return redirect('categories')
+
+
+def delete_category(request, id):
+    category = get_object_or_404(Category, id=id)
+
+    if request.method == 'POST':
+        category.delete()
+        messages.success(request, 'Category deleted successfully.')
+
+    return redirect('categories')
