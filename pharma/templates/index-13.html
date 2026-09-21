@@ -409,189 +409,111 @@
 
 		<!-- Deals Section Start -->
 		<section class="deals-section-thirteen section">
-			<div class="container">
-				<div class="section-header section-header-thirteen wow fadeInUp" data-wow-duration="1s">
-					<h2 class="section-title"> Today’s Best Deals for You </h2>
-					<a href="#" class="btn theme-12-btn">View All<i class="isax isax-arrow-right-1 ms-2"></i> </a>
-				</div>
-			</div>
+    <div class="container">
+        <div class="section-header section-header-thirteen wow fadeInUp" data-wow-duration="1s">
+            <h2 class="section-title">All  product</h2>
 
-			<div class="deals-slider-thirteen">
+            <a href="#" class="btn theme-12-btn">
+                View All
+                <i class="isax isax-arrow-right-1 ms-2"></i>
+            </a>
+        </div>
+    </div>
 
-				<!-- Item 1 -->
-				<div class="slide-item">
-					<div class="deals-item-thirteen">
-						<div class="delas-overlay">
-							<img src="{% static 'assets/img/doctors/pills-img-1.png' %}" alt="deals" class="img-fluid img-1">
-							<div class="delas-badge">
-								<div class="d-flex align-items-center gap-2">
-									<span class="percent">-20%</span>
-									<span class="text"> <i class="isax isax-discount-circle me-1"></i> Best Seller</span>
-								</div>
-								<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-							</div>
-						</div>
-						<div class="deals-content">
-							<div class="title">
-								<h3 class="custom-title"><a href="#">Azithromycin 500mg</a></h3>
-								<p class="description">Antibiotic</p>
-							</div>
-							<div class="price-item">
-								<h4 class="count-price">$32<span>$36</span></h4>
-								<span class="count">15 tablets</span>
-							</div>
-						</div>
-						<div class="deals-footer">
-							<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-						</div>
-					</div>
-				</div>
+    <div class="deals-slider-thirteen">
 
-				<!-- Item 2 -->
-				<div class="slide-item">
-					<div class="deals-item-thirteen">
-						<div class="delas-overlay">
-							<img src="{% static 'assets/img/doctors/pills-img-2.png' %}" alt="deals" class="img-fluid img-1">
-							<div class="delas-badge">
-								<div class="d-flex align-items-center gap-2">
-									<span class="percent">-20%</span>
-									<span class="text"> <i class="isax isax-crown-1 me-1"></i>Trending</span>
-								</div>
-								<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-							</div>
-						</div>
-						<div class="deals-content">
-							<div class="title">
-								<h3 class="custom-title"><a href="#">Azithromycin 500mg</a></h3>
-								<p class="description">Antibiotic</p>
-							</div>
-							<div class="price-item">
-								<h4 class="count-price">$32<span>$36</span></h4>
-								<span class="count">15 tablets</span>
-							</div>
-						</div>
-						<div class="deals-footer">
-							<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-						</div>
-					</div>
-				</div>
+        {% for product in products %}
 
-				<!-- Item 3 -->
-				<div class="slide-item">
-					<div class="deals-item-thirteen">
-						<div class="delas-overlay">
-							<img src="{% static 'assets/img/doctors/pills-img-3.png' %}" alt="deals" class="img-fluid img-1">
-							<div class="delas-badge">
-								<div class="d-flex align-items-center gap-2">
-									<span class="percent">-10%</span>
-								</div>
-								<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-							</div>
-						</div>
-						<div class="deals-content">
-							<div class="title">
-								<h3 class="custom-title"><a href="#">Azithromycin 500mg</a></h3>
-								<p class="description">Antibiotic</p>
-							</div>
-							<div class="price-item">
-								<h4 class="count-price">$32<span>$36</span></h4>
-								<span class="count">15 tablets</span>
-							</div>
-						</div>
-						<div class="deals-footer">
-							<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-						</div>
-					</div>
-				</div>
+        <!-- Item -->
+        <div class="slide-item">
+            <div class="deals-item-thirteen">
 
-				<!-- Item 4 -->
-				<div class="slide-item">
-					<div class="deals-item-thirteen">
-						<div class="delas-overlay">
-							<img src="{% static 'assets/img/doctors/pills-img-4.png' %}" alt="deals" class="img-fluid img-1">
-							<div class="delas-badge">
-								<div class="d-flex align-items-center gap-2">
-									<span class="percent">-25%</span>
-								</div>
-								<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-							</div>
-						</div>
-						<div class="deals-content">
-							<div class="title">
-								<h3 class="custom-title"><a href="#">Azithromycin 500mg</a></h3>
-								<p class="description">Antibiotic</p>
-							</div>
-							<div class="price-item">
-								<h4 class="count-price">$32<span>$36</span></h4>
-								<span class="count">15 tablets</span>
-							</div>
-						</div>
-						<div class="deals-footer">
-							<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-						</div>
-					</div>
-				</div>
+                <div class="delas-overlay">
 
-				<!-- Item 5 -->
-				<div class="slide-item">
-					<div class="deals-item-thirteen">
-						<div class="delas-overlay">
-							<img src="{% static 'assets/img/doctors/pills-img-4.png' %}" alt="deals" class="img-fluid img-1">
-							<div class="delas-badge">
-								<div class="d-flex align-items-center gap-2">
-									<span class="percent">-30%</span>
-								</div>
-								<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-							</div>
-						</div>
-						<div class="deals-content">
-							<div class="title">
-								<h3 class="custom-title"><a href="#">Azithromycin 500mg</a></h3>
-								<p class="description">Antibiotic</p>
-							</div>
-							<div class="price-item">
-								<h4 class="count-price">$32<span>$36</span></h4>
-								<span class="count">15 tablets</span>
-							</div>
-						</div>
-						<div class="deals-footer">
-							<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-						</div>
-					</div>
-				</div>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             class="img-fluid img-1">
+                    {% else %}
+                        <img src="{% static 'assets/img/doctors/pills-img-1.png' %}"
+                             alt="deals"
+                             class="img-fluid img-1">
+                    {% endif %}
 
-				<!-- Item 6 -->
-				<div class="slide-item">
-					<div class="deals-item-thirteen">
-						<div class="delas-overlay">
-							<img src="{% static 'assets/img/doctors/pills-img-3.png' %}" alt="deals" class="img-fluid img-1">
-							<div class="delas-badge">
-								<div class="d-flex align-items-center gap-2">
-									<span class="percent">-10%</span>
-									<span class="text"> <i class="isax isax-discount-circle me-1"></i> Best Seller</span>
-								</div>
-								<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-							</div>
-						</div>
-						<div class="deals-content">
-							<div class="title">
-								<h3 class="custom-title"><a href="#">Azithromycin 500mg</a></h3>
-								<p class="description">Antibiotic</p>
-							</div>
-							<div class="price-item">
-								<h4 class="count-price">$32<span>$36</span></h4>
-								<span class="count">15 tablets</span>
-							</div>
-						</div>
-						<div class="deals-footer">
-							<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-						</div>
-					</div>
-				</div>
+                    <div class="delas-badge">
+                        <div class="d-flex align-items-center gap-2">
 
-			</div>
+                            {% if product.discount %}
+                                <span class="percent">
+                                    -{{ product.discount }}%
+                                </span>
+                            {% endif %}
 
-		</section>
+                            <span class="text">
+                                <i class="isax isax-discount-circle me-1"></i>
+                                Best Seller
+                            </span>
+
+                        </div>
+
+                        <button class="favorite" aria-label="Add to favorites">
+                            <i class="isax isax-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="deals-content">
+
+                    <div class="title">
+                        <h3 class="custom-title">
+                            <a href="#">
+                                {{ product.name }}
+                            </a>
+                        </h3>
+
+                        <p class="description">
+                            {{ product.category }}
+                        </p>
+                    </div>
+
+                    <div class="price-item">
+
+                        <h4 class="count-price">
+                            ₹{{ product.price }}
+
+                            {% if product.old_price %}
+                                <span>${{ product.old_price }}</span>
+                            {% endif %}
+                        </h4>
+
+                        <span class="count">
+                            {{ product.quantity }} tablets
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="deals-footer">
+                    <a href="/add-to-cart/{{product.id}}/" class="btn theme-12-btn">
+                        <i class="isax isax-shopping-cart ms-2"></i>
+                        Add to Cart
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        {% empty %}
+
+        <div class="slide-item">
+            <p>No products available.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</section>
 		<!-- Deals Section End -->
 
 		<!-- Offers Section Start -->
@@ -611,25 +533,7 @@
 						</div>
 					</div>
 
-					<!-- Item 2 -->
-					<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-						<div class="offers-item-thirteen two wow fadeInUp" data-wow-duration="2s">
-							<h3 class="custom-title">Save 30% on Diabetes Care & Medecines</h3>
-							<p>Glucometers, strips, insulin pens & tablets.</p>
-							<img src="{% static 'assets/img/deals/offer-img-2.png' %}" alt="offer" class="img-fluid img-1">
-							<img src="{% static 'assets/img/deals/shadow-img-2.png' %}" alt="offer" class="img-fluid shadow-1">
-						</div>
-					</div>
-
-					<!-- Item 3 -->
-					<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-						<div class="offers-item-thirteen three wow fadeInUp" data-wow-duration="3s">
-							<h3 class="custom-title">Upto 50% on BabyCare  Products</h3>
-							<p>Discounts on soaps, diapers, creams & syrups.</p>
-							<img src="{% static 'assets/img/deals/offer-img-3.png' %}" alt="offer" class="img-fluid img-1">
-							<img src="{% static 'assets/img/deals/shadow-img-3.png' %}" alt="offer" class="img-fluid shadow-1">
-						</div>
-					</div>
+				
 				</div>
 				<!-- enc row -->
 
@@ -842,209 +746,84 @@
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active wow fadeInUp" data-wow-duration="1s" id="all" role="tabpanel" aria-labelledby="all-tab">
 							<!-- start row -->
-							<div class="row g-4 justify-content-center">
+						<div class="row g-4 justify-content-center">
 
-								<!-- Item 1-->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-1.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Aspirin Tablets</a></h3>
-												<p class="description">Pain & Fever Relief</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$30</h4>
-												<span class="count">24 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+    {% for product in products %}
 
-								<!-- Item 2-->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-2.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Vitamin D Capsules</a></h3>
-												<p class="description">Diabetes Care</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$30</h4>
-												<span class="count">14 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="deals-item-thirteen">
 
-								<!-- Item 3-->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-3.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Probiotic Gummies</a></h3>
-												<p class="description">Pain & Fever Relief</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$50</h4>
-												<span class="count">26 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+            <div class="delas-overlay">
 
-								<!-- Item 4-->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-4.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Melatonin Tablets</a></h3>
-												<p class="description">Antibiotics</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$15<span>$36</span></h4>
-												<span class="count">16 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                         alt="{{ product.name }}"
+                         class="img-fluid img-1">
+                {% else %}
+                    <img src="{% static 'assets/img/doctors/products-img-1.png' %}"
+                         alt="product"
+                         class="img-fluid img-1">
+                {% endif %}
 
-								<!-- Item 5-->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-5.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Calcium Tablets</a></h3>
-												<p class="description">Heart & BP</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$30</h4>
-												<span class="count">17 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+                <div class="delas-badge justify-content-end">
+                    <button class="favorite" aria-label="Add to favorites">
+                        <i class="isax isax-heart"></i>
+                    </button>
+                </div>
 
-								<!-- Item 6-->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-6.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Iron Supplement</a></h3>
-												<p class="description">Cold, Cough & Allergy</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$31</h4>
-												<span class="count">20 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+            </div>
 
-								<!-- Item 7 -->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-7.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Magnesium Capsules</a></h3>
-												<p class="description">Nutrition</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$15</h4>
-												<span class="count">24 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+            <div class="deals-content">
 
-								<!-- Item 8 -->
-								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-									<div class="deals-item-thirteen">
-										<div class="delas-overlay">
-											<img src="{% static 'assets/img/doctors/products-img-8.png' %}" alt="deals" class="img-fluid img-1">
-											<div class="delas-badge justify-content-end">
-												<button class="favorite" aria-label="Add to favorites"><i class="isax isax-heart"></i></button>
-											</div>
-										</div>
-										<div class="deals-content">
-											<div class="title">
-												<h3 class="custom-title"><a href="#">Zinc Tablets</a></h3>
-												<p class="description">Diabetes Care</p>
-											</div>
-											<div class="price-item">
-												<h4 class="count-price">$18</h4>
-												<span class="count">20 Pieces</span>
-											</div>
-										</div>
-										<div class="deals-footer">
-											<a href="#" class="btn theme-12-btn"><i class="isax isax-shopping-cart ms-2"></i>Add to Cart</a>
-										</div>
-									</div>
-								</div>
+                <div class="title">
 
-							</div>
+                    <h3 class="custom-title">
+                        <a href="#">
+                            {{ product.name }}
+                        </a>
+                    </h3>
+
+                    <p class="description">
+                        {{ product.category }}
+                    </p>
+
+                </div>
+
+                <div class="price-item">
+
+                    <h4 class="count-price">
+                        ₹{{ product.price }}
+                    </h4>
+
+                    <span class="count">
+                        {{ product.quantity }} Pieces
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="deals-footer">
+
+                <a href="#" class="btn theme-12-btn">
+                    <i class="isax isax-shopping-cart ms-2"></i>
+                    Add to Cart
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    {% empty %}
+
+    <div class="col-12">
+        <p>No products available.</p>
+    </div>
+
+    {% endfor %}
+
+</div>
 							<!-- end row -->
 						</div>
 

@@ -556,7 +556,7 @@ def add_product(request):
         stock = request.POST.get('quantity2')
         discount = request.POST.get('discount2')
         description = request.POST.get('about')
-
+        brand = request.POST.get('brand')
         image = request.FILES.get('images[]')
 
         expiry_date = request.POST.get('expiry_date')
@@ -603,12 +603,14 @@ def add_product(request):
         Product.objects.create(
             name=name,
             category=category,
+            brand=brand,
             price=price,
             stock=stock,
             discount=discount or 0,
             description=description or '',
             expiry_date=expiry_date or None,
             image=image
+            
         )
 
         messages.success(

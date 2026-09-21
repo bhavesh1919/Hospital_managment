@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -80,6 +81,12 @@ class Product(models.Model):
         null=True
     )
 
+    brand = models.CharField(
+    max_length=150,
+    blank=True,
+    null=True
+)
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )
@@ -138,3 +145,29 @@ class Sale(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+
+class Cart(models.Model):
+    user = models.OneToOneField('auth.User',on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self. user.username
+
+
+class cartiteam(models.Model):
+    cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name="iteams")
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+    quentity=models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return self.product.name
+
+    def get_total(self):
+        return self.product.price * self.quantity
