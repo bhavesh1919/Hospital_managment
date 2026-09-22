@@ -102,14 +102,14 @@ def Registr(req):
 
       # welcom email
 
-        subject="welcome to Hospital Managment system"
-        message="Hello"+user.first_name+user.last_name+"\n"+"welcome\n "+"your are succesfully Regiter in our system"
-        from_email=info.EMAIL_HOST_USER
-        to_list=[user.email]
-        print(user.email)
-        send_mail(subject,message,from_email,to_list,fail_silently=False)
+        # subject="welcome to Hospital Managment system"
+        # message="Hello"+user.first_name+user.last_name+"\n"+"welcome\n "+"your are succesfully Regiter in our system"
+        # from_email=info.EMAIL_HOST_USER
+        # to_list=[user.email]
+        # print(user.email)
+        # send_mail(subject,message,from_email,to_list,fail_silently=False)
 
-        register = Register.objects.create(name=name,phone=phone,email=email,password=password)
+        # register = Register.objects.create(name=name,phone=phone,email=email,password=password)
 
         return redirect('/login/')
     return render(req,'Register.html')

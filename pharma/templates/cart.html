@@ -148,51 +148,80 @@
 
                                 <td>{{ item.product.sku }}</td>
 
-                                <td>
-                                    ${{ item.product.price }}
-                                </td>
+<td>
+    <span class="product-price"
+          data-price="{{ item.product.price }}">
+        {{ item.product.price|floatformat:2 }}
+    </span>
+</td>
 
-                                <td>
-                                    <div class="custom-increment cart">
-                                        <div class="input-group1">
+<td>
+    <div class="custom-increment cart">
+        <div class="input-group1">
 
-                                            <span class="input-group-btn">
-                                               <a href="{% url 'update_cart_quantity' item.id 'minus' %}"
-   class="quantity-left-minus btn btn-danger btn-number">
-    <span><i class="fas fa-minus"></i></span>
-</a>
-                                            </span>
+            <!-- MINUS -->
+            <span class="input-group-btn">
+                <a href="javascript:void(0);"
+                   class="quantity-left-minus btn btn-danger btn-number"
+                   data-item-id="{{ item.id }}"
+                   data-update-url="{% url 'update_cart_quantity' item.id %}">
 
-                                            <input type="text"
-                                                   id="quantity"
-                                                   name="quantity"
-                                                   class="input-number"
-                                                   value="{{ item.quentity }}">
+                    <i class="fas fa-minus"></i>
 
-                                            <span class="input-group-btn">
-                                                <a href="{% url 'update_cart_quantity' item.id 'plus' %}"
-   class="quantity-right-plus btn btn-success btn-number">
-    <span><i class="fas fa-plus"></i></span>
-</a>
-                                            </span>
+                </a>
+            </span>
 
-                                        </div>
-                                    </div>
-                                </td>
 
-                                <td>
-                                    ${{ item.product.price|floatformat:2 }}
-                                </td>
+            <!-- QUANTITY -->
+            <input type="text"
+                   id="quantity-{{ item.id }}"
+                   class="input-number"
+                   value="{{ item.quentity }}"
+                   readonly>
 
-                                <td>
-                                    <div class="table-action">
-                                        <a href="javascript:void(0);"
-                                           class="btn btn-sm bg-danger-light">
-                                            <i class="fas fa-times"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+
+            <!-- PLUS -->
+            <span class="input-group-btn">
+                <a href="javascript:void(0);"
+                   class="quantity-right-plus btn btn-success btn-number"
+                   data-item-id="{{ item.id }}"
+                   data-update-url="{% url 'update_cart_quantity' item.id %}">
+
+                    <i class="fas fa-plus"></i>
+
+                </a>
+            </span>
+
+        </div>
+    </div>
+</td>
+
+<!-- TOTAL -->
+<td>
+    <span class="item-total">   
+        {{ item.total|floatformat:2 }}
+    </span>
+</td>
+
+
+   
+
+     <td>
+    <div class="table-action">
+
+        <a href="{% url 'remove_cart_item' item.id %}"
+           class="btn btn-sm bg-danger-light"
+           title="Remove"
+           onclick="return confirm('Are you sure you want to remove this item?');">
+
+            <i class="fas fa-trash"></i>
+
+        </a>
+
+    </div>
+</td>
+
+  
 
                             {% empty %}
 
@@ -230,53 +259,57 @@
 
                                 <ul class="booking-date d-block pb-0">
 
-                                    <li>
-                                        Subtotal
-                                        <span>${{ subtotal|floatformat:2 }}</span>
-                                    </li>
+ <li>
+    Subtotal
+    <span id="cart-subtotal">
+        {{ subtotal|floatformat:2 }}
+    </span>
+</li>
 
                                     <li>
-                                        Shipping
-                                        <span>
-                                            $25.00
-                                            <a href="#">Calculate shipping</a>
-                                        </span>
-                                    </li>
+    Shipping
+    <span>
+        <a href="#">  {{ shipping |floatformat:2 }}</a>
+    </span>
+</li>
 
                                 </ul>
 
-                                <ul class="booking-fee pt-4">
-                                    <li>
-                                        Tax
-                                        <span>$0.00</span>
-                                    </li>
-                                </ul>
+                               <ul class="booking-fee pt-4">
+                                   
+    <li>
+    Tax
+    <span id="cart-tax">
+        {{ tax|floatformat:2 }}
+    </span>
+</li>                      </li>
+                            </ul>
+<div class="booking-total">
 
-                                <div class="booking-total">
+    <ul class="booking-total-list">
 
-                                    <ul class="booking-total-list">
+        <li>
+    <span>Total</span>
 
-                                        <li>
-                                            <span>Total</span>
+    <span class="total-cost" id="cart-total">
+        {{ total|floatformat:2 }}
+    </span>
+</li>
 
-                                            <span class="total-cost">
-                                                ${{ subtotal|add:"25"|floatformat:2 }}
-                                            </span>
-                                        </li>
+        <li>
+            <div class="clinic-booking pt-4">
 
-                                        <li>
-                                            <div class="clinic-booking pt-4">
-                                                <a class="btn btn-primary"
-                                                   href="/checkout/">
-                                                    Proceed to checkout
-                                                </a>
-                                            </div>
-                                        </li>
+                <a class="btn btn-primary"
+                   href="/checkout/">
+                    Proceed to checkout
+                </a>
 
-                                    </ul>
+            </div>
+        </li>
 
-                                </div>
+    </ul>
 
+</div>
                             </div>
                         </div>
 
@@ -289,12 +322,286 @@
 
     </div>
 </div>
-```
 
 			<!-- /Page Content -->
    
 	
-		
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // =========================
+    // CALCULATE CART
+    // =========================
+
+    function calculateCart() {
+
+        let subtotal = 0;
+
+        document.querySelectorAll(".input-number").forEach(function (input) {
+
+            let row = input.closest("tr");
+
+            if (!row) {
+                return;
+            }
+
+            let priceElement = row.querySelector(".product-price");
+            let totalElement = row.querySelector(".item-total");
+
+            if (!priceElement || !totalElement) {
+                return;
+            }
+
+            let price = parseFloat(
+                priceElement.getAttribute("data-price")
+            );
+
+            let quantity = parseInt(input.value);
+
+            if (isNaN(price)) {
+                price = 0;
+            }
+
+            if (isNaN(quantity)) {
+                quantity = 1;
+            }
+
+            let itemTotal = price * quantity;
+
+            totalElement.innerText =
+                itemTotal.toFixed(2);
+
+            subtotal += itemTotal;
+
+        });
+
+
+        // SHIPPING
+        let shipping = 25;
+
+
+        // TAX
+        let tax = 10;
+
+
+        // FINAL TOTAL
+        let total = subtotal + shipping + tax;
+
+
+        // SUBTOTAL
+        let subtotalElement =
+            document.getElementById("cart-subtotal");
+
+        if (subtotalElement) {
+
+            subtotalElement.innerText =
+                subtotal.toFixed(2);
+        }
+
+
+        // TAX
+        let taxElement =
+            document.getElementById("cart-tax");
+
+        if (taxElement) {
+
+            taxElement.innerText =
+                tax.toFixed(2);
+        }
+
+
+        // TOTAL
+        let cartTotalElement =
+            document.getElementById("cart-total");
+
+        if (cartTotalElement) {
+
+            cartTotalElement.innerText =
+                total.toFixed(2);
+        }
+
+    }
+
+
+    // =========================
+    // UPDATE DATABASE
+    // =========================
+
+    function updateDatabase(button, quantity) {
+
+        let url = button.getAttribute("data-update-url");
+
+        let csrfToken = "{{ csrf_token }}";
+
+
+        fetch(url, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/x-www-form-urlencoded",
+                "X-CSRFToken": csrfToken
+            },
+
+            body:
+                "quantity=" +
+                encodeURIComponent(quantity)
+
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            if (data.success) {
+
+                console.log(
+                    "Quantity saved:",
+                    data.quantity
+                );
+
+            } else {
+
+                console.log("Update failed");
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.log(
+                "Error:",
+                error
+            );
+
+        });
+
+    }
+
+
+    // =========================
+    // PLUS BUTTON
+    // =========================
+
+    document.querySelectorAll(
+        ".quantity-right-plus"
+    ).forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                let itemId =
+                    this.getAttribute("data-item-id");
+
+                let input =
+                    document.getElementById(
+                        "quantity-" + itemId
+                    );
+
+                let quantity =
+                    parseInt(input.value);
+
+
+                if (isNaN(quantity)) {
+                    quantity = 1;
+                }
+
+
+                quantity = quantity + 1;
+
+
+                // CHANGE SCREEN
+                input.value = quantity;
+
+
+                // CALCULATE TOTAL
+                calculateCart();
+
+
+                // SAVE DATABASE
+                updateDatabase(
+                    this,
+                    quantity
+                );
+
+            }
+        );
+
+    });
+
+
+    // =========================
+    // MINUS BUTTON
+    // =========================
+
+    document.querySelectorAll(
+        ".quantity-left-minus"
+    ).forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                let itemId =
+                    this.getAttribute("data-item-id");
+
+                let input =
+                    document.getElementById(
+                        "quantity-" + itemId
+                    );
+
+                let quantity =
+                    parseInt(input.value);
+
+
+                if (isNaN(quantity)) {
+                    quantity = 1;
+                }
+
+
+                // DON'T GO BELOW 1
+                if (quantity > 1) {
+
+                    quantity = quantity - 1;
+
+                }
+
+
+                // CHANGE SCREEN
+                input.value = quantity;
+
+
+                // CALCULATE TOTAL
+                calculateCart();
+
+
+                // SAVE DATABASE
+                updateDatabase(
+                    this,
+                    quantity
+                );
+
+            }
+        );
+
+    });
+
+
+    // =========================
+    // PAGE LOAD
+    // =========================
+
+    calculateCart();
+
+});
+
+</script>
+
+
 		<!-- jQuery -->
 		<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
 		
