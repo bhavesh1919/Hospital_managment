@@ -1,402 +1,1424 @@
-{% extends 'base1.html '%}
+{% extends 'base1.html' %}
 {% load static %}
+
 {% block content %}
-		
-<!DOCTYPE html>
-<html lang="en">
-    
-<!-- Mirrored from doccure.dreamstechnologies.com/html/template/pharmacy/sales.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:19:37 GMT -->
-<head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta name="keywords" content="practo clone, doccure, doctor appointment, Practo clone html template, doctor booking template">
-		<meta name="author" content="Practo Clone HTML Template - Doctor Booking Template">
-		<meta property="og:url" content="https://doccure.dreamstechnologies.com/html/">
-		<meta property="og:type" content="website">
-		<meta property="og:title" content="Doctors Appointment HTML Website Templates | Doccure">
-		<meta property="og:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta property="og:image" content="assets/img/preview-banner.jpg">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta property="twitter:domain" content="https://doccure.dreamstechnologies.com/html/">
-		<meta property="twitter:url" content="https://doccure.dreamstechnologies.com/html/">
-		<meta name="twitter:title" content="Doctors Appointment HTML Website Templates | Doccure">
-		<meta name="twitter:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta name="twitter:image" content="assets/img/preview-banner.jpg">	
-        <title>Doccure - Sales Page</title>
-		
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-		
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
-		
-		<!-- Feathericon CSS -->
-        <link rel="stylesheet" href="{% static 'assets/css/feathericon.min.css' %}">
-		
-		<!-- Datatables CSS -->
-		<link rel="stylesheet" href="{% static 'assets/plugins/datatables/datatables.min.css' %}">
-		
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
-        
-    </head>
-    <body><a href="https://doccure.dreamstechnologies.com/cdn-cgi/content?id=QyS0qhNuBd0e.sACzXlTCTG3x7gFyAw7BhaZgwVx6y8-1779081089.6984499-1.0.1.1-ZxofkxIRazaN7NPFcpviOX_eP8i8.BNV9bE3cICBSk8" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
-	
-		<!-- Main Wrapper -->
-        <div class="main-wrapper">
-		
-			<!-- Header -->
-            <div class="header">
-			
-				<!-- Logo -->
-                <div class="header-left">
-                    <a href="index.html" class="logo">
-						<img src="{% static 'assets/img/logo.png' %}" alt="Logo">
-					</a>
-					<a href="index.html" class="logo logo-small">
-						<img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30">
-					</a>
+
+<style>
+
+/* =========================================
+   SALES PAGE
+========================================= */
+
+.sales-page .page-header {
+    margin-bottom: 20px;
+}
+
+.sales-page .page-header h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+
+/* =========================================
+   SALES TABLE CARD
+========================================= */
+
+.sales-table-card {
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.sales-table-card .card-body {
+    padding: 20px;
+}
+
+
+/* =========================================
+   TABLE SCROLL
+========================================= */
+
+.sales-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: 550px;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    position: relative;
+
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+}
+
+.sales-table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.sales-table-wrapper::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+.sales-table-wrapper::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 10px;
+}
+
+.sales-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.sales-table {
+    width: 100%;
+    min-width: 1150px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+}
+
+.sales-table th {
+    background: #f8f9fa;
+    color: #333;
+    font-size: 13px;
+    font-weight: 600;
+
+    padding: 14px 15px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    white-space: nowrap;
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.sales-table td {
+    padding: 14px 15px;
+
+    font-size: 13px;
+    color: #555;
+
+    border-bottom: 1px solid #eeeeee;
+
+    white-space: nowrap;
+
+    vertical-align: middle;
+}
+
+
+/* =========================================
+   CLICKABLE ORDER ROW
+========================================= */
+
+.order-row {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.order-row:hover {
+    background: #f8fbff;
+}
+
+.order-row.active-order {
+    background: #eef6ff;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-paid {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-failed {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.action-buttons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.btn-action {
+    padding: 6px 10px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+.btn-accept {
+    background: #198754;
+    color: #fff;
+}
+
+.btn-accept:hover {
+    background: #157347;
+    color: #fff;
+}
+
+.btn-reject {
+    background: #dc3545;
+    color: #fff;
+}
+
+.btn-reject:hover {
+    background: #bb2d3b;
+    color: #fff;
+}
+
+.btn-remove {
+    background: #6c757d;
+    color: #fff;
+}
+
+.btn-remove:hover {
+    background: #565e64;
+    color: #fff;
+}
+
+
+/* =========================================
+   ORDER DETAILS CARD
+========================================= */
+
+.order-details-card {
+    border: 0;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.order-details-card .card-header {
+    background: #fff;
+
+    border-bottom: 1px solid #eeeeee;
+
+    padding: 18px 20px;
+}
+
+.order-details-card .card-header h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.order-details-card .card-body {
+    height: 550px;
+
+    overflow-y: auto;
+
+    padding: 20px;
+}
+
+
+/* Details scrollbar */
+
+.order-details-card .card-body::-webkit-scrollbar {
+    width: 7px;
+}
+
+.order-details-card .card-body::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+.order-details-card .card-body::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   EMPTY DETAILS
+========================================= */
+
+.empty-order-details {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #888;
+}
+
+.empty-order-details i {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+
+    color: #c8c8c8;
+}
+
+
+/* =========================================
+   ORDER DETAILS
+========================================= */
+
+.order-number {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.order-number span {
+    color: #777;
+
+    font-size: 13px;
+}
+
+.order-number strong {
+    color: #0d6efd;
+
+    font-size: 16px;
+}
+
+.order-detail-section h5 {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    margin-top: 18px;
+
+    margin-bottom: 12px;
+}
+
+.order-detail-section hr {
+    margin: 15px 0;
+
+    border-color: #eeeeee;
+}
+
+
+/* =========================================
+   DETAIL ITEM
+========================================= */
+
+.detail-item {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.detail-item span {
+    color: #777;
+
+    font-size: 13px;
+
+    flex-shrink: 0;
+}
+
+.detail-item strong {
+    color: #333;
+
+    font-size: 13px;
+
+    text-align: right;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   MEDICINE BOX
+========================================= */
+
+.medicine-box {
+    background: #f8f9fa;
+
+    border-radius: 6px;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+}
+
+.medicine-name {
+    font-weight: 600;
+
+    color: #333;
+
+    margin-bottom: 5px;
+}
+
+.medicine-info {
+    font-size: 12px;
+
+    color: #777;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   TOTAL BOX
+========================================= */
+
+.total-box {
+    background: #f8f9fa;
+
+    padding: 15px;
+
+    border-radius: 6px;
+
+    margin-top: 15px;
+}
+
+.total-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 5px 0;
+
+    font-size: 13px;
+}
+
+.total-row.grand-total {
+    border-top: 1px solid #ddd;
+
+    margin-top: 8px;
+
+    padding-top: 12px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .sales-table-card {
+        margin-bottom: 20px;
+    }
+
+    .order-details-card .card-body {
+        height: auto;
+        max-height: 550px;
+    }
+
+}
+
+</style>
+
+
+<div class="page-wrapper sales-page">
+
+    <div class="content container-fluid">
+
+
+        <!-- =====================================
+             PAGE HEADER
+        ====================================== -->
+
+        <div class="page-header">
+
+            <div class="row align-items-center">
+
+                <div class="col">
+
+                    <h3 class="page-title">
+                        Sales
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'admin_dashboard' %}">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            Sales
+                        </li>
+
+                    </ul>
+
                 </div>
-				<!-- /Logo -->
-				
-				<a href="javascript:void(0);" id="toggle_btn">
-					<i class="fe fe-text-align-left"></i>
-				</a>
-				
-				<div class="top-nav-search">
-					<form>
-						<input type="text" class="form-control" placeholder="Search here">
-						<button class="btn" type="submit"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
-				
-				<!-- Mobile Menu Toggle -->
-				<a class="mobile_btn" id="mobile_btn">
-					<i class="fa fa-bars"></i>
-				</a>
-				<!-- /Mobile Menu Toggle -->
-				
-				<!-- Header Right Menu -->
-				<ul class="nav user-menu">
-					
-					<!-- Notifications -->
-					<li class="nav-item dropdown noti-dropdown">
-						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-							<i class="fe fe-bell"></i> <span class="badge rounded-pill">3</span>
-						</a>
-						<div class="dropdown-menu notifications">
-							<div class="topnav-dropdown-header">
-								<span class="notification-title">Notifications</span>
-								<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-							</div>
-							<div class="noti-content">
-								<ul class="notification-list">
-									<li class="notification-message">
-										<a href="#">
-											<div class="notify-block d-flex">
-												<span class="avatar avatar-sm flex-shrink-0">
-													<img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/doctors/doctor-thumb-01.jpg' %}">
-												</span>
-												<div class="media-body flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
-													<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="notification-message">
-										<a href="#">
-											<div class="notify-block d-flex">
-												<span class="avatar avatar-sm flex-shrink-0">
-													<img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/profiles/avatar-01.jpg' %}">
-												</span>
-												<div class="media-body flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
-													<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="notification-message">
-										<a href="#">
-											<div class="notify-block d-flex">
-												<span class="avatar avatar-sm flex-shrink-0">
-													<img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/profiles/avatar-02.jpg' %}">
-												</span>
-												<div class="media-body flex-grow-1">
-												<p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
-												<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="notification-message">
-										<a href="#">
-											<div class="notify-block d-flex">
-												<span class="avatar avatar-sm flex-shrink-0">
-													<img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/profiles/avatar-03.jpg' %}">
-												</span>
-												<div class="media-body flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
-													<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-												</div>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="topnav-dropdown-footer">
-								<a href="#">View all Notifications</a>
-							</div>
-						</div>
-					</li>
-					<!-- /Notifications -->
-					
-					<!-- User Menu -->
-					<li class="nav-item dropdown has-arrow">
-						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-							<span class="user-img"><img class="rounded-circle" src="{% static 'assets/img/profiles/avatar-01.jpg' %}" width="31" alt="Ryan Taylor"></span>
-						</a>
-						<div class="dropdown-menu">
-							<div class="user-header">
-								<div class="avatar avatar-sm">
-									<img src="{% static 'assets/img/profiles/avatar-01.jpg' %}" alt="User Image" class="avatar-img rounded-circle">
-								</div>
-								<div class="user-text">
-									<h6>Ryan Taylor</h6>
-									<p class="text-muted mb-0">Administrator</p>
-								</div>
-							</div>
-							<a class="dropdown-item" href="profile.html">My Profile</a>
-							<a class="dropdown-item" href="settings.html">Settings</a>
-							<a class="dropdown-item" href="login.html">Logout</a>
-						</div>
-					</li>
-					<!-- /User Menu -->
-					
-				</ul>
-				<!-- /Header Right Menu -->
-				
+
             </div>
-			<!-- /Header -->
-			
-		
-			
-			<!-- Page Wrapper -->
-            <div class="page-wrapper">
-                <div class="content container-fluid">
-				
-					<!-- Page Header -->
-					<div class="page-header">
-						<div class="row">
-							<div class="col-12">
-								<h3 class="page-title">Sales</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active">Sales</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /Page Header -->
-					<div class="row">
-						<div class="col-md-12">
-						
-							<!-- Recent Orders -->
-							<div class="card">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="datatable table table-hover table-center mb-0">
-											<thead>
-												<tr>
-													<th>Invoice No</th>
-													<th>Medicine Name</th>
-													<th>Total Price</th>
-													<th>Date</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>20170001</td>
-													<td>Abilify,Actamin,Actamin</td>
-													<td>$220</td>
-													<td>12-5-2020</td>
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_invoice_report">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a class="btn btn-sm bg-default-light" href="invoice.html">
-																<i class="fas fa-file-alt"></i> Invoice
-															</a>
-															<a href="javascript:void(0);" class="btn btn-sm bg-danger-light" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>20169999</td>
-													<td>Abilify,Actamin</td>
-													<td>$100</td>
-													<td>13-5-2020</td>
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_invoice_report">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a class="btn btn-sm bg-default-light" href="invoice.html">
-																<i class="fas fa-file-alt"></i> Invoice
-															</a>
-															<a href="javascript:void(0);" class="btn btn-sm bg-danger-light" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>20169998</td>
-													<td>Abilify</td>
-													<td>$150</td>
-													<td>14-5-2020</td>
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_invoice_report">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a class="btn btn-sm bg-default-light" href="invoice.html">
-																<i class="fas fa-file-alt"></i> Invoice
-															</a>
-															<a href="javascript:void(0);" class="btn btn-sm bg-danger-light" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>20170001</td>
-													<td>Abilify,Actamin,Actamin</td>
-													<td>$220</td>
-													<td>15-5-2020</td>
-													<td>
-														<div class="actions">
-															<a class="btn btn-sm bg-success-light" data-bs-toggle="modal" href="#edit_invoice_report">
-																<i class="fe fe-pencil"></i> Edit
-															</a>
-															<a class="btn btn-sm bg-default-light" href="invoice.html">
-																<i class="fas fa-file-alt"></i> Invoice
-															</a>
-															<a href="javascript:void(0);" class="btn btn-sm bg-danger-light" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-							<!-- /Recent Orders -->
-							
-						</div>
-					</div>
-				</div>			
-			</div>
-			<!-- /Page Wrapper -->
-		
+
         </div>
-		<!-- /Main Wrapper -->
 
-		<!-- Edit Details Modal -->
-		<div class="modal fade" id="edit_invoice_report" aria-hidden="true" role="dialog">
-			<div class="modal-dialog modal-dialog-centered" role="document" >
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Edit Invoice Report</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="row">
-								<div class="col-12 col-sm-6">
-									<div class="mb-3">
-										<label class="mb-2">Invoice Number</label>
-										<input type="text" class="form-control" value="20169998">
-									</div>
-								</div>
-								<div class="col-12 col-sm-6">
-									<div class="mb-3">
-										<label class="mb-2">Medicine Name</label>
-										<input type="text" class="form-control" value="Abilify">
-									</div>
-								</div>
-								<div class="col-12 col-sm-6">
-									<div class="mb-3">
-										<label class="mb-2">Total Amount</label>
-										<input type="text"  class="form-control" value="$150.00">
-									</div>
-								</div>
-								<div class="col-12 col-sm-6">
-									<div class="mb-3">
-										<label class="mb-2">Created Date</label>
-										<input type="text"  class="form-control" value="14-5-2020">
-									</div>
-								</div>
-								
-							</div>
-							<button type="submit" class="btn btn-primary w-100">Save</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Edit Details Modal -->
 
-		<!-- Model -->
-		<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="acc_title">Delete</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<p id="acc_msg">Are you sure you want to delete?</p>
-					</div>
-					<div class="modal-footer">
-						<a href="javascript:void(0)" class="btn btn-success si_accept_confirm">Yes</a>
-						<button type="button" class="btn btn-danger si_accept_cancel" data-bs-dismiss="modal">Cancel</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Modele -->
 
-		<!-- jQuery -->
-        <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type="8cda69e3f447ca679c066280-text/javascript"></script>
-		
-		<!-- Bootstrap Core JS -->
-        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="8cda69e3f447ca679c066280-text/javascript"></script>
-		
-		<!-- Slimscroll JS -->
-        <script src="{% static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}" type="8cda69e3f447ca679c066280-text/javascript"></script>
-		
-		<!-- Datatables JS -->
-		<script src="{% static 'assets/plugins/datatables/jquery.dataTables.min.js' %}" type="8cda69e3f447ca679c066280-text/javascript"></script>
-		<script src="{% static 'assets/plugins/datatables/datatables.min.js' %}" type="8cda69e3f447ca679c066280-text/javascript"></script>
-		
-		<!-- Custom JS -->
-		<script src="{% static 'assets/js/script.js' %}" type="8cda69e3f447ca679c066280-text/javascript"></script>
-		
-    <script src="{% static '../../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="8cda69e3f447ca679c066280-|49" defer></script></body>
+        <!-- =====================================
+             MAIN ROW
+        ====================================== -->
 
-<!-- Mirrored from doccure.dreamstechnologies.com/html/template/pharmacy/sales.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:19:37 GMT -->
-</html>
+        <div class="row">
+
+
+            <!-- =================================
+                 LEFT SIDE
+            ================================== -->
+
+            <div class="col-lg-8 col-md-12">
+
+                <div class="card sales-table-card">
+
+                    <div class="card-body">
+
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <div>
+
+                                <h4 class="card-title mb-1">
+                                    Orders
+                                </h4>
+
+                                <p class="text-muted mb-0">
+                                    Click an order to view complete details
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             TABLE SCROLL
+                        ================================== -->
+
+                        <div class="sales-table-wrapper">
+
+                            <table class="sales-table">
+
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Order No
+                                        </th>
+
+                                        <th>
+                                            Customer
+                                        </th>
+
+                                        <th>
+                                            Medicine
+                                        </th>
+
+                                        <th>
+                                            Quantity
+                                        </th>
+
+                                        <th>
+                                            Total
+                                        </th>
+
+                                        <th>
+                                            Payment
+                                        </th>
+
+                                        <th>
+                                            Date
+                                        </th>
+
+                                        <th>
+                                            Action
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                {% for order in orders %}
+
+
+                                    <tr
+                                        class="order-row"
+
+                                        data-order-id="{{ order.id }}"
+
+                                        data-first-name="{{ order.first_name }}"
+
+                                        data-last-name="{{ order.last_name }}"
+
+                                        data-email="{{ order.email }}"
+
+                                        data-phone="{{ order.phone }}"
+
+                                        data-address="{{ order.address }}"
+
+                                        data-city="{{ order.city }}"
+
+                                        data-state="{{ order.state }}"
+
+                                        data-pincode="{{ order.pincode }}"
+
+                                        data-subtotal="{{ order.subtotal }}"
+
+                                        data-shipping="{{ order.shipping }}"
+
+                                        data-tax="{{ order.tax }}"
+
+                                        data-total="{{ order.total }}"
+
+                                        data-payment="{{ order.payment_status }}"
+
+                                        data-razorpay-order="{{ order.razorpay_order_id|default:'Not Available' }}"
+
+                                        data-razorpay-payment="{{ order.razorpay_payment_id|default:'Not Available' }}"
+
+                                        data-date="{{ order.created_at|date:'d-m-Y H:i' }}"
+                                    >
+
+
+                                        <!-- ORDER ID -->
+
+                                        <td>
+
+                                            <strong>
+                                                #{{ order.id }}
+                                            </strong>
+
+                                        </td>
+
+
+
+                                        <!-- CUSTOMER -->
+
+                                        <td>
+
+                                            {{ order.first_name }}
+                                            {{ order.last_name }}
+
+                                        </td>
+
+
+
+                                        <!-- MEDICINE -->
+
+                                        <td>
+
+                                            {% for item in order.items.all %}
+
+                                                <div>
+                                                    {{ item.product_name }}
+                                                </div>
+
+                                            {% empty %}
+
+                                                <span class="text-muted">
+                                                    No product
+                                                </span>
+
+                                            {% endfor %}
+
+                                        </td>
+
+
+
+                                        <!-- QUANTITY -->
+
+                                        <td>
+
+                                            {% for item in order.items.all %}
+
+                                                <div>
+                                                    {{ item.quantity }}
+                                                </div>
+
+                                            {% empty %}
+
+                                                -
+                                            {% endfor %}
+
+                                        </td>
+
+
+
+                                        <!-- TOTAL -->
+
+                                        <td>
+
+                                            <strong>
+                                                ₹{{ order.total|floatformat:2 }}
+                                            </strong>
+
+                                        </td>
+
+
+
+                                        <!-- PAYMENT -->
+
+                                        <td>
+
+                                            {% if order.payment_status == "Paid" %}
+
+                                                <span class="status-badge status-paid">
+                                                    Paid
+                                                </span>
+
+                                            {% elif order.payment_status == "Failed" %}
+
+                                                <span class="status-badge status-failed">
+                                                    Failed
+                                                </span>
+
+                                            {% else %}
+
+                                                <span class="status-badge status-pending">
+                                                    Pending
+                                                </span>
+
+                                            {% endif %}
+
+                                        </td>
+
+
+
+                                        <!-- DATE -->
+
+                                        <td>
+
+                                            {{ order.created_at|date:"d-m-Y" }}
+
+                                        </td>
+
+
+
+                                        <!-- ACTION -->
+
+                                        <td>
+
+                                            <div class="action-buttons">
+
+
+                                                <a
+                                                    href="{% url 'accept_order' order.id %}"
+
+                                                    class="btn-action btn-accept"
+
+                                                    onclick="event.stopPropagation();"
+                                                >
+                                                    Accept
+                                                </a>
+
+
+                                                <a
+                                                    href="{% url 'reject_order' order.id %}"
+
+                                                    class="btn-action btn-reject"
+
+                                                    onclick="event.stopPropagation();"
+                                                >
+                                                    Reject
+                                                </a>
+
+
+                                                <a
+                                                    href="{% url 'remove_order' order.id %}"
+
+                                                    class="btn-action btn-remove"
+
+                                                    onclick="event.stopPropagation();"
+                                                >
+                                                    Remove
+                                                </a>
+
+
+                                            </div>
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                {% empty %}
+
+
+                                    <tr>
+
+                                        <td
+                                            colspan="8"
+                                            class="text-center py-5"
+                                        >
+
+                                            <i
+                                                class="fa fa-shopping-cart"
+                                                style="font-size:40px;color:#ccc;"
+                                            ></i>
+
+                                            <p class="mt-3 mb-0 text-muted">
+                                                No orders found.
+                                            </p>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                {% endfor %}
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 RIGHT SIDE
+            ================================== -->
+
+            <div class="col-lg-4 col-md-12">
+
+                <div class="card order-details-card">
+
+
+                    <div class="card-header">
+
+                        <h4 class="mb-0">
+                            Order Details
+                        </h4>
+
+                    </div>
+
+
+
+                    <div class="card-body">
+
+
+                        <div
+                            id="orderDetails"
+                            class="empty-order-details"
+                        >
+
+                            <div>
+
+                                <i class="fa fa-shopping-bag"></i>
+
+                                <p>
+                                    Click an order to view complete details
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    const orderRows =
+        document.querySelectorAll(".order-row");
+
+
+    const orderDetails =
+        document.getElementById("orderDetails");
+
+
+
+    orderRows.forEach(function (row) {
+
+
+        row.addEventListener("click", function () {
+
+
+            /* =================================
+               REMOVE ACTIVE FROM OTHER ORDERS
+            ================================= */
+
+            orderRows.forEach(function (item) {
+
+                item.classList.remove("active-order");
+
+            });
+
+
+            /* =================================
+               SELECT CURRENT ORDER
+            ================================= */
+
+            row.classList.add("active-order");
+
+
+
+            /* =================================
+               GET CUSTOMER DETAILS
+            ================================= */
+
+            const orderId =
+                row.dataset.orderId || "N/A";
+
+
+            const firstName =
+                row.dataset.firstName || "";
+
+
+            const lastName =
+                row.dataset.lastName || "";
+
+
+            const name =
+                (firstName + " " + lastName).trim()
+                || "Not Available";
+
+
+            const email =
+                row.dataset.email || "Not Available";
+
+
+            const phone =
+                row.dataset.phone || "Not Available";
+
+
+            const address =
+                row.dataset.address || "Not Available";
+
+
+            const city =
+                row.dataset.city || "Not Available";
+
+
+            const state =
+                row.dataset.state || "Not Available";
+
+
+            const pincode =
+                row.dataset.pincode || "Not Available";
+
+
+
+            /* =================================
+               GET PRICE DETAILS
+            ================================= */
+
+            const subtotal =
+                row.dataset.subtotal || "0.00";
+
+
+            const shipping =
+                row.dataset.shipping || "0.00";
+
+
+            const tax =
+                row.dataset.tax || "0.00";
+
+
+            const total =
+                row.dataset.total || "0.00";
+
+
+
+            /* =================================
+               PAYMENT DETAILS
+            ================================= */
+
+            const payment =
+                row.dataset.payment || "Pending";
+
+
+            const razorpayOrder =
+                row.dataset.razorpayOrder
+                || "Not Available";
+
+
+            const razorpayPayment =
+                row.dataset.razorpayPayment
+                || "Not Available";
+
+
+            const date =
+                row.dataset.date
+                || "Not Available";
+
+
+
+            /* =================================
+               CREATE MEDICINE HTML
+            ================================= */
+
+            let medicineHTML = "";
+
+
+            {% for order in orders %}
+
+            if (String(orderId) === "{{ order.id }}") {
+
+
+                {% for item in order.items.all %}
+
+                medicineHTML += `
+
+                    <div class="medicine-box">
+
+                        <div class="medicine-name">
+
+                            {{ item.product_name|escapejs }}
+
+                        </div>
+
+                        <div class="medicine-info">
+
+                            Price:
+                            ₹{{ item.price|floatformat:2 }}
+
+                            <br>
+
+                            Quantity:
+                            {{ item.quantity }}
+
+                            <br>
+
+                            Item Total:
+                            ₹{{ item.total|floatformat:2 }}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                {% endfor %}
+
+            }
+
+            {% endfor %}
+
+
+
+            /* =================================
+               PAYMENT STATUS CLASS
+            ================================= */
+
+            let paymentClass =
+                "status-pending";
+
+
+            if (payment === "Paid") {
+
+                paymentClass =
+                    "status-paid";
+
+            }
+            else if (payment === "Failed") {
+
+                paymentClass =
+                    "status-failed";
+
+            }
+
+
+
+            /* =================================
+               UPDATE RIGHT CARD
+            ================================= */
+
+            orderDetails.classList.remove(
+                "empty-order-details"
+            );
+
+
+            orderDetails.innerHTML = `
+
+                <div class="order-detail-section">
+
+
+                    <!-- ORDER ID -->
+
+                    <div class="order-number">
+
+                        <span>
+                            Order ID
+                        </span>
+
+                        <strong>
+                            #${orderId}
+                        </strong>
+
+                    </div>
+
+
+
+                    <hr>
+
+
+
+                    <!-- CUSTOMER -->
+
+                    <h5>
+                        Customer Details
+                    </h5>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Name
+                        </span>
+
+                        <strong>
+                            ${name}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong>
+                            ${email}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Phone
+                        </span>
+
+                        <strong>
+                            ${phone}
+                        </strong>
+
+                    </div>
+
+
+
+                    <hr>
+
+
+
+                    <!-- DELIVERY ADDRESS -->
+
+                    <h5>
+                        Delivery Address
+                    </h5>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Address
+                        </span>
+
+                        <strong>
+                            ${address}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            City
+                        </span>
+
+                        <strong>
+                            ${city}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            State
+                        </span>
+
+                        <strong>
+                            ${state}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Pincode
+                        </span>
+
+                        <strong>
+                            ${pincode}
+                        </strong>
+
+                    </div>
+
+
+
+                    <hr>
+
+
+
+                    <!-- MEDICINE -->
+
+                    <h5>
+                        Medicine Details
+                    </h5>
+
+
+                    ${medicineHTML || `
+                        <p class="text-muted">
+                            No medicine details available.
+                        </p>
+                    `}
+
+
+
+                    <hr>
+
+
+
+                    <!-- PRICE DETAILS -->
+
+                    <h5>
+                        Price Details
+                    </h5>
+
+
+                    <div class="total-box">
+
+
+                        <div class="total-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <span>
+                                ₹${subtotal}
+                            </span>
+
+                        </div>
+
+
+                        <div class="total-row">
+
+                            <span>
+                                Shipping
+                            </span>
+
+                            <span>
+                                ₹${shipping}
+                            </span>
+
+                        </div>
+
+
+                        <div class="total-row">
+
+                            <span>
+                                Tax
+                            </span>
+
+                            <span>
+                                ₹${tax}
+                            </span>
+
+                        </div>
+
+
+                        <div class="total-row grand-total">
+
+                            <span>
+                                Grand Total
+                            </span>
+
+                            <span>
+                                ₹${total}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <hr>
+
+
+
+                    <!-- PAYMENT -->
+
+                    <h5>
+                        Payment Details
+                    </h5>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Payment Status
+                        </span>
+
+                        <strong>
+
+                            <span class="status-badge ${paymentClass}">
+                                ${payment}
+                            </span>
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Razorpay Order ID
+                        </span>
+
+                        <strong>
+                            ${razorpayOrder}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Razorpay Payment ID
+                        </span>
+
+                        <strong>
+                            ${razorpayPayment}
+                        </strong>
+
+                    </div>
+
+
+
+                    <hr>
+
+
+
+                    <!-- ORDER DATE -->
+
+                    <h5>
+                        Order Information
+                    </h5>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Order Date
+                        </span>
+
+                        <strong>
+                            ${date}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+        });
+
+    });
+
+});
+
+</script>
+
 {% endblock %}

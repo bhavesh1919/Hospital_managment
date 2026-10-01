@@ -9,6 +9,7 @@ from .models import WebsiteSetting
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
 from docter.models import Speciality
+from pharma.models import Order,OrderItem
 
 
 
@@ -454,9 +455,46 @@ def add_purchase(request):
         "products": products
     })
 
-def sales(request):
-    return render(request, 'sales.html')
 
+def sales(request):
+
+    orders = Order.objects.prefetch_related(
+        "items__product"
+    ).order_by("-created_at")
+
+    return render(request, "sales.html", {
+        "orders": orders
+    })
+
+
+@login_required
+def accept_order(request, id):
+
+    order = get_object_or_404(Order, id=id)
+
+    if order.payment_status == "Paid":
+        order.order_status = "Accepted"
+        order.save()
+
+    return redirect("sales")
+
+@login_required
+def reject_order(request, id):
+
+    order = get_object_or_404(Order, id=id)
+
+    if order.payment_status == "Paid":
+        order.order_status = "Rejected"
+        order.save()
+
+    return redirect("sales")
+@login_required
+def remove_order(request, id):
+
+    order = get_object_or_404(Order, id=id)
+    order.delete()
+
+    return redirect("sales")
 
 def transactions_list(request):
     return render(request, 'transactions-list.html')

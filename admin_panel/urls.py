@@ -126,7 +126,10 @@ path(
 
 
 
-
+path("sales/", views.sales, name="sales"),
+path("accept-order/<int:id>/", views.accept_order, name="accept_order"),
+path("reject-order/<int:id>/", views.reject_order, name="reject_order"),
+path("remove-order/<int:id>/", views.remove_order, name="remove_order"),
 
 ]
 
