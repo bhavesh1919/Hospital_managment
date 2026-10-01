@@ -259,12 +259,9 @@ def my_patients(request):
 
 def request_page(request):
 
-    appointment = Appointment.objects.all()
+    docters = Docter.objects.get(profile__user = request.user)
 
-
-
-
-
+    appointment = Appointment.objects.filter(docter=docters)
 
     return render(request, 'request.html',{"appointment":appointment})
 

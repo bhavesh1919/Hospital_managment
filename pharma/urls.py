@@ -27,5 +27,45 @@ urlpatterns = [
         views.remove_cart_item,
         name='remove_cart_item'
     ),
+    path(
+    "update-cart/<int:id>/<str:action>/",
+    views.update_cart_quantity,
+    name="update_cart_quantity"
+),
+
+path("update-cart/<int:id>/<str:action>/", views.update_cart_quantity, name="update_cart_quantity"),
+    
+    path(
+    'razorpay-payment-success/',
+    views.razorpay_payment_success,
+    name='razorpay_payment_success'
+),
+
+
+    path(
+    'payment-success/',
+    views.payment_success, 
+    name='payment_success'
+),
+
+path(
+    'my-orders/',
+    views.my_orders,
+    name='my_orders'
+),
+
+path(
+    'order/<int:id>/',
+    views.order_detail,
+    name='order_detail'
+),
+
+   path(
+        "verify-payment/",
+        views.verify_payment,
+        name="verify_payment"
+    ),
+
+path("my-orders/", views.my_orders, name="my_orders"),
 
 ]

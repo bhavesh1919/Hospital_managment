@@ -19,46 +19,95 @@ from django.core.mail import send_mail
 def index(req ):
     return render(req,'index.html')
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+
 def Login(req):
 
-    if req.method=="POST":
-        username=req.POST["Username"]
-        password=req.POST["Password"]
+    # Already logged in
+    if req.user.is_authenticated:
 
-        user = authenticate(username=username,password=password)
+        # Admin
+        if req.user.is_superuser:
+            return redirect("/admin_dash/")
 
-        if user is not None:
-            login(req,user)
+        try:
+            profile = Profile.objects.get(user=req.user)
 
-            if user.is_superuser:
-                return redirect ("/admin_dash/")
+            # Doctor
+            if profile.role == "Docter":
+                return redirect("/docter_dash")
 
+            # Patient
+            elif profile.role == "Pateint":
+                return redirect("/patient/")
 
-            try:
-                profile =Profile.objects.get(user=user)
+            else:
+                messages.error(req, "User not found",extra_tags="login")
+                logout(req)
+                return redirect("login")
 
-                if profile.role=='Docter':
-                    return redirect("/docter_dash")
+        except Profile.DoesNotExist:
+            messages.error(req, "Profile not found",extra_tags="login")
+            logout(req)
+            return redirect("login")
 
+    # Login form submitted
+    if req.method == "POST":
 
-                elif profile.role=='Pateint':
-                    return redirect("/patient/")
-                
-                else:
-                    return redirect('/')
+        username = req.POST.get("Username")
+        password = req.POST.get("Password")
 
-            except Profile.DoesNotExist:
-                messages.error(req,"profile not found")
-                return redirect("/login")
-        
-            #return redirect('/')
-        
+        # Check whether username exists
+        try:
+            user = User.objects.get(username=username)
+
+        except User.DoesNotExist:
+            messages.error(req, "User not found",extra_tags="login")
+            return redirect("login")
+
+        # Check password
+        if not user.check_password(password):
+            messages.error(req, "Password is wrong",extra_tags="login")
+            return redirect("login")
+
+        # Login user
+        login(req, user)
+
+        # Admin
+        if user.is_superuser:
+            return redirect("/admin_dash/")
+
+        # Check profile
+        try:
+            profile = Profile.objects.get(user=user)
+
+        except Profile.DoesNotExist:
+            messages.error(req, "Profile not found",extra_tags="login")
+            logout(req)
+            return redirect("login")
+
+        # Doctor
+        if profile.role == "Docter":
+            return redirect("/docter_dash")
+
+        # Patient
+        elif profile.role == "Pateint":
+            return redirect("/patient/")
+
         else:
-            messages.error(req,"Bed credentail")
-            return redirect("/login/")
-        
-    return render(req,'login.html')
+            messages.error(req, "User role not found",extra_tags="login")
+            logout(req)
+            return redirect("login")
 
+    return render(req, "login.html")
 
 def Logout(req):    
     logout(req)
@@ -77,8 +126,8 @@ def Registr(req):
 
 
         if User.objects.filter(username=username):
-            messages.error(req," user will be alredy exists")
-            return redirect("/login")
+            messages.error(req," user will be alredy exists",extra_tags="login")
+            return redirect("login")
 
         user = User.objects.create_user(username,email,password)
         user.first_name=fname
@@ -97,7 +146,7 @@ def Registr(req):
             ee = Patient.objects.create(profile=profile)
             ee.save()
 
-        messages.success(req,"registration will be successfully")
+        messages.success(req,"registration will be successfully",extra_tags="login")
 
 
       # welcom email
@@ -111,7 +160,7 @@ def Registr(req):
 
         # register = Register.objects.create(name=name,phone=phone,email=email,password=password)
 
-        return redirect('/login/')
+        return redirect('login')
     return render(req,'Register.html')
 
 

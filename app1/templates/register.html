@@ -2,6 +2,59 @@
 {% load static %}
 {% block content %}
 
+
+<style>
+    .role-select-group {
+        margin-bottom: 20px;
+    }
+
+    .role-select-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #1f2937;
+    }
+
+    .role-select-box {
+        position: relative;
+        width: 100%;
+    }
+
+    .role-select-box select {
+        width: 100%;
+        height: 50px;
+        padding: 0 45px 0 15px;
+        border: 1px solid #e6e8eb;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+        font-size: 15px;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+    }
+
+    .role-select-box select:focus {
+        border-color: #0d6efd;
+        box-shadow: none;
+    }
+
+    .role-select-box::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #777;
+        font-size: 12px;
+    }
+</style>
+
 			
 			<!-- Page Content -->
 			<div class="content">
@@ -17,9 +70,9 @@
 										<img src="{% static 'assets/img/login-banner.png' %}" class="img-fluid" alt="Doccure Login">	
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
-										<div class="login-header">
+										<!-- <div class="login-header">
 											<h3>Patient Register <a href="/docter_Registr/">Are you a Doctor?</a></h3>
-										</div>
+										</div> -->
 										{% if messages %}
     {% for message in messages %}
         <div class="alert alert-danger">
@@ -49,15 +102,33 @@
 												<label class="form-label">Email</label>
 												<input class="form-control form-control-lg group_formcontrol form-control-phone" id="phone" name="Email" type="text">
 											</div>
-                                           
-											<div class="mb-3">
-											        <select name="role" id="role" required>
-													<option value="">-- Select Role --</option>
-													<option value="Docter">Doctor</option>
-													<option value="Pateint">Patient</option>
-													</select>
-												
-											</div>
+          <div class="role-select-group">
+
+    <label for="role">
+        Role
+    </label>
+
+    <div class="role-select-box">
+
+        <select name="role" id="role" required>
+
+            <option value="">
+                -- Select Role --
+            </option>
+
+            <option value="Docter">
+                Doctor
+            </option>
+
+            <option value="Pateint">
+                Patient
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
 
 
 											<div class="mb-3">

@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
 
 <!-- Breadcrumb -->
-
 <div class="breadcrumb-bar">
 
     <div class="container">
@@ -24,32 +22,23 @@
                         <li class="breadcrumb-item">
 
                             <a href="/pharma/">
-
                                 <i class="isax isax-home-15"></i>
-
                             </a>
 
                         </li>
 
                         <li class="breadcrumb-item">
-
                             Pharmacy
-
                         </li>
 
                         <li class="breadcrumb-item active">
-
                             Checkout
-
                         </li>
 
                     </ol>
 
-
                     <h2 class="breadcrumb-title">
-
                         Checkout
-
                     </h2>
 
                 </nav>
@@ -59,7 +48,6 @@
         </div>
 
     </div>
-
 
     <div class="breadcrumb-bg">
 
@@ -98,7 +86,10 @@
 
     <div class="container">
 
-        <form method="POST">
+        <form
+            method="POST"
+            id="checkout-form"
+        >
 
             {% csrf_token %}
 
@@ -106,7 +97,9 @@
             <div class="row">
 
 
+                <!-- ================================= -->
                 <!-- LEFT SIDE -->
+                <!-- ================================= -->
 
                 <div class="col-md-6 col-lg-7">
 
@@ -115,9 +108,7 @@
                         <div class="card-header">
 
                             <h3 class="card-title">
-
                                 Billing details
-
                             </h3>
 
                         </div>
@@ -126,14 +117,14 @@
                         <div class="card-body">
 
 
+                            <!-- ================================= -->
                             <!-- PERSONAL INFORMATION -->
+                            <!-- ================================= -->
 
                             <div class="info-widget">
 
                                 <h4 class="card-title">
-
                                     Personal Information
-
                                 </h4>
 
 
@@ -147,11 +138,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 First Name
-
                                             </label>
-
 
                                             <input
                                                 type="text"
@@ -173,11 +161,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 Last Name
-
                                             </label>
-
 
                                             <input
                                                 type="text"
@@ -199,11 +184,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 Email
-
                                             </label>
-
 
                                             <input
                                                 type="email"
@@ -225,11 +207,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 Phone
-
                                             </label>
-
 
                                             <input
                                                 type="text"
@@ -249,14 +228,14 @@
                             </div>
 
 
+                            <!-- ================================= -->
                             <!-- SHIPPING -->
+                            <!-- ================================= -->
 
                             <div class="info-widget">
 
                                 <h4 class="card-title">
-
                                     Shipping Details
-
                                 </h4>
 
 
@@ -270,11 +249,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 Address
-
                                             </label>
-
 
                                             <textarea
                                                 name="address"
@@ -295,11 +271,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 City
-
                                             </label>
-
 
                                             <input
                                                 type="text"
@@ -321,11 +294,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 State
-
                                             </label>
-
 
                                             <input
                                                 type="text"
@@ -347,11 +317,8 @@
                                         <div class="mb-3 card-label">
 
                                             <label class="mb-2">
-
                                                 Pincode
-
                                             </label>
-
 
                                             <input
                                                 type="text"
@@ -379,7 +346,6 @@
 
                                             </label>
 
-
                                             <textarea
                                                 name="order_notes"
                                                 rows="4"
@@ -396,61 +362,32 @@
                             </div>
 
 
-                            <!-- PAYMENT METHOD -->
+                            <!-- ================================= -->
+                            <!-- PAYMENT -->
+                            <!-- ================================= -->
 
                             <div class="payment-widget">
 
                                 <h4 class="card-title">
-
                                     Payment Method
-
                                 </h4>
 
 
-                                <div class="mb-3">
+                                <div class="alert alert-info">
 
-                                    <label class="mb-2">
+                                    <i class="fas fa-lock me-2"></i>
 
-                                        Select Payment Method
-
-                                    </label>
-
-
-                                    <select
-                                        name="payment_method"
-                                        class="form-control"
-                                        required
-                                    >
-
-                                        <option value="">
-
-                                            Select Payment Method
-
-                                        </option>
-
-
-                                        <option value="cod">
-
-                                            Cash on Delivery
-
-                                        </option>
-
-
-                                        <option value="online">
-
-                                            Online Payment
-
-                                        </option>
-
-
-                                    </select>
+                                    Secure Online Payment using
+                                    Razorpay
 
                                 </div>
 
                             </div>
 
 
+                            <!-- ================================= -->
                             <!-- TERMS -->
+                            <!-- ================================= -->
 
                             <div class="terms-accept">
 
@@ -461,7 +398,6 @@
                                         id="terms_accept"
                                         required
                                     >
-
 
                                     <label for="terms_accept">
 
@@ -475,16 +411,19 @@
                             </div>
 
 
-                            <!-- SUBMIT -->
+                            <!-- ================================= -->
+                            <!-- PAY BUTTON -->
+                            <!-- ================================= -->
 
                             <div class="submit-section mt-4">
 
                                 <button
                                     type="submit"
+                                    id="pay-button"
                                     class="btn btn-primary submit-btn"
                                 >
 
-                                    Confirm Order
+                                    Pay ₹{{ total|floatformat:2 }}
 
                                 </button>
 
@@ -498,7 +437,9 @@
                 </div>
 
 
+                <!-- ================================= -->
                 <!-- RIGHT SIDE -->
+                <!-- ================================= -->
 
                 <div class="col-md-6 col-lg-5">
 
@@ -508,9 +449,7 @@
                         <div class="card-header">
 
                             <h3 class="card-title">
-
                                 Your Order
-
                             </h3>
 
                         </div>
@@ -554,6 +493,7 @@
                                                 {{ item.product.name }}
 
                                                 ×
+
                                                 {{ item.quentity }}
 
                                             </td>
@@ -561,7 +501,7 @@
 
                                             <td class="text-end">
 
-                                                ${{ item.total|floatformat:2 }}
+                                                ₹{{ item.total|floatformat:2 }}
 
                                             </td>
 
@@ -608,7 +548,7 @@
 
                                             <span>
 
-                                                ${{ subtotal|floatformat:2 }}
+                                                ₹{{ subtotal|floatformat:2 }}
 
                                             </span>
 
@@ -621,7 +561,7 @@
 
                                             <span>
 
-                                                ${{ shipping|floatformat:2 }}
+                                                ₹{{ shipping|floatformat:2 }}
 
                                             </span>
 
@@ -638,7 +578,7 @@
 
                                             <span>
 
-                                                ${{ tax|floatformat:2 }}
+                                                ₹{{ tax|floatformat:2 }}
 
                                             </span>
 
@@ -668,7 +608,7 @@
                                                     class="total-cost"
                                                 >
 
-                                                    ${{ total|floatformat:2 }}
+                                                    ₹{{ total|floatformat:2 }}
 
                                                 </span>
 
@@ -682,6 +622,7 @@
                                 </div>
 
                             </div>
+
 
                         </div>
 
@@ -698,4 +639,451 @@
 
 </div>
 
+<!-- ========================================= -->
+<!-- RAZORPAY -->
+<!-- ========================================= -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form =
+        document.getElementById("checkout-form");
+
+    const payButton =
+        document.getElementById("pay-button");
+
+    if (!form) {
+
+        console.error(
+            "Checkout form not found"
+        );
+
+        return;
+    }
+
+    if (!payButton) {
+
+        console.error(
+            "Pay button not found"
+        );
+
+        return;
+    }
+
+
+    /*
+    =========================================
+    RAZORPAY DATA FROM DJANGO
+    =========================================
+    */
+
+    const razorpayKey =
+        "{{ razorpay_key }}";
+
+    const razorpayOrderId =
+        "{{ razorpay_order_id }}";
+
+    const razorpayAmount =
+        "{{ amount }}";
+
+
+    console.log(
+        "Razorpay Key:",
+        razorpayKey
+    );
+
+    console.log(
+        "Razorpay Order ID:",
+        razorpayOrderId
+    );
+
+    console.log(
+        "Razorpay Amount:",
+        razorpayAmount
+    );
+
+
+    /*
+    =========================================
+    CHECK RAZORPAY DATA
+    =========================================
+    */
+
+    if (!razorpayKey) {
+
+        console.error(
+            "Razorpay key is missing"
+        );
+
+        alert(
+            "Razorpay Key is missing. Check settings.py."
+        );
+
+        return;
+    }
+
+
+    if (!razorpayOrderId) {
+
+        console.error(
+            "Razorpay Order ID is missing"
+        );
+
+        alert(
+            "Razorpay Order ID is missing."
+        );
+
+        return;
+    }
+
+
+    if (!razorpayAmount) {
+
+        console.error(
+            "Razorpay amount is missing"
+        );
+
+        alert(
+            "Payment amount is missing."
+        );
+
+        return;
+    }
+
+
+    /*
+    =========================================
+    PAY BUTTON
+    =========================================
+    */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /*
+            Browser validation
+            */
+
+            if (!form.checkValidity()) {
+
+                form.reportValidity();
+
+                return;
+            }
+
+
+            /*
+            Disable button
+            */
+
+            payButton.disabled = true;
+
+            payButton.innerHTML =
+                "Opening Payment...";
+
+
+            /*
+            =================================
+            RAZORPAY OPTIONS
+            =================================
+            */
+
+            const options = {
+
+                key:
+                    razorpayKey,
+
+                amount:
+                    parseInt(
+                        razorpayAmount
+                    ),
+
+                currency:
+                    "INR",
+
+                name:
+                    "Pharmacy",
+
+                description:
+                    "Medicine Order",
+
+                order_id:
+                    razorpayOrderId,
+
+
+                /*
+                =============================
+                PAYMENT SUCCESS
+                =============================
+                */
+
+                handler:
+                    function (response) {
+
+                        console.log(
+                            "Payment successful:",
+                            response
+                        );
+
+
+                        const csrfToken =
+                            document.querySelector(
+                                '[name="csrfmiddlewaretoken"]'
+                            ).value;
+
+
+                        /*
+                        Verify payment
+                        */
+
+                        fetch(
+                            "{% url 'verify_payment' %}",
+                            {
+
+                                method:
+                                    "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/x-www-form-urlencoded",
+
+                                    "X-CSRFToken":
+                                        csrfToken
+
+                                },
+
+                                body:
+                                    new URLSearchParams({
+
+                                        razorpay_payment_id:
+                                            response.razorpay_payment_id,
+
+                                        razorpay_order_id:
+                                            response.razorpay_order_id,
+
+                                        razorpay_signature:
+                                            response.razorpay_signature
+
+                                    })
+
+                            }
+                        )
+
+                        .then(
+                            function (res) {
+
+                                return res.json();
+
+                            }
+                        )
+
+                        .then(
+                            function (data) {
+
+                                console.log(
+                                    "Verification:",
+                                    data
+                                );
+
+
+                                if (
+                                    data.status ===
+                                    "success"
+                                ) {
+
+                                    window.location.href =
+                                        data.redirect_url;
+
+                                }
+
+                                else {
+
+                                    alert(
+                                        data.message ||
+                                        "Payment verification failed."
+                                    );
+
+                                    payButton.disabled =
+                                        false;
+
+                                    payButton.innerHTML =
+                                        "Pay ₹{{ total|floatformat:2 }}";
+                                }
+
+                            }
+                        )
+
+                        .catch(
+                            function (error) {
+
+                                console.error(
+                                    "Verification error:",
+                                    error
+                                );
+
+                                alert(
+                                    "Payment verification failed."
+                                );
+
+                                payButton.disabled =
+                                    false;
+
+                                payButton.innerHTML =
+                                    "Pay ₹{{ total|floatformat:2 }}";
+
+                            }
+                        );
+
+                    },
+
+
+                /*
+                =============================
+                CUSTOMER DETAILS
+                =============================
+                */
+
+                prefill: {
+
+                    name:
+                        "{{ patient.first_name }} {{ patient.last_name }}",
+
+                    email:
+                        "{{ patient.email }}",
+
+                    contact:
+                        "{{ patient.phone }}"
+
+                },
+
+
+                /*
+                =============================
+                THEME
+                =============================
+                */
+
+                theme: {
+
+                    color:
+                        "#0d6efd"
+
+                },
+
+
+                /*
+                =============================
+                MODAL CLOSE
+                =============================
+                */
+
+                modal: {
+
+                    ondismiss:
+                        function () {
+
+                            console.log(
+                                "Razorpay closed"
+                            );
+
+                            payButton.disabled =
+                                false;
+
+                            payButton.innerHTML =
+                                "Pay ₹{{ total|floatformat:2 }}";
+
+                        }
+
+                }
+
+            };
+
+
+            /*
+            =================================
+            CREATE RAZORPAY INSTANCE
+            =================================
+            */
+
+            try {
+
+                const razorpay =
+                    new Razorpay(options);
+
+
+                /*
+                Payment failed
+                */
+
+                razorpay.on(
+                    "payment.failed",
+                    function (response) {
+
+                        console.error(
+                            "Payment failed:",
+                            response
+                        );
+
+                        alert(
+                            "Payment failed: " +
+                            response.error.description
+                        );
+
+                        payButton.disabled =
+                            false;
+
+                        payButton.innerHTML =
+                            "Pay ₹{{ total|floatformat:2 }}";
+
+                    }
+                );
+
+
+                /*
+                =================================
+                OPEN RAZORPAY
+                =================================
+                */
+
+                console.log(
+                    "Opening Razorpay..."
+                );
+
+                razorpay.open();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Razorpay error:",
+                    error
+                );
+
+                alert(
+                    "Unable to open Razorpay. Check browser console."
+                );
+
+                payButton.disabled =
+                    false;
+
+                payButton.innerHTML =
+                    "Pay ₹{{ total|floatformat:2 }}";
+
+            }
+
+        }
+    );
+
+});
+
+</script>
 {% endblock %}

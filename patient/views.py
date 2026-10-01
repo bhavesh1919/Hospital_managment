@@ -389,3 +389,38 @@ from django.shortcuts import redirect
 def Logout(request):
     logout(request)
     return redirect('login')
+
+
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+
+@login_required
+def password_change(request):
+
+    if request.method == "POST":
+
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+
+        # Check old password
+        if not request.user.check_password(old_password):
+            messages.error(request, "Old password is incorrect.")
+            return redirect("password_change")
+
+        # Check new password and confirm password
+        if new_password != confirm_password:
+            messages.error(request, "New password and confirm password do not match.")
+            return redirect("password_change")
+
+        # Change password
+        request.user.set_password(new_password)
+        request.user.save()
+
+        # Keep user logged in
+        update_session_auth_hash(request, request.user)
+
+        messages.success(request, "Password changed successfully.")
+
+        return redirect("password_change")
+
+    return render(request, "password_change.html")

@@ -60,6 +60,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 ROOT_URLCONF = 'pro1.urls'
 
 TEMPLATES = [
@@ -73,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'docter.context_processors.doctor_data',
+                "patient.context_processors.patient_context",
             ],
         },
     },
@@ -109,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
 
 
 # Internationalization
@@ -156,3 +162,6 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
+
+RAZORPAY_KEY_ID = "rzp_test_Ti8cgtgXpWE5e5"
+RAZORPAY_KEY_SECRET = "yg4Z1QgtUNVqYtLrUy0xUMjq"

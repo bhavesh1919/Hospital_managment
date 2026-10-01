@@ -171,3 +171,117 @@ class cartiteam(models.Model):
 
     def get_total(self):
         return self.product.price * self.quantity
+
+class Order(models.Model):
+
+    PAYMENT_STATUS = [
+        ('Pending', 'Pending'),
+        ('Paid', 'Paid'),
+        ('Failed', 'Failed'),
+    ]
+
+    user = models.ForeignKey(
+        'auth.User',
+        on_delete=models.CASCADE
+    )
+
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+
+    address = models.TextField()
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    pincode = models.CharField(max_length=10)
+
+    subtotal = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    shipping = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=25
+    )
+
+    tax = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=10
+    )
+
+    total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS,
+        default='Pending'
+    )
+
+    razorpay_order_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    razorpay_payment_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        return f"Order #{self.id} - {self.user.username}"
+
+    def get_total(self):
+        return sum(item.get_total() for item in self.items.all())
+
+
+
+
+class OrderItem(models.Model):
+
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+
+    product_name = models.CharField(
+        max_length=255
+    )
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    quantity = models.PositiveIntegerField(
+        default=1
+    )
+
+    total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    def __str__(self):
+        return self.product_name
+    
+    def get_total(self):
+        return self.price * self.quantity

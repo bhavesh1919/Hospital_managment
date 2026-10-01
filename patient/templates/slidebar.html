@@ -18,19 +18,30 @@
 										
 										<a href="\patient_profile\" class="booking-doc-img">
 
-											{% if p and p.profile_photo %}
-												<img src="{{ p.profile_photo.url }}" alt="profile">
-											{% else %}
-												<img src="{% static 'assets/img/default-profile.png' %}" alt="profile">
-											{% endif %}
+											{% if patient and patient.profile_photo %}
+    <img src="{{ patient.profile_photo.url }}" alt="Profile">
+{% else %}
+    <img src="{% static 'assets/img/default-profile.jpg' %}" alt="Profile">
+{% endif %}
 										</a>
-										<div class="profile-det-info">
-											<h3><a href="profile-settings.html">{{ p.fname }}</a></h3>
-											<div class="patient-details">
-												<h5 class="mb-0">Patient ID : {{ p.profile.user.id }}</h5>
-											</div>
-											<span>{{p.gender}} <i class="fa-solid fa-circle"></i> </span>
-										</div>
+									<div class="profile-det-info">
+    <h3>
+        <a href="/patient_profile/">
+            {{ patient.fname }}
+        </a>
+    </h3>
+
+    <div class="patient-details">
+        <h5 class="mb-0">
+            Patient ID : {{ patient.profile.user.id }}
+        </h5>
+    </div>
+
+    <span>
+        {{ patient.gender }}
+        <i class="fa-solid fa-circle"></i>
+    </span>
+</div>
 
 									</div>
 								
@@ -95,8 +106,20 @@
 													<span>Settings</span>
 												</a>
 											</li>
+
+												<li>
+												<a href="/password_change/">
+													<i class="isax isax-setting-2"></i>
+													<span>Password change</span>
+												</a>
+											</li>
+											
+
 											<li>
 											<a href="{% url 'logout' %}">
+
+
+												
     <i class="isax isax-logout"></i>
     <span>Logout</span>
 </a>

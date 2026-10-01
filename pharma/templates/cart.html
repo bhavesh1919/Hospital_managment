@@ -1,624 +1,933 @@
-{% extends 'base.html '%}
+{% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 
-<!DOCTYPE html> 
-<html lang="en">
-	
-<!-- Mirrored from doccure.dreamstechnologies.com/html/template/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:10:28 GMT -->
-<head>
-		
-		<meta charset="utf-8">
-		<title>Doccure</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta name="keywords" content="practo clone, doccure, doctor appointment, Practo clone html template, doctor booking template">
-		<meta name="author" content="Practo Clone HTML Template - Doctor Booking Template">
-		<meta property="og:url" content="https://doccure.dreamstechnologies.com/html/">
-		<meta property="og:type" content="website">
-		<meta property="og:title" content="Doctors Appointment HTML Website Templates | Doccure">
-		<meta property="og:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta property="og:image" content="assets/img/preview-banner.jpg">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta property="twitter:domain" content="https://doccure.dreamstechnologies.com/html/">
-		<meta property="twitter:url" content="https://doccure.dreamstechnologies.com/html/">
-		<meta name="twitter:title" content="Doctors Appointment HTML Website Templates | Doccure">
-		<meta name="twitter:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta name="twitter:image" content="assets/img/preview-banner.jpg">	
-		
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
 
-		<!-- Apple Touch Icon -->
-		<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-
-		<!-- Theme Settings Js -->
-		<script src="{% static 'assets/js/theme-script.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
-		
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-		
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
-
-		<!-- Iconsax CSS-->
-		<link rel="stylesheet" href="{% static 'assets/css/iconsax.css' %}">
-
-		<!-- Feathericon CSS -->
-    	<link rel="stylesheet" href="{% static 'assets/css/feather.css' %}">
-		
-		<!-- Fancybox CSS -->
-		<link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jquery.fancybox.min.css' %}">
-		
-		<!-- Fancybox CSS -->	
-    	<link rel="stylesheet" href="{% static 'assets/plugins/fancybox/jquery.fancybox.min.css' %}">
-
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}">
-		
-	</head>
-	<body><a href="https://doccure.dreamstechnologies.com/cdn-cgi/content?id=sE.IASnTIoxGl0gJvDAoIE4XQjZgu1hemE63f2Io0Jc-1779080560.4937875-1.0.1.1-d33paV1VI_9eqg2tjUFlhGTQ1gH_cm7BbxagyuyJxmc" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
-
-		<!-- Main Wrapper -->
-		<div class="main-wrapper">
-		
-			<div class="header-theme header-theme-two">
-				<button type="button" id="dark-mode-toggle" class="theme-toggle moon" aria-label="dark mode">
-					<i class="isax isax-moon5"></i>
-				</button>
-				<button type="button" id="light-mode-toggle" class="theme-toggle sun" aria-label="light mode">
-					<i class="isax isax-sun-15"></i>
-				</button>
-			</div>
-			
-			
-
-			<!-- Breadcrumb -->
-			<div class="breadcrumb-bar">
-				<div class="container">
-					<div class="row align-items-center inner-banner">
-						<div class="col-md-12 col-12 text-center">
-							<nav aria-label="breadcrumb" class="page-breadcrumb">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="/pharma/" aria-label="home"><i class="isax isax-home-15"></i></a></li>
-									<li class="breadcrumb-item" aria-current="page">Pharmacy</li>
-									<li class="breadcrumb-item active">Cart</li>
-								</ol>
-								<h2 class="breadcrumb-title">Cart</h2>
-							</nav>
-						</div>
-					</div>
-				</div>
-				<div class="breadcrumb-bg">
-					<img src="{% static 'assets/img/bg/breadcrumb-bg-01.png' %}" alt="img" class="breadcrumb-bg-01">
-					<img src="{% static 'assets/img/bg/breadcrumb-bg-02.png' %}" alt="img" class="breadcrumb-bg-02">
-					<img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}" alt="img" class="breadcrumb-bg-03">
-					<img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}" alt="img" class="breadcrumb-bg-04">
-				</div>
-			</div>
-			<!-- /Breadcrumb -->
-			
-			<!-- Page Content -->
-			
-<div class="content">
     <div class="container">
 
-        <div class="card card-table">
-            <div class="card-body">
+        <div class="row align-items-center inner-banner">
+
+            <div class="col-md-12 col-12 text-center">
+
+                <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item">
+                            <a href="/">
+                                <i class="isax isax-home-15"></i>
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <a href="/pharma/">
+                                Pharmacy
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            Cart
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+                <h2>Cart</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /Breadcrumb -->
+
+
+<!-- Cart Section -->
+<div class="content">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Cart Table -->
+            <div class="col-12">
+
                 <div class="table-responsive">
-                    <table class="table table-hover table-center mb-0">
+
+                    <table class="table cart-table">
+
                         <thead>
+
                             <tr>
-                                <th>Product</th>
-                                <th>SKU</th>
-                                <th>Price</th>
-                                <th class="text-center">Quantity</th>
-                                <th>Total</th>
-                                <th>Action</th>
+
+                                <th>
+                                    Product
+                                </th>
+
+                                <th>
+                                    SKU
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Quantity
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
                             </tr>
+
                         </thead>
+
 
                         <tbody>
 
-                            {% for item in cart_items %}
 
-                            <tr>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a href="#" class="avatar avatar-sm me-2">
+                            {% if cart_items %}
+
+
+                                {% for item in cart_items %}
+
+                                <tr>
+
+                                    <!-- Product -->
+
+                                    <td>
+
+                                        <div class="d-flex align-items-center">
 
                                             {% if item.product.image %}
-                                                <img class="avatar-img"
-                                                     src="{{ item.product.image.url }}"
-                                                     alt="{{ item.product.name }}">
+
+                                                <img src="{{ item.product.image.url }}"
+                                                     alt="{{ item.product.name }}"
+                                                     style="width:70px;
+                                                            height:70px;
+                                                            object-fit:cover;
+                                                            border-radius:8px;
+                                                            margin-right:15px;">
+
                                             {% else %}
-                                                <img class="avatar-img"
-                                                     src="{% static 'assets/img/products/product.jpg' %}"
-                                                     alt="Product Image">
+
+                                                <img src="{% static 'assets/img/products/product-01.jpg' %}"
+                                                     alt="{{ item.product.name }}"
+                                                     style="width:70px;
+                                                            height:70px;
+                                                            object-fit:cover;
+                                                            border-radius:8px;
+                                                            margin-right:15px;">
+
                                             {% endif %}
 
+
+                                            <div>
+
+                                                <h6 class="mb-1">
+
+                                                    {{ item.product.name }}
+
+                                                </h6>
+
+
+                                                {% if item.product.category %}
+
+                                                    <small class="text-muted">
+
+                                                        {{ item.product.category.name }}
+
+                                                    </small>
+
+                                                {% endif %}
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <!-- SKU -->
+
+                                    <td>
+
+                                        SKU-{{ item.product.id }}
+
+                                    </td>
+
+
+                                    <!-- Price -->
+
+                                    <td>
+
+                                        ₹{{ item.product.price|floatformat:2 }}
+
+                                    </td>
+
+
+                                    <!-- Quantity -->
+
+                                    <td>
+
+                                        <div class="d-flex align-items-center">
+
+                                            <a href="{% url 'update_cart_quantity' item.id 'decrease' %}"
+                                               class="btn btn-sm btn-light">
+
+                                                -
+
+                                            </a>
+
+
+                                            <span class="mx-3">
+
+                                                {{ item.quentity }}
+
+                                            </span>
+
+
+                                            <a href="{% url 'update_cart_quantity' item.id 'increase' %}"
+                                               class="btn btn-sm btn-light">
+
+                                                +
+
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <!-- Total -->
+
+                                    <td>
+
+                                        ₹{{ item.product.price|floatformat:2 }}
+
+                                        × {{ item.quentity }}
+
+                                    </td>
+
+
+                                    <!-- Action -->
+
+                                    <td>
+
+                                        <a href="{% url 'remove_cart_item' item.id %}"
+                                           class="text-danger">
+
+                                            Remove this product
+
                                         </a>
-                                    </h2>
 
-                                    <a href="#">
-                                        {{ item.product.name }}
-                                    </a>
-                                </td>
+                                    </td>
 
-                                <td>{{ item.product.sku }}</td>
+                                </tr>
 
-<td>
-    <span class="product-price"
-          data-price="{{ item.product.price }}">
-        {{ item.product.price|floatformat:2 }}
-    </span>
-</td>
-
-<td>
-    <div class="custom-increment cart">
-        <div class="input-group1">
-
-            <!-- MINUS -->
-            <span class="input-group-btn">
-                <a href="javascript:void(0);"
-                   class="quantity-left-minus btn btn-danger btn-number"
-                   data-item-id="{{ item.id }}"
-                   data-update-url="{% url 'update_cart_quantity' item.id %}">
-
-                    <i class="fas fa-minus"></i>
-
-                </a>
-            </span>
+                                {% endfor %}
 
 
-            <!-- QUANTITY -->
-            <input type="text"
-                   id="quantity-{{ item.id }}"
-                   class="input-number"
-                   value="{{ item.quentity }}"
-                   readonly>
+                            {% else %}
 
 
-            <!-- PLUS -->
-            <span class="input-group-btn">
-                <a href="javascript:void(0);"
-                   class="quantity-right-plus btn btn-success btn-number"
-                   data-item-id="{{ item.id }}"
-                   data-update-url="{% url 'update_cart_quantity' item.id %}">
+                                <!-- Empty Cart -->
 
-                    <i class="fas fa-plus"></i>
+                                <tr>
 
-                </a>
-            </span>
+                                    <td colspan="6"
+                                        class="text-center py-4">
 
-        </div>
-    </div>
-</td>
+                                        Your cart is empty.
 
-<!-- TOTAL -->
-<td>
-    <span class="item-total">   
-        {{ item.total|floatformat:2 }}
-    </span>
-</td>
+                                    </td>
+
+                                </tr>
 
 
-   
+                            {% endif %}
 
-     <td>
-    <div class="table-action">
-
-        <a href="{% url 'remove_cart_item' item.id %}"
-           class="btn btn-sm bg-danger-light"
-           title="Remove"
-           onclick="return confirm('Are you sure you want to remove this item?');">
-
-            <i class="fas fa-trash"></i>
-
-        </a>
-
-    </div>
-</td>
-
-  
-
-                            {% empty %}
-
-                            <tr>
-                                <td colspan="6" class="text-center">
-                                    Your cart is empty.
-                                </td>
-                            </tr>
-
-                            {% endfor %}
 
                         </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
+
         </div>
 
 
-        <div class="row">
-            <div class="col-md-7 col-lg-8">
-            </div>
+        <!-- Cart Bottom -->
 
-            <div class="col-md-5 col-lg-4">
+        <div class="row justify-content-end mt-4">
 
-                <!-- Booking Summary -->
-                <div class="card booking-card">
+            <div class="col-lg-4 col-md-6">
+
+
+                <div class="card shadow-sm">
+
                     <div class="card-header">
-                        <h4 class="card-title">Cart Total</h4>
+
+                        <h4 class="mb-0">
+                            Cart Total
+                        </h4>
+
                     </div>
+
 
                     <div class="card-body">
 
-                        <div class="booking-summary">
-                            <div class="booking-item-wrap">
 
-                                <ul class="booking-date d-block pb-0">
+                        <!-- Subtotal -->
 
- <li>
-    Subtotal
-    <span id="cart-subtotal">
-        {{ subtotal|floatformat:2 }}
-    </span>
-</li>
+                        <div class="d-flex justify-content-between mb-3">
 
-                                    <li>
-    Shipping
-    <span>
-        <a href="#">  {{ shipping |floatformat:2 }}</a>
-    </span>
-</li>
+                            <span>
+                                Subtotal
+                            </span>
 
-                                </ul>
+                            <span>
 
-                               <ul class="booking-fee pt-4">
-                                   
-    <li>
-    Tax
-    <span id="cart-tax">
-        {{ tax|floatformat:2 }}
-    </span>
-</li>                      </li>
-                            </ul>
-<div class="booking-total">
+                                ₹{{ subtotal|floatformat:2 }}
 
-    <ul class="booking-total-list">
+                            </span>
 
-        <li>
-    <span>Total</span>
-
-    <span class="total-cost" id="cart-total">
-        {{ total|floatformat:2 }}
-    </span>
-</li>
-
-        <li>
-            <div class="clinic-booking pt-4">
-
-                <a class="btn btn-primary"
-                   href="/checkout/">
-                    Proceed to checkout
-                </a>
-
-            </div>
-        </li>
-
-    </ul>
-
-</div>
-                            </div>
                         </div>
 
+
+                        {% if cart_items %}
+
+
+                            <!-- Shipping -->
+
+                            <div class="d-flex justify-content-between mb-3">
+
+                                <span>
+                                    Shipping
+                                </span>
+
+                                <span>
+
+                                    ₹{{ shipping|floatformat:2 }}
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- Tax -->
+
+                            <div class="d-flex justify-content-between mb-3">
+
+                                <span>
+                                    Tax
+                                </span>
+
+                                <span>
+
+                                    ₹{{ tax|floatformat:2 }}
+
+                                </span>
+
+                            </div>
+
+
+                        {% endif %}
+
+
+                        <hr>
+
+
+                        <!-- Total -->
+
+                        <div class="d-flex justify-content-between">
+
+                            <strong>
+                                Total
+                            </strong>
+
+                            <strong class="text-primary">
+
+                                ₹{{ total|floatformat:2 }}
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Checkout -->
+
+                        <div class="mt-4">
+
+
+                            {% if cart_items %}
+
+                                <a href="/checkout/"
+                                   class="btn btn-primary w-100">
+
+                                    Proceed To Checkout
+
+                                </a>
+
+                            {% else %}
+
+                                <button type="button"
+                                        class="btn btn-primary w-100"
+                                        disabled>
+
+                                    Proceed To Checkout
+
+                                </button>
+
+                            {% endif %}
+
+
+                        </div>
+
+
                     </div>
+
                 </div>
-                <!-- /Booking Summary -->
+
 
             </div>
+
         </div>
 
+
     </div>
+
+</div>
+<!-- /Cart Section -->
+
+<!-- Other Products -->
+<div class="other-products-section">
+
+    <div class="section-heading">
+
+        <h3>
+            Shop Other Products
+        </h3>
+
+        <p>
+            Explore more products from our pharmacy
+        </p>
+
+    </div>
+
+
+    <div class="row">
+
+        {% for product in products %}
+
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4">
+
+            <div class="product-card">
+
+                <!-- Product Image -->
+
+                <div class="product-image-box">
+
+                    {% if product.image %}
+
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}">
+
+                    {% else %}
+
+                        <img src="{% static 'assets/img/products/product-01.jpg' %}"
+                             alt="{{ product.name }}">
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Product Details -->
+
+                <div class="product-details">
+
+                    <h5>
+                        {{ product.name }}
+                    </h5>
+
+
+                    {% if product.category %}
+
+                        <p class="product-category">
+                            {{ product.category.name }}
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="product-bottom">
+
+                        <span class="product-price">
+
+                            ₹{{ product.price|floatformat:2 }}
+
+                        </span>
+
+
+                        <a href="{% url 'addcart' product.id %}"
+                           class="add-cart-btn">
+
+                            <i class="fa fa-shopping-cart"></i>
+
+                            Add to Cart
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center">
+
+            <p>
+                No other products available.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
 </div>
 
-			<!-- /Page Content -->
-   
-	
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
+<style>
 
-    // =========================
-    // CALCULATE CART
-    // =========================
+    .cart-table {
 
-    function calculateCart() {
+        background: #ffffff;
 
-        let subtotal = 0;
+        border: 1px solid #e5e7eb;
 
-        document.querySelectorAll(".input-number").forEach(function (input) {
+        border-radius: 8px;
 
-            let row = input.closest("tr");
-
-            if (!row) {
-                return;
-            }
-
-            let priceElement = row.querySelector(".product-price");
-            let totalElement = row.querySelector(".item-total");
-
-            if (!priceElement || !totalElement) {
-                return;
-            }
-
-            let price = parseFloat(
-                priceElement.getAttribute("data-price")
-            );
-
-            let quantity = parseInt(input.value);
-
-            if (isNaN(price)) {
-                price = 0;
-            }
-
-            if (isNaN(quantity)) {
-                quantity = 1;
-            }
-
-            let itemTotal = price * quantity;
-
-            totalElement.innerText =
-                itemTotal.toFixed(2);
-
-            subtotal += itemTotal;
-
-        });
-
-
-        // SHIPPING
-        let shipping = 25;
-
-
-        // TAX
-        let tax = 10;
-
-
-        // FINAL TOTAL
-        let total = subtotal + shipping + tax;
-
-
-        // SUBTOTAL
-        let subtotalElement =
-            document.getElementById("cart-subtotal");
-
-        if (subtotalElement) {
-
-            subtotalElement.innerText =
-                subtotal.toFixed(2);
-        }
-
-
-        // TAX
-        let taxElement =
-            document.getElementById("cart-tax");
-
-        if (taxElement) {
-
-            taxElement.innerText =
-                tax.toFixed(2);
-        }
-
-
-        // TOTAL
-        let cartTotalElement =
-            document.getElementById("cart-total");
-
-        if (cartTotalElement) {
-
-            cartTotalElement.innerText =
-                total.toFixed(2);
-        }
+        overflow: hidden;
 
     }
 
 
-    // =========================
-    // UPDATE DATABASE
-    // =========================
+    .cart-table thead th {
 
-    function updateDatabase(button, quantity) {
+        background: #f3f6fa;
 
-        let url = button.getAttribute("data-update-url");
+        color: #111827;
 
-        let csrfToken = "{{ csrf_token }}";
+        font-weight: 600;
 
+        padding: 18px 15px;
 
-        fetch(url, {
+        border-bottom: 1px solid #e5e7eb;
 
-            method: "POST",
-
-            headers: {
-                "Content-Type":
-                    "application/x-www-form-urlencoded",
-                "X-CSRFToken": csrfToken
-            },
-
-            body:
-                "quantity=" +
-                encodeURIComponent(quantity)
-
-        })
-
-        .then(response => response.json())
-
-        .then(data => {
-
-            if (data.success) {
-
-                console.log(
-                    "Quantity saved:",
-                    data.quantity
-                );
-
-            } else {
-
-                console.log("Update failed");
-
-            }
-
-        })
-
-        .catch(error => {
-
-            console.log(
-                "Error:",
-                error
-            );
-
-        });
+        white-space: nowrap;
 
     }
 
 
-    // =========================
-    // PLUS BUTTON
-    // =========================
+    .cart-table tbody td {
 
-    document.querySelectorAll(
-        ".quantity-right-plus"
-    ).forEach(function (button) {
+        padding: 18px 15px;
 
-        button.addEventListener(
-            "click",
-            function () {
+        vertical-align: middle;
 
-                let itemId =
-                    this.getAttribute("data-item-id");
+        border-bottom: 1px solid #e5e7eb;
 
-                let input =
-                    document.getElementById(
-                        "quantity-" + itemId
-                    );
-
-                let quantity =
-                    parseInt(input.value);
+    }
 
 
-                if (isNaN(quantity)) {
-                    quantity = 1;
-                }
+    .cart-table tbody tr:last-child td {
+
+        border-bottom: none;
+
+    }
 
 
-                quantity = quantity + 1;
+    .cart-table h6 {
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        color: #111827;
+
+    }
 
 
-                // CHANGE SCREEN
-                input.value = quantity;
+    .cart-table a {
+
+        text-decoration: none;
+
+    }
 
 
-                // CALCULATE TOTAL
-                calculateCart();
+    .cart-table .btn-light {
+
+        width: 32px;
+
+        height: 32px;
+
+        padding: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border: 1px solid #e1e5eb;
+
+    }
 
 
-                // SAVE DATABASE
-                updateDatabase(
-                    this,
-                    quantity
-                );
+    .card {
 
-            }
-        );
+        border: 1px solid #e1e5eb;
 
-    });
+        border-radius: 8px;
 
+        overflow: hidden;
 
-    // =========================
-    // MINUS BUTTON
-    // =========================
-
-    document.querySelectorAll(
-        ".quantity-left-minus"
-    ).forEach(function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                let itemId =
-                    this.getAttribute("data-item-id");
-
-                let input =
-                    document.getElementById(
-                        "quantity-" + itemId
-                    );
-
-                let quantity =
-                    parseInt(input.value);
+    }
 
 
-                if (isNaN(quantity)) {
-                    quantity = 1;
-                }
+    .card-header {
+
+        background: #ffffff;
+
+        padding: 20px;
+
+        border-bottom: 1px solid #e5e7eb;
+
+    }
 
 
-                // DON'T GO BELOW 1
-                if (quantity > 1) {
+    .card-header h4 {
 
-                    quantity = quantity - 1;
+        font-size: 24px;
 
-                }
+        font-weight: 500;
 
-
-                // CHANGE SCREEN
-                input.value = quantity;
+    }
 
 
-                // CALCULATE TOTAL
-                calculateCart();
+    .card-body {
+
+        padding: 22px;
+
+    }
 
 
-                // SAVE DATABASE
-                updateDatabase(
-                    this,
-                    quantity
-                );
+    .card-body span {
 
-            }
-        );
+        color: #4b5563;
 
-    });
+    }
 
 
-    // =========================
-    // PAGE LOAD
-    // =========================
+    .card-body strong {
 
-    calculateCart();
+        color: #111827;
 
-});
-
-</script>
+    }
 
 
-		<!-- jQuery -->
-		<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
-		
-		<!-- Bootstrap Core JS -->
-		<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
-		
-		<!-- Fancybox JS -->
-		<script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
-		
-		<!-- Fancybox JS -->
-		<script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
-		
-		<!-- Custom JS -->
-		<script src="{% static 'assets/js/script.min.js' %}" type="fdf6c02887c0c1ddc8c47fe6-text/javascript"></script>
-		
-	<script src="{% static '../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="fdf6c02887c0c1ddc8c47fe6-|49" defer></script></body>
+    .card-body .text-primary {
 
-<!-- Mirrored from doccure.dreamstechnologies.com/html/template/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2026 05:10:28 GMT -->
-</html>
+        color: #2864ff !important;
+
+    }
+
+
+    .card-body .btn {
+
+        border-radius: 25px;
+
+        padding: 12px 20px;
+
+    }
+
+
+    .card-body button:disabled {
+
+        opacity: 0.6;
+
+        cursor: not-allowed;
+
+    }
+
+
+
+
+
+    /* =================================
+       OTHER PRODUCTS
+    ================================= */
+
+    .other-products-section {
+
+        margin-top: 60px;
+
+        padding-top: 35px;
+
+        border-top: 1px solid #e5e7eb;
+
+        margin-bottom: 50px;
+
+    }
+
+
+    .section-heading {
+
+        text-align: center;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .section-heading h3 {
+
+        font-size: 28px;
+
+        font-weight: 600;
+
+        color: #111827;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .section-heading p {
+
+        color: #6b7280;
+
+        margin: 0;
+
+    }
+
+
+    /* =================================
+       PRODUCT CARD
+    ================================= */
+
+    .product-card {
+
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        overflow: hidden;
+
+        height: 100%;
+
+        transition: all 0.2s ease;
+
+    }
+
+
+    .product-card:hover {
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+        transform: translateY(-3px);
+
+    }
+
+
+    /* =================================
+       PRODUCT IMAGE
+    ================================= */
+
+    .product-image-box {
+
+        width: 100%;
+
+        height: 200px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: #f8fafc;
+
+        overflow: hidden;
+
+    }
+
+
+    .product-image-box img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+    }
+
+
+    /* =================================
+       PRODUCT DETAILS
+    ================================= */
+
+    .product-details {
+
+        padding: 18px;
+
+    }
+
+
+    .product-details h5 {
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        color: #111827;
+
+        margin-bottom: 6px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+    }
+
+
+    .product-category {
+
+        font-size: 13px;
+
+        color: #6b7280;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    /* =================================
+       PRICE + BUTTON
+    ================================= */
+
+    .product-bottom {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+    }
+
+
+    .product-price {
+
+        font-size: 17px;
+
+        font-weight: 600;
+
+        color: #2864ff;
+
+        white-space: nowrap;
+
+    }
+
+
+    .add-cart-btn {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        padding: 8px 12px;
+
+        background: #2864ff;
+
+        color: #ffffff;
+
+        border-radius: 5px;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        white-space: nowrap;
+
+    }
+
+
+    .add-cart-btn:hover {
+
+        color: #ffffff;
+
+        opacity: 0.9;
+
+    }
+
+
+    /* =================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 575px) {
+
+        .product-bottom {
+
+            flex-direction: column;
+
+            align-items: stretch;
+
+        }
+
+
+        .add-cart-btn {
+
+            justify-content: center;
+
+        }
+
+    }
+
+</style>
+
+
 {% endblock %}
