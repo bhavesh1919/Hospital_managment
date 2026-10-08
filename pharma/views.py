@@ -119,61 +119,59 @@ def product_checkout(request):
     # ---------------------------------
     # CREATE NEW ORDER
     # ---------------------------------
-
     if order is None:
 
         order = Order.objects.create(
 
-            user=request.user,
+        user=request.user,
 
-            first_name=(
-                patient.first_name
-                if patient else ""
-            ),
+        first_name=(
+            patient.profile.user.first_name
+            if patient else ""
+        ),
 
-            last_name=(
-                patient.last_name
-                if patient else ""
-            ),
+        last_name=(
+            patient.profile.user.last_name
+            if patient else ""
+        ),
 
-            email=(
-                patient.email
-                if patient else ""
-            ),
+        email=(
+            patient.profile.user.email
+            if patient else ""
+        ),
 
-            phone=(
-                patient.phone
-                if patient else ""
-            ),
+        phone=(
+            patient.phone
+            if patient else ""
+        ),
 
-            address=(
-                patient.address
-                if patient else ""
-            ),
+        address=(
+            patient.address
+            if patient else ""
+        ),
 
-            city=(
-                patient.city
-                if patient else ""
-            ),
+        city=(
+            patient.city
+            if patient else ""
+        ),
 
-            state=(
-                patient.state
-                if patient else ""
-            ),
+        state=(
+            patient.state
+            if patient else ""
+        ),
 
-            pincode=(
-                patient.pincode
-                if patient else ""
-            ),
+        pincode=(
+            patient.pincode
+            if patient else ""
+        ),
 
-            subtotal=subtotal,
-            shipping=shipping,
-            tax=tax,
-            total=total,
+        subtotal=subtotal,
+        shipping=shipping,
+        tax=tax,
+        total=total,
 
-            payment_status="Pending"
-        )
-
+        payment_status="Pending"
+    )
         # ---------------------------------
         # CREATE ORDER ITEMS
         # ---------------------------------
