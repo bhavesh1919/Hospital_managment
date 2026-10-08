@@ -15,16 +15,40 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 
+from django.shortcuts import render
+from .models import Product, Cart, cartiteam
+
 def pharmacy_home(request):
 
     products = Product.objects.all().order_by('-id')[:8]
 
+    cart_product_ids = []
+
+    if request.user.is_authenticated:
+
+        try:
+            cart = Cart.objects.get(user=request.user)
+
+            cart_product_ids = list(
+                cart.iteams.values_list(
+                    'product_id',
+                    flat=True
+                )
+            )
+
+        except Cart.DoesNotExist:
+            cart_product_ids = []
+
     context = {
         'products': products,
+        'cart_product_ids': cart_product_ids,
     }
 
-
-    return render(request, 'index-13.html',context)
+    return render(
+        request,
+        'index-13.html',
+        context
+    )
 
 @login_required
 def product_checkout(request):
@@ -686,21 +710,27 @@ def addcart(request, id):
         id=id
     )
 
-    carts, created = Cart.objects.get_or_create(
+    cart, created = Cart.objects.get_or_create(
         user=request.user
     )
 
     cart_item, created = cartiteam.objects.get_or_create(
-        cart=carts,
+        cart=cart,
         product=product
     )
 
     if not created:
+        messages.info(
+            request,
+            f"{product.name} is already in your cart."
+        )
 
-        cart_item.quentity += 1
-        cart_item.save()
-
-    return redirect('/cart/')
+    return redirect(
+        request.META.get(
+            'HTTP_REFERER',
+            '/pharma/'
+        )
+    )
 
 
 @login_required

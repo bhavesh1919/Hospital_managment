@@ -1,497 +1,1085 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 
-<!-- Breadcrumb -->
-<div class="breadcrumb-bar">
+<style>
+
+    /* =========================================
+       CART PAGE
+    ========================================= */
+
+    .cart-page {
+        background: #f7f9fc;
+        padding: 35px 0 70px;
+        min-height: 70vh;
+    }
+
+    /* =========================================
+       BREADCRUMB / PAGE HEADER
+    ========================================= */
+
+    .cart-header {
+        background: linear-gradient(135deg, #eef6ff, #f4fbf8);
+        padding: 35px 0;
+        margin-bottom: 35px;
+        border-bottom: 1px solid #e5ebf2;
+    }
+
+    .cart-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .cart-header h2 {
+        margin: 0 0 7px;
+        font-size: 32px;
+        font-weight: 700;
+        color: #182b49;
+    }
+
+    .cart-header p {
+        margin: 0;
+        color: #718096;
+        font-size: 14px;
+    }
+
+    .breadcrumb-custom {
+        margin-bottom: 8px;
+    }
+
+    .breadcrumb-custom a {
+        color: #2864ff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .breadcrumb-custom span {
+        color: #8994a3;
+        margin: 0 7px;
+        font-size: 14px;
+    }
+
+    /* =========================================
+       BACK HOME BUTTON
+    ========================================= */
+
+    .back-home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #ffffff;
+        color: #2864ff;
+        border: 1px solid #d9e4f2;
+        padding: 11px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+    }
+
+    .back-home-btn:hover {
+        background: #2864ff;
+        color: #ffffff;
+        border-color: #2864ff;
+        transform: translateY(-2px);
+    }
+
+    /* =========================================
+       CART TABLE
+    ========================================= */
+
+    .cart-box {
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(24, 43, 73, 0.04);
+    }
+
+    .cart-box-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #edf0f4;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cart-box-header h4 {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 700;
+        color: #182b49;
+    }
+
+    .cart-box-header span {
+        color: #7b8797;
+        font-size: 13px;
+    }
+
+    .cart-table {
+        margin: 0;
+        background: #ffffff;
+    }
+
+    .cart-table thead th {
+        background: #f8fafc;
+        color: #526071;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        padding: 16px 18px;
+        border-bottom: 1px solid #e9edf2;
+        white-space: nowrap;
+    }
+
+    .cart-table tbody td {
+        padding: 20px 18px;
+        vertical-align: middle;
+        border-bottom: 1px solid #edf0f4;
+        color: #4b5563;
+        font-size: 14px;
+    }
+
+    .cart-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .cart-table tbody tr {
+        transition: background 0.2s ease;
+    }
+
+    .cart-table tbody tr:hover {
+        background: #fbfdff;
+    }
+
+    /* =========================================
+       PRODUCT
+    ========================================= */
+
+    .cart-product {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        min-width: 240px;
+    }
+
+    .cart-product-image {
+        width: 72px;
+        height: 72px;
+        border-radius: 10px;
+        background: #f5f8fb;
+        object-fit: cover;
+        border: 1px solid #e7edf3;
+        flex-shrink: 0;
+    }
+
+    .cart-product-name {
+        margin: 0 0 5px;
+        color: #182b49;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .cart-product-category {
+        color: #8994a3;
+        font-size: 12px;
+    }
+
+    .sku-text {
+        font-size: 13px;
+        color: #7d8795;
+    }
+
+    .price-text {
+        color: #182b49;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* =========================================
+       QUANTITY
+    ========================================= */
+
+    .quantity-control {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #dce3eb;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    .quantity-btn {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #475467;
+        background: #f8fafc;
+        font-size: 16px;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+        background: #2864ff;
+        color: #ffffff;
+    }
+
+    .quantity-number {
+        min-width: 40px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #182b49;
+        font-weight: 700;
+        font-size: 14px;
+        border-left: 1px solid #e5eaf0;
+        border-right: 1px solid #e5eaf0;
+    }
+
+    /* =========================================
+       REMOVE
+    ========================================= */
+
+    .remove-product {
+        color: #e04444;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .remove-product:hover {
+        color: #b91c1c;
+        text-decoration: underline;
+    }
+
+    /* =========================================
+       EMPTY CART
+    ========================================= */
+
+    .empty-cart {
+        padding: 65px 25px;
+        text-align: center;
+    }
+
+    .empty-cart-icon {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        background: #eef5ff;
+        color: #2864ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 35px;
+    }
+
+    .empty-cart h4 {
+        color: #182b49;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .empty-cart p {
+        color: #7b8797;
+        margin-bottom: 22px;
+    }
+
+    /* =========================================
+       CART SUMMARY
+    ========================================= */
+
+    .summary-card {
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(24, 43, 73, 0.04);
+        position: sticky;
+        top: 90px;
+    }
+
+    .summary-header {
+        padding: 20px 22px;
+        border-bottom: 1px solid #edf0f4;
+    }
+
+    .summary-header h4 {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 700;
+        color: #182b49;
+    }
+
+    .summary-body {
+        padding: 22px;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        color: #667085;
+        font-size: 14px;
+    }
+
+    .summary-row strong {
+        color: #344054;
+    }
+
+    .summary-divider {
+        border: 0;
+        border-top: 1px solid #e9edf2;
+        margin: 20px 0;
+    }
+
+    .summary-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .summary-total span {
+        font-size: 16px;
+        font-weight: 700;
+        color: #182b49;
+    }
+
+    .summary-total strong {
+        font-size: 21px;
+        font-weight: 700;
+        color: #2864ff;
+    }
+
+    .checkout-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 13px 18px;
+        margin-top: 22px;
+        border-radius: 8px;
+        background: #2864ff;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        border: none;
+        transition: all 0.25s ease;
+    }
+
+    .checkout-btn:hover {
+        background: #174dcc;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    .checkout-btn:disabled {
+        background: #c7ced8;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* =========================================
+       OTHER PRODUCTS
+    ========================================= */
+
+    .other-products-section {
+        margin-top: 55px;
+        padding-top: 45px;
+        border-top: 1px solid #e5eaf0;
+    }
+
+    .section-heading {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .section-heading .section-label {
+        color: #2864ff;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 7px;
+    }
+
+    .section-heading h3 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #182b49;
+        margin-bottom: 7px;
+    }
+
+    .section-heading p {
+        color: #7b8797;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    /* =========================================
+       PRODUCT CARD
+    ========================================= */
+
+    .other-product-card {
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 13px;
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.25s ease;
+    }
+
+    .other-product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(24, 43, 73, 0.09);
+        border-color: #d7e3f2;
+    }
+
+    .other-product-image {
+        height: 190px;
+        background: #f7f9fc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 15px;
+    }
+
+    .other-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.25s ease;
+    }
+
+    .other-product-card:hover .other-product-image img {
+        transform: scale(1.05);
+    }
+
+    .other-product-details {
+        padding: 18px;
+    }
+
+    .other-product-details h5 {
+        color: #182b49;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .product-category {
+        color: #8a94a3;
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+
+    .product-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .product-price {
+        color: #2864ff;
+        font-size: 17px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .add-cart-btn,
+    .in-cart-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 9px 13px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+
+    .add-cart-btn {
+        background: #2864ff;
+        color: #ffffff;
+    }
+
+    .add-cart-btn:hover {
+        background: #174dcc;
+        color: #ffffff;
+    }
+
+    .in-cart-btn {
+        background: #eaf8f1;
+        color: #159765;
+        border: 1px solid #c5ead8;
+        cursor: default;
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 991px) {
+
+        .cart-header-content {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .summary-card {
+            position: static;
+            margin-top: 25px;
+        }
+
+    }
+
+    @media (max-width: 767px) {
+
+        .cart-header {
+            padding: 25px 0;
+        }
+
+        .cart-header h2 {
+            font-size: 26px;
+        }
+
+        .cart-page {
+            padding-top: 25px;
+        }
+
+        .cart-box-header {
+            padding: 17px;
+        }
+
+        .cart-table thead th,
+        .cart-table tbody td {
+            padding: 14px 12px;
+        }
+
+        .cart-product {
+            min-width: 210px;
+        }
+
+        .other-products-section {
+            margin-top: 40px;
+        }
+
+    }
+
+    @media (max-width: 575px) {
+
+        .back-home-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .cart-product-image {
+            width: 58px;
+            height: 58px;
+        }
+
+        .cart-product {
+            min-width: 190px;
+            gap: 10px;
+        }
+
+        .product-bottom {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .add-cart-btn,
+        .in-cart-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<!-- =========================================
+     PAGE HEADER
+========================================= -->
+
+<div class="cart-header">
 
     <div class="container">
 
-        <div class="row align-items-center inner-banner">
+        <div class="cart-header-content">
 
-            <div class="col-md-12 col-12 text-center">
+            <div>
 
-                <nav aria-label="breadcrumb">
+                <div class="breadcrumb-custom">
 
-                    <ol class="breadcrumb">
+                    <a href="/">
+                        <i class="isax isax-home-15"></i>
+                        Home
+                    </a>
 
-                        <li class="breadcrumb-item">
-                            <a href="/">
-                                <i class="isax isax-home-15"></i>
-                                Home
-                            </a>
-                        </li>
+                    <span>/</span>
 
-                        <li class="breadcrumb-item">
-                            <a href="/pharma/">
-                                Pharmacy
-                            </a>
-                        </li>
+                    <a href="/pharma/">
+                        Pharmacy
+                    </a>
 
-                        <li class="breadcrumb-item active">
-                            Cart
-                        </li>
+                    <span>/</span>
 
-                    </ol>
+                    <span>Cart</span>
 
-                </nav>
+                </div>
 
-                <h2>Cart</h2>
+                <h2>
+                    Shopping Cart
+                </h2>
+
+                <p>
+                    Review your medicines and manage your order.
+                </p>
 
             </div>
+
+
+            <!-- BACK HOME BUTTON -->
+
+            <a href="/pharma/"
+               class="back-home-btn">
+
+                <i class="fas fa-arrow-left"></i>
+
+                Back to Home
+
+            </a>
 
         </div>
 
     </div>
 
 </div>
-<!-- /Breadcrumb -->
 
 
-<!-- Cart Section -->
-<div class="content">
+<!-- =========================================
+     CART PAGE
+========================================= -->
+
+<div class="cart-page">
 
     <div class="container">
 
-        <div class="row">
+        <div class="row g-4">
 
-            <!-- Cart Table -->
-            <div class="col-12">
+            <!-- =================================
+                 CART ITEMS
+            ================================= -->
 
-                <div class="table-responsive">
+            <div class="col-lg-8">
 
-                    <table class="table cart-table">
+                <div class="cart-box">
 
-                        <thead>
+                    <div class="cart-box-header">
 
-                            <tr>
+                        <h4>
+                            <i class="fas fa-shopping-cart me-2"></i>
+                            Your Cart
+                        </h4>
 
-                                <th>
-                                    Product
-                                </th>
+                        {% if cart_items %}
 
-                                <th>
-                                    SKU
-                                </th>
+                            <span>
+                                {{ cart_items|length }} product{{ cart_items|length|pluralize }}
+                            </span>
 
-                                <th>
-                                    Price
-                                </th>
+                        {% endif %}
 
-                                <th>
-                                    Quantity
-                                </th>
-
-                                <th>
-                                    Total
-                                </th>
-
-                                <th>
-                                    Action
-                                </th>
-
-                            </tr>
-
-                        </thead>
+                    </div>
 
 
-                        <tbody>
+                    <div class="table-responsive">
 
+                        <table class="table cart-table">
 
-                            {% if cart_items %}
-
-
-                                {% for item in cart_items %}
+                            <thead>
 
                                 <tr>
 
-                                    <!-- Product -->
+                                    <th>
+                                        Product
+                                    </th>
 
-                                    <td>
+                                    <th>
+                                        SKU
+                                    </th>
 
-                                        <div class="d-flex align-items-center">
+                                    <th>
+                                        Price
+                                    </th>
 
-                                            {% if item.product.image %}
+                                    <th>
+                                        Quantity
+                                    </th>
 
-                                                <img src="{{ item.product.image.url }}"
-                                                     alt="{{ item.product.name }}"
-                                                     style="width:70px;
-                                                            height:70px;
-                                                            object-fit:cover;
-                                                            border-radius:8px;
-                                                            margin-right:15px;">
+                                    <th>
+                                        Total
+                                    </th>
 
-                                            {% else %}
+                                    <th>
+                                        Action
+                                    </th>
 
-                                                <img src="{% static 'assets/img/products/product-01.jpg' %}"
-                                                     alt="{{ item.product.name }}"
-                                                     style="width:70px;
-                                                            height:70px;
-                                                            object-fit:cover;
-                                                            border-radius:8px;
-                                                            margin-right:15px;">
+                                </tr>
 
-                                            {% endif %}
-
-
-                                            <div>
-
-                                                <h6 class="mb-1">
-
-                                                    {{ item.product.name }}
-
-                                                </h6>
+                            </thead>
 
 
-                                                {% if item.product.category %}
+                            <tbody>
 
-                                                    <small class="text-muted">
+                                {% if cart_items %}
 
-                                                        {{ item.product.category.name }}
+                                    {% for item in cart_items %}
 
-                                                    </small>
+                                        <tr>
 
-                                                {% endif %}
+                                            <!-- PRODUCT -->
+
+                                            <td>
+
+                                                <div class="cart-product">
+
+                                                    {% if item.product.image %}
+
+                                                        <img
+                                                            src="{{ item.product.image.url }}"
+                                                            alt="{{ item.product.name }}"
+                                                            class="cart-product-image">
+
+                                                    {% else %}
+
+                                                        <img
+                                                            src="{% static 'assets/img/products/product-01.jpg' %}"
+                                                            alt="{{ item.product.name }}"
+                                                            class="cart-product-image">
+
+                                                    {% endif %}
+
+
+                                                    <div>
+
+                                                        <h6 class="cart-product-name">
+                                                            {{ item.product.name }}
+                                                        </h6>
+
+                                                        {% if item.product.category %}
+
+                                                            <div class="cart-product-category">
+
+                                                                {{ item.product.category.name }}
+
+                                                            </div>
+
+                                                        {% endif %}
+
+                                                    </div>
+
+                                                </div>
+
+                                            </td>
+
+
+                                            <!-- SKU -->
+
+                                            <td>
+
+                                                <span class="sku-text">
+                                                    SKU-{{ item.product.id }}
+                                                </span>
+
+                                            </td>
+
+
+                                            <!-- PRICE -->
+
+                                            <td>
+
+                                                <span class="price-text">
+
+                                                    ₹{{ item.product.price|floatformat:2 }}
+
+                                                </span>
+
+                                            </td>
+
+
+                                            <!-- QUANTITY -->
+
+                                            <td>
+
+                                                <div class="quantity-control">
+
+                                                    <a
+                                                        href="{% url 'update_cart_quantity' item.id 'decrease' %}"
+                                                        class="quantity-btn"
+                                                        title="Decrease quantity">
+
+                                                        −
+
+                                                    </a>
+
+
+                                                    <span class="quantity-number">
+
+                                                        {{ item.quentity }}
+
+                                                    </span>
+
+
+                                                    <a
+                                                        href="{% url 'update_cart_quantity' item.id 'increase' %}"
+                                                        class="quantity-btn"
+                                                        title="Increase quantity">
+
+                                                        +
+
+                                                    </a>
+
+                                                </div>
+
+                                            </td>
+
+
+                                            <!-- TOTAL -->
+
+                                            <td>
+
+                                                <span class="price-text">
+
+                                                    ₹{{ item.product.price|floatformat:2 }}
+                                                    ×
+                                                    {{ item.quentity }}
+
+                                                </span>
+
+                                            </td>
+
+
+                                            <!-- REMOVE -->
+
+                                            <td>
+
+                                                <a
+                                                    href="{% url 'remove_cart_item' item.id %}"
+                                                    class="remove-product">
+
+                                                    <i class="fas fa-trash-alt me-1"></i>
+
+                                                    Remove
+
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+
+                                    {% endfor %}
+
+
+                                {% else %}
+
+                                    <!-- EMPTY CART -->
+
+                                    <tr>
+
+                                        <td colspan="6">
+
+                                            <div class="empty-cart">
+
+                                                <div class="empty-cart-icon">
+
+                                                    <i class="fas fa-shopping-cart"></i>
+
+                                                </div>
+
+                                                <h4>
+                                                    Your Cart is Empty
+                                                </h4>
+
+                                                <p>
+                                                    You haven't added any medicines to your cart yet.
+                                                </p>
+
+                                                <a href="/pharma/"
+                                                   class="back-home-btn">
+
+                                                    <i class="fas fa-arrow-left"></i>
+
+                                                    Continue Shopping
+
+                                                </a>
 
                                             </div>
 
-                                        </div>
+                                        </td>
 
-                                    </td>
+                                    </tr>
 
+                                {% endif %}
 
-                                    <!-- SKU -->
+                            </tbody>
 
-                                    <td>
+                        </table>
 
-                                        SKU-{{ item.product.id }}
-
-                                    </td>
-
-
-                                    <!-- Price -->
-
-                                    <td>
-
-                                        ₹{{ item.product.price|floatformat:2 }}
-
-                                    </td>
-
-
-                                    <!-- Quantity -->
-
-                                    <td>
-
-                                        <div class="d-flex align-items-center">
-
-                                            <a href="{% url 'update_cart_quantity' item.id 'decrease' %}"
-                                               class="btn btn-sm btn-light">
-
-                                                -
-
-                                            </a>
-
-
-                                            <span class="mx-3">
-
-                                                {{ item.quentity }}
-
-                                            </span>
-
-
-                                            <a href="{% url 'update_cart_quantity' item.id 'increase' %}"
-                                               class="btn btn-sm btn-light">
-
-                                                +
-
-                                            </a>
-
-                                        </div>
-
-                                    </td>
-
-
-                                    <!-- Total -->
-
-                                    <td>
-
-                                        ₹{{ item.product.price|floatformat:2 }}
-
-                                        × {{ item.quentity }}
-
-                                    </td>
-
-
-                                    <!-- Action -->
-
-                                    <td>
-
-                                        <a href="{% url 'remove_cart_item' item.id %}"
-                                           class="text-danger">
-
-                                            Remove this product
-
-                                        </a>
-
-                                    </td>
-
-                                </tr>
-
-                                {% endfor %}
-
-
-                            {% else %}
-
-
-                                <!-- Empty Cart -->
-
-                                <tr>
-
-                                    <td colspan="6"
-                                        class="text-center py-4">
-
-                                        Your cart is empty.
-
-                                    </td>
-
-                                </tr>
-
-
-                            {% endif %}
-
-
-                        </tbody>
-
-                    </table>
+                    </div>
 
                 </div>
 
             </div>
 
 
-        </div>
+            <!-- =================================
+                 CART SUMMARY
+            ================================= -->
 
+            <div class="col-lg-4">
 
-        <!-- Cart Bottom -->
+                <div class="summary-card">
 
-        <div class="row justify-content-end mt-4">
+                    <div class="summary-header">
 
-            <div class="col-lg-4 col-md-6">
-
-
-                <div class="card shadow-sm">
-
-                    <div class="card-header">
-
-                        <h4 class="mb-0">
-                            Cart Total
+                        <h4>
+                            Cart Summary
                         </h4>
 
                     </div>
 
 
-                    <div class="card-body">
+                    <div class="summary-body">
 
+                        <!-- SUBTOTAL -->
 
-                        <!-- Subtotal -->
-
-                        <div class="d-flex justify-content-between mb-3">
+                        <div class="summary-row">
 
                             <span>
                                 Subtotal
                             </span>
 
-                            <span>
-
+                            <strong>
                                 ₹{{ subtotal|floatformat:2 }}
-
-                            </span>
+                            </strong>
 
                         </div>
 
 
                         {% if cart_items %}
 
+                            <!-- SHIPPING -->
 
-                            <!-- Shipping -->
-
-                            <div class="d-flex justify-content-between mb-3">
+                            <div class="summary-row">
 
                                 <span>
                                     Shipping
                                 </span>
 
-                                <span>
-
+                                <strong>
                                     ₹{{ shipping|floatformat:2 }}
-
-                                </span>
+                                </strong>
 
                             </div>
 
 
-                            <!-- Tax -->
+                            <!-- TAX -->
 
-                            <div class="d-flex justify-content-between mb-3">
+                            <div class="summary-row">
 
                                 <span>
                                     Tax
                                 </span>
 
-                                <span>
-
+                                <strong>
                                     ₹{{ tax|floatformat:2 }}
-
-                                </span>
+                                </strong>
 
                             </div>
-
 
                         {% endif %}
 
 
-                        <hr>
+                        <hr class="summary-divider">
 
 
-                        <!-- Total -->
+                        <!-- TOTAL -->
 
-                        <div class="d-flex justify-content-between">
+                        <div class="summary-total">
+
+                            <span>
+                                Total
+                            </span>
 
                             <strong>
-                                Total
-                            </strong>
-
-                            <strong class="text-primary">
-
                                 ₹{{ total|floatformat:2 }}
-
                             </strong>
 
                         </div>
 
 
-                        <!-- Checkout -->
+                        <!-- CHECKOUT -->
 
-                        <div class="mt-4">
+                        {% if cart_items %}
 
+                            <a href="/checkout/"
+                               class="checkout-btn">
 
-                            {% if cart_items %}
+                                Proceed to Checkout
 
-                                <a href="/checkout/"
-                                   class="btn btn-primary w-100">
+                                <i class="fas fa-arrow-right"></i>
 
-                                    Proceed To Checkout
+                            </a>
 
-                                </a>
+                        {% else %}
 
-                            {% else %}
+                            <button
+                                type="button"
+                                class="checkout-btn"
+                                disabled>
 
-                                <button type="button"
-                                        class="btn btn-primary w-100"
-                                        disabled>
+                                Proceed to Checkout
 
-                                    Proceed To Checkout
+                            </button>
 
-                                </button>
-
-                            {% endif %}
-
-
-                        </div>
+                        {% endif %}
 
 
-                    </div>
+                        <!-- CONTINUE SHOPPING -->
 
-                </div>
+                        <a href="/pharma/"
+                           class="back-home-btn mt-3"
+                           style="width:100%; justify-content:center;">
 
+                            <i class="fas fa-store"></i>
 
-            </div>
-
-        </div>
-
-
-    </div>
-
-</div>
-<!-- /Cart Section -->
-
-<!-- Other Products -->
-<div class="other-products-section">
-
-    <div class="section-heading">
-
-        <h3>
-            Shop Other Products
-        </h3>
-
-        <p>
-            Explore more products from our pharmacy
-        </p>
-
-    </div>
-
-
-    <div class="row">
-
-        {% for product in products %}
-
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4">
-
-            <div class="product-card">
-
-                <!-- Product Image -->
-
-                <div class="product-image-box">
-
-                    {% if product.image %}
-
-                        <img src="{{ product.image.url }}"
-                             alt="{{ product.name }}">
-
-                    {% else %}
-
-                        <img src="{% static 'assets/img/products/product-01.jpg' %}"
-                             alt="{{ product.name }}">
-
-                    {% endif %}
-
-                </div>
-
-
-                <!-- Product Details -->
-
-                <div class="product-details">
-
-                    <h5>
-                        {{ product.name }}
-                    </h5>
-
-
-                    {% if product.category %}
-
-                        <p class="product-category">
-                            {{ product.category.name }}
-                        </p>
-
-                    {% endif %}
-
-
-                    <div class="product-bottom">
-
-                        <span class="product-price">
-
-                            ₹{{ product.price|floatformat:2 }}
-
-                        </span>
-
-
-                        <a href="{% url 'addcart' product.id %}"
-                           class="add-cart-btn">
-
-                            <i class="fa fa-shopping-cart"></i>
-
-                            Add to Cart
+                            Continue Shopping
 
                         </a>
 
@@ -503,431 +1091,166 @@
 
         </div>
 
-        {% empty %}
 
-        <div class="col-12 text-center">
+        <!-- =========================================
+             OTHER PRODUCTS
+        ========================================= -->
 
-            <p>
-                No other products available.
-            </p>
+        <div class="other-products-section">
+
+            <div class="section-heading">
+
+                <div class="section-label">
+                    Pharmacy Store
+                </div>
+
+                <h3>
+                    Shop Other Products
+                </h3>
+
+                <p>
+                    Explore more medicines and healthcare products.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                {% for product in products %}
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+
+                        <div class="other-product-card">
+
+                            <!-- IMAGE -->
+
+                            <div class="other-product-image">
+
+                                {% if product.image %}
+
+                                    <img
+                                        src="{{ product.image.url }}"
+                                        alt="{{ product.name }}">
+
+                                {% else %}
+
+                                    <img
+                                        src="{% static 'assets/img/products/product-01.jpg' %}"
+                                        alt="{{ product.name }}">
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- DETAILS -->
+
+                            <div class="other-product-details">
+
+                                <h5 title="{{ product.name }}">
+
+                                    {{ product.name }}
+
+                                </h5>
+
+
+                                {% if product.category %}
+
+                                    <p class="product-category">
+
+                                        <i class="fas fa-tag me-1"></i>
+
+                                        {{ product.category.name }}
+
+                                    </p>
+
+                                {% endif %}
+
+
+                                <div class="product-bottom">
+
+                                    <span class="product-price">
+
+                                        ₹{{ product.price|floatformat:2 }}
+
+                                    </span>
+
+
+                                    <!-- CART STATUS -->
+
+                                    {% if user.is_authenticated %}
+
+                                        {% if product.id in cart_product_ids %}
+
+                                            <button
+                                                type="button"
+                                                class="in-cart-btn"
+                                                disabled>
+
+                                                <i class="fas fa-check-circle"></i>
+
+                                                In Cart
+
+                                            </button>
+
+                                        {% else %}
+
+                                            <a
+                                                href="{% url 'addcart' product.id %}"
+                                                class="add-cart-btn">
+
+                                                <i class="fas fa-shopping-cart"></i>
+
+                                                Add to Cart
+
+                                            </a>
+
+                                        {% endif %}
+
+                                    {% else %}
+
+                                        <a
+                                            href="{% url 'login' %}"
+                                            class="add-cart-btn">
+
+                                            <i class="fas fa-shopping-cart"></i>
+
+                                            Add to Cart
+
+                                        </a>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="col-12 text-center">
+
+                        <p class="text-muted">
+
+                            No other products available.
+
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
 
         </div>
-
-        {% endfor %}
 
     </div>
 
 </div>
 
-
-<style>
-
-    .cart-table {
-
-        background: #ffffff;
-
-        border: 1px solid #e5e7eb;
-
-        border-radius: 8px;
-
-        overflow: hidden;
-
-    }
-
-
-    .cart-table thead th {
-
-        background: #f3f6fa;
-
-        color: #111827;
-
-        font-weight: 600;
-
-        padding: 18px 15px;
-
-        border-bottom: 1px solid #e5e7eb;
-
-        white-space: nowrap;
-
-    }
-
-
-    .cart-table tbody td {
-
-        padding: 18px 15px;
-
-        vertical-align: middle;
-
-        border-bottom: 1px solid #e5e7eb;
-
-    }
-
-
-    .cart-table tbody tr:last-child td {
-
-        border-bottom: none;
-
-    }
-
-
-    .cart-table h6 {
-
-        font-size: 15px;
-
-        font-weight: 600;
-
-        color: #111827;
-
-    }
-
-
-    .cart-table a {
-
-        text-decoration: none;
-
-    }
-
-
-    .cart-table .btn-light {
-
-        width: 32px;
-
-        height: 32px;
-
-        padding: 0;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        border: 1px solid #e1e5eb;
-
-    }
-
-
-    .card {
-
-        border: 1px solid #e1e5eb;
-
-        border-radius: 8px;
-
-        overflow: hidden;
-
-    }
-
-
-    .card-header {
-
-        background: #ffffff;
-
-        padding: 20px;
-
-        border-bottom: 1px solid #e5e7eb;
-
-    }
-
-
-    .card-header h4 {
-
-        font-size: 24px;
-
-        font-weight: 500;
-
-    }
-
-
-    .card-body {
-
-        padding: 22px;
-
-    }
-
-
-    .card-body span {
-
-        color: #4b5563;
-
-    }
-
-
-    .card-body strong {
-
-        color: #111827;
-
-    }
-
-
-    .card-body .text-primary {
-
-        color: #2864ff !important;
-
-    }
-
-
-    .card-body .btn {
-
-        border-radius: 25px;
-
-        padding: 12px 20px;
-
-    }
-
-
-    .card-body button:disabled {
-
-        opacity: 0.6;
-
-        cursor: not-allowed;
-
-    }
-
-
-
-
-
-    /* =================================
-       OTHER PRODUCTS
-    ================================= */
-
-    .other-products-section {
-
-        margin-top: 60px;
-
-        padding-top: 35px;
-
-        border-top: 1px solid #e5e7eb;
-
-        margin-bottom: 50px;
-
-    }
-
-
-    .section-heading {
-
-        text-align: center;
-
-        margin-bottom: 30px;
-
-    }
-
-
-    .section-heading h3 {
-
-        font-size: 28px;
-
-        font-weight: 600;
-
-        color: #111827;
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .section-heading p {
-
-        color: #6b7280;
-
-        margin: 0;
-
-    }
-
-
-    /* =================================
-       PRODUCT CARD
-    ================================= */
-
-    .product-card {
-
-        background: #ffffff;
-
-        border: 1px solid #e5e7eb;
-
-        border-radius: 10px;
-
-        overflow: hidden;
-
-        height: 100%;
-
-        transition: all 0.2s ease;
-
-    }
-
-
-    .product-card:hover {
-
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-
-        transform: translateY(-3px);
-
-    }
-
-
-    /* =================================
-       PRODUCT IMAGE
-    ================================= */
-
-    .product-image-box {
-
-        width: 100%;
-
-        height: 200px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        background: #f8fafc;
-
-        overflow: hidden;
-
-    }
-
-
-    .product-image-box img {
-
-        width: 100%;
-
-        height: 100%;
-
-        object-fit: cover;
-
-    }
-
-
-    /* =================================
-       PRODUCT DETAILS
-    ================================= */
-
-    .product-details {
-
-        padding: 18px;
-
-    }
-
-
-    .product-details h5 {
-
-        font-size: 16px;
-
-        font-weight: 600;
-
-        color: #111827;
-
-        margin-bottom: 6px;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-    }
-
-
-    .product-category {
-
-        font-size: 13px;
-
-        color: #6b7280;
-
-        margin-bottom: 15px;
-
-    }
-
-
-    /* =================================
-       PRICE + BUTTON
-    ================================= */
-
-    .product-bottom {
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 10px;
-
-    }
-
-
-    .product-price {
-
-        font-size: 17px;
-
-        font-weight: 600;
-
-        color: #2864ff;
-
-        white-space: nowrap;
-
-    }
-
-
-    .add-cart-btn {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        gap: 5px;
-
-        padding: 8px 12px;
-
-        background: #2864ff;
-
-        color: #ffffff;
-
-        border-radius: 5px;
-
-        text-decoration: none;
-
-        font-size: 13px;
-
-        white-space: nowrap;
-
-    }
-
-
-    .add-cart-btn:hover {
-
-        color: #ffffff;
-
-        opacity: 0.9;
-
-    }
-
-
-    /* =================================
-       MOBILE
-    ================================= */
-
-    @media (max-width: 575px) {
-
-        .product-bottom {
-
-            flex-direction: column;
-
-            align-items: stretch;
-
-        }
-
-
-        .add-cart-btn {
-
-            justify-content: center;
-
-        }
-
-    }
-
-</style>
-
-
 {% endblock %}
+

@@ -3,7 +3,455 @@
 
 {% block content %}
 
-<!-- Breadcrumb -->
+<style>
+/* =========================================
+   CHECKOUT PAGE
+========================================= */
+
+.checkout-page {
+    background: #f7f9fc;
+    padding: 40px 0 70px;
+}
+
+/* =========================================
+   BREADCRUMB
+========================================= */
+
+.breadcrumb-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.breadcrumb-title {
+    font-weight: 700;
+}
+
+/* =========================================
+   TOP ACTION
+========================================= */
+
+.checkout-top-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e3e8ef;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    background: #0d6efd;
+    border-color: #0d6efd;
+    color: #ffffff;
+}
+
+/* =========================================
+   CHECKOUT CARD
+========================================= */
+
+.checkout-card {
+    background: #ffffff;
+    border: 1px solid #e8edf3;
+    border-radius: 14px;
+    box-shadow: 0 5px 25px rgba(30, 41, 59, 0.06);
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.checkout-card .card-header {
+    background: #ffffff;
+    border-bottom: 1px solid #edf0f4;
+    padding: 22px 25px;
+}
+
+.checkout-card .card-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.checkout-card .card-body {
+    padding: 25px;
+}
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.info-widget {
+    margin-bottom: 30px;
+}
+
+.info-widget:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #eef5ff;
+    color: #0d6efd;
+}
+
+.section-title h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.card-label {
+    margin-bottom: 18px;
+}
+
+.card-label label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.card-label .form-control {
+    min-height: 46px;
+    border: 1px solid #dfe5ec;
+    border-radius: 8px;
+    padding: 10px 13px;
+    font-size: 14px;
+    color: #374151;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.card-label textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.card-label .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.08);
+}
+
+/* =========================================
+   PAYMENT
+========================================= */
+
+.payment-widget {
+    margin-top: 10px;
+    padding-top: 25px;
+    border-top: 1px solid #edf0f4;
+}
+
+.payment-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid #dfe7f0;
+    border-radius: 10px;
+    background: #f9fbfd;
+}
+
+.payment-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf3ff;
+    color: #0d6efd;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.payment-content h5 {
+    margin: 0 0 3px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* =========================================
+   TERMS
+========================================= */
+
+.terms-box {
+    margin-top: 22px;
+    padding: 14px 16px;
+    border-radius: 9px;
+    background: #f8fafc;
+    border: 1px solid #e7ebf0;
+}
+
+.terms-box label {
+    font-size: 14px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.terms-box input {
+    margin-right: 8px;
+    accent-color: #0d6efd;
+}
+
+/* =========================================
+   PAY BUTTON
+========================================= */
+
+.pay-button {
+    width: 100%;
+    min-height: 50px;
+    border: 0;
+    border-radius: 9px;
+    background: #0d6efd;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.pay-button:hover {
+    background: #0b5ed7;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(13, 110, 253, 0.20);
+}
+
+.pay-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================
+   ORDER SUMMARY
+========================================= */
+
+.order-card {
+    position: sticky;
+    top: 20px;
+}
+
+.order-product-list {
+    margin-bottom: 10px;
+}
+
+.order-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.order-product:first-child {
+    padding-top: 0;
+}
+
+.order-product:last-child {
+    border-bottom: 0;
+}
+
+.product-info {
+    min-width: 0;
+}
+
+.product-name {
+    margin: 0 0 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.product-quantity {
+    color: #7b8490;
+    font-size: 13px;
+}
+
+.product-total {
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.summary-box {
+    margin-top: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #e9edf2;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #687386;
+}
+
+.summary-row strong {
+    color: #374151;
+    font-weight: 600;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 17px;
+    margin-top: 8px;
+    border-top: 1px dashed #dce2e8;
+}
+
+.summary-total span {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.summary-total strong {
+    font-size: 21px;
+    font-weight: 800;
+    color: #0d6efd;
+}
+
+/* =========================================
+   SECURITY
+========================================= */
+
+.secure-payment {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 18px;
+    font-size: 12px;
+    color: #7b8490;
+}
+
+.secure-payment i {
+    color: #198754;
+}
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.empty-order {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.empty-order-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 20px;
+}
+
+.empty-order h5 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.empty-order p {
+    margin: 0;
+    color: #7b8490;
+    font-size: 13px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .order-card {
+        position: static;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .checkout-page {
+        padding: 25px 0 50px;
+    }
+
+    .checkout-card .card-body {
+        padding: 18px;
+    }
+
+    .checkout-card .card-header {
+        padding: 18px;
+    }
+
+    .checkout-top-action {
+        justify-content: flex-start;
+    }
+
+    .back-home-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+</style>
+
+
+<!-- =========================================
+     BREADCRUMB
+========================================= -->
+
+<!-- =========================================
+     BREADCRUMB
+========================================= -->
+
 <div class="breadcrumb-bar">
 
     <div class="container">
@@ -17,29 +465,105 @@
                     class="page-breadcrumb"
                 >
 
+                    <!-- BREADCRUMB -->
+
                     <ol class="breadcrumb">
+
+                        <!-- HOME -->
 
                         <li class="breadcrumb-item">
 
                             <a href="/pharma/">
+
                                 <i class="isax isax-home-15"></i>
+
                             </a>
 
                         </li>
 
+
+                        <!-- PHARMACY -->
+
                         <li class="breadcrumb-item">
-                            Pharmacy
+
+                            <a href="/pharma/">
+                                Pharmacy
+                            </a>
+
                         </li>
 
+
+                        <!-- CART -->
+
+                        <li class="breadcrumb-item">
+
+                            <a href="{% url 'cart' %}">
+                                Cart
+                            </a>
+
+                        </li>
+
+
+                        <!-- CHECKOUT -->
+
                         <li class="breadcrumb-item active">
+
                             Checkout
+
                         </li>
 
                     </ol>
 
+
+                    <!-- TITLE -->
+
                     <h2 class="breadcrumb-title">
                         Checkout
                     </h2>
+
+
+                    <!-- =================================
+                         HOME / CART / CHECKOUT BUTTONS
+                    ================================== -->
+
+                    <div class="checkout-navigation">
+
+                        <a
+                            href="/pharma/"
+                            class="checkout-nav-btn"
+                        >
+
+                            <i class="fas fa-home"></i>
+
+                            Home
+
+                        </a>
+
+
+                        <a
+                            href="{% url 'cart' %}"
+                            class="checkout-nav-btn"
+                        >
+
+                            <i class="fas fa-shopping-cart"></i>
+
+                            Cart
+
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="checkout-nav-btn active"
+                        >
+
+                            <i class="fas fa-credit-card"></i>
+
+                            Checkout
+
+                        </a>
+
+                    </div>
 
                 </nav>
 
@@ -48,6 +572,9 @@
         </div>
 
     </div>
+
+
+    <!-- BACKGROUND -->
 
     <div class="breadcrumb-bg">
 
@@ -80,11 +607,32 @@
 </div>
 
 
-<!-- Page Content -->
+<!-- =========================================
+     CHECKOUT PAGE
+========================================= -->
 
-<div class="content">
+<div class="checkout-page">
 
     <div class="container">
+
+
+        <!-- BACK HOME -->
+
+        <div class="checkout-top-action">
+
+            <a
+                href="/pharma/"
+                class="back-home-btn"
+            >
+
+                <i class="fas fa-arrow-left"></i>
+
+                Back to Pharmacy
+
+            </a>
+
+        </div>
+
 
         <form
             method="POST"
@@ -94,21 +642,26 @@
             {% csrf_token %}
 
 
-            <div class="row">
+            <div class="row g-4">
 
 
-                <!-- ================================= -->
-                <!-- LEFT SIDE -->
-                <!-- ================================= -->
+                <!-- =====================================
+                     LEFT SIDE
+                ====================================== -->
 
-                <div class="col-md-6 col-lg-7">
+                <div class="col-lg-7 col-md-12">
 
-                    <div class="card">
+                    <div class="checkout-card">
+
 
                         <div class="card-header">
 
-                            <h3 class="card-title">
-                                Billing details
+                            <h3>
+
+                                <i class="fas fa-file-invoice me-2 text-primary"></i>
+
+                                Billing Details
+
                             </h3>
 
                         </div>
@@ -117,15 +670,23 @@
                         <div class="card-body">
 
 
-                            <!-- ================================= -->
                             <!-- PERSONAL INFORMATION -->
-                            <!-- ================================= -->
 
                             <div class="info-widget">
 
-                                <h4 class="card-title">
-                                    Personal Information
-                                </h4>
+                                <div class="section-title">
+
+                                    <div class="section-icon">
+
+                                        <i class="fas fa-user"></i>
+
+                                    </div>
+
+                                    <h4>
+                                        Personal Information
+                                    </h4>
+
+                                </div>
 
 
                                 <div class="row">
@@ -133,11 +694,11 @@
 
                                     <!-- FIRST NAME -->
 
-                                    <div class="col-md-6 col-sm-12">
+                                    <div class="col-md-6">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 First Name
                                             </label>
 
@@ -156,11 +717,11 @@
 
                                     <!-- LAST NAME -->
 
-                                    <div class="col-md-6 col-sm-12">
+                                    <div class="col-md-6">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 Last Name
                                             </label>
 
@@ -179,11 +740,11 @@
 
                                     <!-- EMAIL -->
 
-                                    <div class="col-md-6 col-sm-12">
+                                    <div class="col-md-6">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 Email
                                             </label>
 
@@ -202,11 +763,11 @@
 
                                     <!-- PHONE -->
 
-                                    <div class="col-md-6 col-sm-12">
+                                    <div class="col-md-6">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 Phone
                                             </label>
 
@@ -228,15 +789,23 @@
                             </div>
 
 
-                            <!-- ================================= -->
-                            <!-- SHIPPING -->
-                            <!-- ================================= -->
+                            <!-- SHIPPING DETAILS -->
 
                             <div class="info-widget">
 
-                                <h4 class="card-title">
-                                    Shipping Details
-                                </h4>
+                                <div class="section-title">
+
+                                    <div class="section-icon">
+
+                                        <i class="fas fa-location-dot"></i>
+
+                                    </div>
+
+                                    <h4>
+                                        Shipping Details
+                                    </h4>
+
+                                </div>
 
 
                                 <div class="row">
@@ -246,9 +815,9 @@
 
                                     <div class="col-md-12">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 Address
                                             </label>
 
@@ -268,9 +837,9 @@
 
                                     <div class="col-md-4">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 City
                                             </label>
 
@@ -291,9 +860,9 @@
 
                                     <div class="col-md-4">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 State
                                             </label>
 
@@ -314,9 +883,9 @@
 
                                     <div class="col-md-4">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
+                                            <label>
                                                 Pincode
                                             </label>
 
@@ -337,19 +906,20 @@
 
                                     <div class="col-md-12">
 
-                                        <div class="mb-3 card-label">
+                                        <div class="card-label">
 
-                                            <label class="mb-2">
-
+                                            <label>
                                                 Order Notes
-                                                (Optional)
-
+                                                <span class="text-muted">
+                                                    (Optional)
+                                                </span>
                                             </label>
 
                                             <textarea
                                                 name="order_notes"
                                                 rows="4"
                                                 class="form-control"
+                                                placeholder="Add any special instructions for your order..."
                                             ></textarea>
 
                                         </div>
@@ -362,36 +932,56 @@
                             </div>
 
 
-                            <!-- ================================= -->
                             <!-- PAYMENT -->
-                            <!-- ================================= -->
 
                             <div class="payment-widget">
 
-                                <h4 class="card-title">
-                                    Payment Method
-                                </h4>
+                                <div class="section-title">
+
+                                    <div class="section-icon">
+
+                                        <i class="fas fa-credit-card"></i>
+
+                                    </div>
+
+                                    <h4>
+                                        Payment Method
+                                    </h4>
+
+                                </div>
 
 
-                                <div class="alert alert-info">
+                                <div class="payment-box">
 
-                                    <i class="fas fa-lock me-2"></i>
+                                    <div class="payment-icon">
 
-                                    Secure Online Payment using
-                                    Razorpay
+                                        <i class="fas fa-lock"></i>
+
+                                    </div>
+
+
+                                    <div class="payment-content">
+
+                                        <h5>
+                                            Secure Online Payment
+                                        </h5>
+
+                                        <p>
+                                            Pay securely using Razorpay.
+                                        </p>
+
+                                    </div>
 
                                 </div>
 
                             </div>
 
 
-                            <!-- ================================= -->
                             <!-- TERMS -->
-                            <!-- ================================= -->
 
-                            <div class="terms-accept">
+                            <div class="terms-box">
 
-                                <div class="custom-checkbox">
+                                <label>
 
                                     <input
                                         type="checkbox"
@@ -399,29 +989,25 @@
                                         required
                                     >
 
-                                    <label for="terms_accept">
+                                    I have read and accept
+                                    Terms & Conditions
 
-                                        I have read and accept
-                                        Terms & Conditions
-
-                                    </label>
-
-                                </div>
+                                </label>
 
                             </div>
 
 
-                            <!-- ================================= -->
                             <!-- PAY BUTTON -->
-                            <!-- ================================= -->
 
                             <div class="submit-section mt-4">
 
                                 <button
                                     type="submit"
                                     id="pay-button"
-                                    class="btn btn-primary submit-btn"
+                                    class="pay-button"
                                 >
+
+                                    <i class="fas fa-lock me-2"></i>
 
                                     Pay ₹{{ total|floatformat:2 }}
 
@@ -437,19 +1023,23 @@
                 </div>
 
 
-                <!-- ================================= -->
-                <!-- RIGHT SIDE -->
-                <!-- ================================= -->
+                <!-- =====================================
+                     RIGHT SIDE
+                ====================================== -->
 
-                <div class="col-md-6 col-lg-5">
+                <div class="col-lg-5 col-md-12">
 
-                    <div class="card booking-card">
+                    <div class="checkout-card order-card">
 
 
                         <div class="card-header">
 
-                            <h3 class="card-title">
+                            <h3>
+
+                                <i class="fas fa-shopping-bag me-2 text-primary"></i>
+
                                 Your Order
+
                             </h3>
 
                         </div>
@@ -458,170 +1048,153 @@
                         <div class="card-body">
 
 
-                            <div class="table-responsive">
+                            <!-- PRODUCTS -->
 
-                                <table
-                                    class="table table-center mb-0"
-                                >
+                            <div class="order-product-list">
 
-                                    <thead>
 
-                                        <tr>
+                                {% for item in cart_items %}
 
-                                            <th>
-                                                Product
-                                            </th>
+                                <div class="order-product">
 
-                                            <th class="text-end">
-                                                Total
-                                            </th>
 
-                                        </tr>
+                                    <div class="product-info">
 
-                                    </thead>
+                                        <p class="product-name">
 
+                                            {{ item.product.name }}
 
-                                    <tbody>
+                                        </p>
 
+                                        <span class="product-quantity">
 
-                                        {% for item in cart_items %}
+                                            Quantity:
+                                            {{ item.quentity }}
 
-                                        <tr>
+                                        </span>
 
-                                            <td>
+                                    </div>
 
-                                                {{ item.product.name }}
 
-                                                ×
+                                    <div class="product-total">
 
-                                                {{ item.quentity }}
-
-                                            </td>
-
-
-                                            <td class="text-end">
-
-                                                ₹{{ item.total|floatformat:2 }}
-
-                                            </td>
-
-                                        </tr>
-
-
-                                        {% empty %}
-
-                                        <tr>
-
-                                            <td
-                                                colspan="2"
-                                                class="text-center"
-                                            >
-
-                                                Your cart is empty.
-
-                                            </td>
-
-                                        </tr>
-
-                                        {% endfor %}
-
-
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
-
-                            <div class="booking-summary pt-5">
-
-                                <div class="booking-item-wrap">
-
-
-                                    <ul
-                                        class="booking-date d-block pb-0"
-                                    >
-
-                                        <li>
-
-                                            Subtotal
-
-                                            <span>
-
-                                                ₹{{ subtotal|floatformat:2 }}
-
-                                            </span>
-
-                                        </li>
-
-
-                                        <li>
-
-                                            Shipping
-
-                                            <span>
-
-                                                ₹{{ shipping|floatformat:2 }}
-
-                                            </span>
-
-                                        </li>
-
-                                    </ul>
-
-
-                                    <ul class="booking-fee">
-
-                                        <li>
-
-                                            Tax
-
-                                            <span>
-
-                                                ₹{{ tax|floatformat:2 }}
-
-                                            </span>
-
-                                        </li>
-
-                                    </ul>
-
-
-                                    <div class="booking-total">
-
-                                        <ul
-                                            class="booking-total-list"
-                                        >
-
-                                            <li>
-
-                                                <span>
-
-                                                    <strong>
-                                                        Total
-                                                    </strong>
-
-                                                </span>
-
-
-                                                <span
-                                                    class="total-cost"
-                                                >
-
-                                                    ₹{{ total|floatformat:2 }}
-
-                                                </span>
-
-                                            </li>
-
-                                        </ul>
+                                        ₹{{ item.total|floatformat:2 }}
 
                                     </div>
 
 
                                 </div>
 
+                                {% empty %}
+
+                                <div class="empty-order">
+
+                                    <div class="empty-order-icon">
+
+                                        <i class="fas fa-shopping-cart"></i>
+
+                                    </div>
+
+                                    <h5>
+                                        Your cart is empty
+                                    </h5>
+
+                                    <p>
+                                        Please add a product before checkout.
+                                    </p>
+
+                                </div>
+
+                                {% endfor %}
+
+
                             </div>
+
+
+                            <!-- SUMMARY -->
+
+                            <div class="summary-box">
+
+
+                                <div class="summary-row">
+
+                                    <span>
+                                        Subtotal
+                                    </span>
+
+                                    <strong>
+                                        ₹{{ subtotal|floatformat:2 }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="summary-row">
+
+                                    <span>
+                                        Shipping
+                                    </span>
+
+                                    <strong>
+                                        ₹{{ shipping|floatformat:2 }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="summary-row">
+
+                                    <span>
+                                        Tax
+                                    </span>
+
+                                    <strong>
+                                        ₹{{ tax|floatformat:2 }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="summary-total">
+
+                                    <span>
+                                        Total
+                                    </span>
+
+                                    <strong>
+                                        ₹{{ total|floatformat:2 }}
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- SECURITY -->
+
+                            <div class="secure-payment">
+
+                                <i class="fas fa-shield-alt"></i>
+
+                                Secure payment protected by Razorpay
+
+                            </div>
+
+
+                            <!-- CONTINUE SHOPPING -->
+
+                            <a
+                                href="/pharma/"
+                                class="back-home-btn mt-3"
+                                style="width:100%; justify-content:center;"
+                            >
+
+                                <i class="fas fa-arrow-left"></i>
+
+                                Continue Shopping
+
+                            </a>
 
 
                         </div>
@@ -639,9 +1212,10 @@
 
 </div>
 
-<!-- ========================================= -->
-<!-- RAZORPAY -->
-<!-- ========================================= -->
+
+<!-- =========================================
+     RAZORPAY
+========================================= -->
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
@@ -649,11 +1223,14 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
     const form =
         document.getElementById("checkout-form");
 
+
     const payButton =
         document.getElementById("pay-button");
+
 
     if (!form) {
 
@@ -662,7 +1239,9 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         return;
+
     }
+
 
     if (!payButton) {
 
@@ -671,20 +1250,21 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         return;
+
     }
 
 
-    /*
-    =========================================
-    RAZORPAY DATA FROM DJANGO
-    =========================================
-    */
+    /* =====================================
+       RAZORPAY DATA
+    ====================================== */
 
     const razorpayKey =
         "{{ razorpay_key }}";
 
+
     const razorpayOrderId =
         "{{ razorpay_order_id }}";
+
 
     const razorpayAmount =
         "{{ amount }}";
@@ -695,10 +1275,12 @@ document.addEventListener("DOMContentLoaded", function () {
         razorpayKey
     );
 
+
     console.log(
         "Razorpay Order ID:",
         razorpayOrderId
     );
+
 
     console.log(
         "Razorpay Amount:",
@@ -706,11 +1288,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /*
-    =========================================
-    CHECK RAZORPAY DATA
-    =========================================
-    */
+    /* =====================================
+       CHECK DATA
+    ====================================== */
 
     if (!razorpayKey) {
 
@@ -723,6 +1303,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         return;
+
     }
 
 
@@ -737,6 +1318,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         return;
+
     }
 
 
@@ -751,81 +1333,83 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         return;
+
     }
 
 
-    /*
-    =========================================
-    PAY BUTTON
-    =========================================
-    */
+    /* =====================================
+       FORM SUBMIT
+    ====================================== */
 
     form.addEventListener(
         "submit",
         function (event) {
 
+
             event.preventDefault();
 
 
-            /*
-            Browser validation
-            */
+            /* Browser validation */
 
             if (!form.checkValidity()) {
 
                 form.reportValidity();
 
                 return;
+
             }
 
 
-            /*
-            Disable button
-            */
+            /* Disable button */
 
             payButton.disabled = true;
 
+
             payButton.innerHTML =
-                "Opening Payment...";
+                '<i class="fas fa-spinner fa-spin me-2"></i>' +
+                'Opening Payment...';
 
 
-            /*
-            =================================
-            RAZORPAY OPTIONS
-            =================================
-            */
+            /* =================================
+               RAZORPAY OPTIONS
+            ================================== */
 
             const options = {
 
+
                 key:
                     razorpayKey,
+
 
                 amount:
                     parseInt(
                         razorpayAmount
                     ),
 
+
                 currency:
                     "INR",
+
 
                 name:
                     "Pharmacy",
 
+
                 description:
                     "Medicine Order",
+
 
                 order_id:
                     razorpayOrderId,
 
 
-                /*
-                =============================
-                PAYMENT SUCCESS
-                =============================
-                */
+                /* =============================
+                   PAYMENT SUCCESS
+                ============================== */
 
                 handler:
                     function (response) {
+
 
                         console.log(
                             "Payment successful:",
@@ -839,9 +1423,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             ).value;
 
 
-                        /*
-                        Verify payment
-                        */
+                        /* Verify payment */
 
                         fetch(
                             "{% url 'verify_payment' %}",
@@ -849,6 +1431,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                 method:
                                     "POST",
+
 
                                 headers: {
 
@@ -859,6 +1442,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         csrfToken
 
                                 },
+
 
                                 body:
                                     new URLSearchParams({
@@ -875,7 +1459,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                     })
 
                             }
+
                         )
+
 
                         .then(
                             function (res) {
@@ -885,8 +1471,10 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         )
 
+
                         .then(
                             function (data) {
+
 
                                 console.log(
                                     "Verification:",
@@ -899,45 +1487,60 @@ document.addEventListener("DOMContentLoaded", function () {
                                     "success"
                                 ) {
 
+
                                     window.location.href =
                                         data.redirect_url;
 
+
                                 }
 
+
                                 else {
+
 
                                     alert(
                                         data.message ||
                                         "Payment verification failed."
                                     );
 
+
                                     payButton.disabled =
                                         false;
 
+
                                     payButton.innerHTML =
-                                        "Pay ₹{{ total|floatformat:2 }}";
+                                        '<i class="fas fa-lock me-2"></i>' +
+                                        'Pay ₹{{ total|floatformat:2 }}';
+
                                 }
 
                             }
+
                         )
+
 
                         .catch(
                             function (error) {
+
 
                                 console.error(
                                     "Verification error:",
                                     error
                                 );
 
+
                                 alert(
                                     "Payment verification failed."
                                 );
 
+
                                 payButton.disabled =
                                     false;
 
+
                                 payButton.innerHTML =
-                                    "Pay ₹{{ total|floatformat:2 }}";
+                                    '<i class="fas fa-lock me-2"></i>' +
+                                    'Pay ₹{{ total|floatformat:2 }}';
 
                             }
                         );
@@ -945,11 +1548,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     },
 
 
-                /*
-                =============================
-                CUSTOMER DETAILS
-                =============================
-                */
+                /* =================================
+                   CUSTOMER DETAILS
+                ================================== */
 
                 prefill: {
 
@@ -965,11 +1566,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
 
 
-                /*
-                =============================
-                THEME
-                =============================
-                */
+                /* =================================
+                   THEME
+                ================================== */
 
                 theme: {
 
@@ -979,26 +1578,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
 
 
-                /*
-                =============================
-                MODAL CLOSE
-                =============================
-                */
+                /* =================================
+                   MODAL CLOSE
+                ================================== */
 
                 modal: {
 
                     ondismiss:
                         function () {
 
+
                             console.log(
                                 "Razorpay closed"
                             );
 
+
                             payButton.disabled =
                                 false;
 
+
                             payButton.innerHTML =
-                                "Pay ₹{{ total|floatformat:2 }}";
+                                '<i class="fas fa-lock me-2"></i>' +
+                                'Pay ₹{{ total|floatformat:2 }}';
 
                         }
 
@@ -1007,76 +1608,82 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
 
-            /*
-            =================================
-            CREATE RAZORPAY INSTANCE
-            =================================
-            */
+            /* =================================
+               CREATE RAZORPAY
+            ================================== */
 
             try {
+
 
                 const razorpay =
                     new Razorpay(options);
 
 
-                /*
-                Payment failed
-                */
+                /* Payment failed */
 
                 razorpay.on(
                     "payment.failed",
                     function (response) {
+
 
                         console.error(
                             "Payment failed:",
                             response
                         );
 
+
                         alert(
                             "Payment failed: " +
                             response.error.description
                         );
 
+
                         payButton.disabled =
                             false;
 
+
                         payButton.innerHTML =
-                            "Pay ₹{{ total|floatformat:2 }}";
+                            '<i class="fas fa-lock me-2"></i>' +
+                            'Pay ₹{{ total|floatformat:2 }}';
 
                     }
                 );
 
 
-                /*
-                =================================
-                OPEN RAZORPAY
-                =================================
-                */
+                /* Open Razorpay */
 
                 console.log(
                     "Opening Razorpay..."
                 );
 
+
                 razorpay.open();
+
 
             }
 
+
             catch (error) {
+
 
                 console.error(
                     "Razorpay error:",
                     error
                 );
 
+
                 alert(
                     "Unable to open Razorpay. Check browser console."
                 );
 
+
                 payButton.disabled =
                     false;
 
+
                 payButton.innerHTML =
-                    "Pay ₹{{ total|floatformat:2 }}";
+                    '<i class="fas fa-lock me-2"></i>' +
+                    'Pay ₹{{ total|floatformat:2 }}';
 
             }
 
@@ -1086,4 +1693,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+
 {% endblock %}
