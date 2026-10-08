@@ -1,21 +1,26 @@
+
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
+
 <style>
-    /* Appointment table internal scrolling */
+    /* ==============================
+       APPOINTMENT TABLE SCROLL
+    ============================== */
+
     .appointment-table-scroll {
-        max-height: 320px;
+        max-height: 420px;
         overflow-y: auto;
         overflow-x: hidden;
+        border-radius: 10px;
     }
 
-    /* Keep the table width */
     .appointment-table-scroll .appoint-table {
         width: 100%;
         margin-bottom: 0;
     }
 
-    /* Scrollbar */
     .appointment-table-scroll::-webkit-scrollbar {
         width: 6px;
     }
@@ -34,135 +39,627 @@
         background: #999;
     }
 
-    /* Firefox */
     .appointment-table-scroll {
         scrollbar-width: thin;
+    }
+
+
+    /* ==============================
+       STATISTICS CARDS
+    ============================== */
+
+    .doctor-stat-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 150px;
+        border-radius: 12px;
+    }
+
+    .doctor-stat-card .dashboard-content-info h6 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .doctor-stat-card .dashboard-content-info h4 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-stat-card .dashboard-widget-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .doctor-stat-card:hover .dashboard-widget-icon {
+        transform: scale(1.08);
+    }
+
+
+    /* ==============================
+       APPOINTMENT CARD
+    ============================== */
+
+    .appointment-dashboard-card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .appointment-dashboard-card .dashboard-card-head {
+        padding: 20px 24px;
+    }
+
+    .appointment-dashboard-card .dashboard-card-body {
+        padding: 0 20px 20px;
+    }
+
+
+    /* ==============================
+       PATIENT INFO
+    ============================== */
+
+    .patient-info-profile {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .patient-name-info span {
+        font-size: 12px;
+        color: #777;
+    }
+
+    .patient-name-info h5 {
+        margin: 3px 0 0;
+    }
+
+
+    /* ==============================
+       STATUS
+    ============================== */
+
+    .appointment-status-badge {
+        min-width: 82px;
+        text-align: center;
+        padding: 6px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        display: inline-block;
+    }
+
+
+    /* ==============================
+       ACTION ICONS
+    ============================== */
+
+    .appointment-action-icons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .appointment-action-icons a {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .appointment-action-icons a:hover {
+        transform: translateY(-2px);
+    }
+
+
+    /* ==============================
+       EMPTY STATE
+    ============================== */
+
+    .empty-appointment {
+        padding: 50px 20px !important;
+        text-align: center;
+    }
+
+    .empty-appointment i {
+        font-size: 40px;
+        color: #bbb;
+        margin-bottom: 12px;
+    }
+
+    .empty-appointment h6 {
+        margin-bottom: 5px;
+    }
+
+    .empty-appointment p {
+        margin-bottom: 0;
+        color: #888;
+    }
+
+
+    /* ==============================
+       MOBILE
+    ============================== */
+
+    @media (max-width: 767px) {
+
+        .doctor-stat-card {
+            min-height: 130px;
+        }
+
+        .doctor-stat-card .dashboard-content-info h4 {
+            font-size: 24px;
+        }
+
+        .appointment-table-scroll {
+            max-height: 380px;
+        }
     }
 </style>
 
 
-
-
 <div class="content">
-				<div class="container">
 
-					<div class="row">
-						<div class="col-lg-4 col-xl-3 theiaStickySidebar">
-							
-	
-							  {% include 'sidebar.html' %}
-						</div>
-						
-						<div class="col-lg-8 col-xl-9">
+    <div class="container">
 
-							<div class="row">
-						<div class="row">
+        <div class="row">
 
-    <!-- A - Total Patient -->
-    <div class="col-xl-4 col-md-4 d-flex">
-        <div class="dashboard-widget-box w-100">
-            <div class="dashboard-content-info">
-                <h6>Total Patient</h6>
-                <h4>{{ patient_count }}</h4>
+            <!-- ==============================
+                 SIDEBAR
+            ============================== -->
 
-                <span class="text-success">
-                    <i class="fa-solid fa-arrow-up"></i>
-                    15% From Last Week
-                </span>
+            <div class="col-lg-4 col-xl-3 theiaStickySidebar">
+
+                {% include 'sidebar.html' %}
+
             </div>
 
-            <div class="dashboard-widget-icon">
-                <span class="dash-icon-box">
-                    <i class="fa-solid fa-user-injured"></i>
-                </span>
-            </div>
-        </div>
-    </div>
+
+            <!-- ==============================
+                 MAIN CONTENT
+            ============================== -->
+
+            <div class="col-lg-8 col-xl-9">
+
+                <!-- ==============================
+                     STATISTICS
+                ============================== -->
+
+                <div class="row g-3 mb-4">
+
+                    <!-- TOTAL PATIENT -->
+                    <div class="col-xl-4 col-md-4 d-flex">
+
+                        <div class="dashboard-widget-box doctor-stat-card w-100">
+
+                            <div class="dashboard-content-info">
+
+                                <h6>Total Patient</h6>
+
+                                <h4>{{ patient_count }}</h4>
+
+                                <span class="text-success">
+
+                                    <i class="fa-solid fa-arrow-up"></i>
+
+                                    15% From Last Week
+
+                                </span>
+
+                            </div>
 
 
-    <!-- B - Patients Today -->
-    <div class="col-xl-4 col-md-4 d-flex">
-        <div class="dashboard-widget-box w-100">
-            <div class="dashboard-content-info">
-                <h6>Patients Today</h6>
-                <h4>{{ patient_today }}</h4>
+                            <div class="dashboard-widget-icon">
 
-                <span class="text-danger">
-                    <i class="fa-solid fa-arrow-up"></i>
-                    15% From Yesterday
-                </span>
-            </div>
+                                <span class="dash-icon-box">
 
-            <div class="dashboard-widget-icon">
-                <span class="dash-icon-box">
-                    <i class="fa-solid fa-user-clock"></i>
-                </span>
-            </div>
-        </div>
-    </div>
+                                    <i class="fa-solid fa-user-injured"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
-    <!-- C - Appointments Today -->
-    <div class="col-xl-4 col-md-4 d-flex">
-        <div class="dashboard-widget-box w-100">
-            <div class="dashboard-content-info">
-                <h6>Appointments Today</h6>
-                <h4>{{ appointment_count }}</h4>
+                    <!-- PATIENTS TODAY -->
+                    <div class="col-xl-4 col-md-4 d-flex">
 
-                <span class="text-success">
-                    <i class="fa-solid fa-arrow-up"></i>
-                    20% From Yesterday
-                </span>
-            </div>
+                        <div class="dashboard-widget-box doctor-stat-card w-100">
 
-            <div class="dashboard-widget-icon">
-                <span class="dash-icon-box">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </span>
-            </div>
-        </div>
-    </div>
+                            <div class="dashboard-content-info">
 
-</div>
-						
-						
-<div class="col-xl-12 d-flex">
+                                <h6>Patients Today</h6>
 
-    <div class="dashboard-card w-100">
+                                <h4>{{ patient_today }}</h4>
 
-        <!-- ================= HEADER ================= -->
-        <div class="dashboard-card-head">
+                                <span class="text-danger">
 
-            <div class="header-title">
-                <h5>Appointment</h5>
-            </div>
+                                    <i class="fa-solid fa-arrow-up"></i>
 
-            <div class="dropdown header-dropdown">
+                                    15% From Yesterday
 
-                <a class="dropdown-toggle nav-tog"
-                   data-bs-toggle="dropdown"
-                   href="javascript:void(0);">
+                                </span>
 
-                    Last 7 Days
+                            </div>
 
-                </a>
 
-                <div class="dropdown-menu dropdown-menu-end">
+                            <div class="dashboard-widget-icon">
 
-                    <a href="javascript:void(0);"
-                       class="dropdown-item">
-                        Today
-                    </a>
+                                <span class="dash-icon-box">
 
-                    <a href="javascript:void(0);"
-                       class="dropdown-item">
-                        This Month
-                    </a>
+                                    <i class="fa-solid fa-user-clock"></i>
 
-                    <a href="javascript:void(0);"
-                       class="dropdown-item">
-                        Last 7 Days
-                    </a>
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- APPOINTMENTS TODAY -->
+                    <div class="col-xl-4 col-md-4 d-flex">
+
+                        <div class="dashboard-widget-box doctor-stat-card w-100">
+
+                            <div class="dashboard-content-info">
+
+                                <h6>Appointments Today</h6>
+
+                                <h4>{{ appointment_count }}</h4>
+
+                                <span class="text-success">
+
+                                    <i class="fa-solid fa-arrow-up"></i>
+
+                                    20% From Yesterday
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="dashboard-widget-icon">
+
+                                <span class="dash-icon-box">
+
+                                    <i class="fa-solid fa-calendar-days"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==============================
+                     APPOINTMENTS
+                ============================== -->
+
+                <div class="row">
+
+                    <div class="col-xl-12 d-flex">
+
+                        <div class="dashboard-card appointment-dashboard-card w-100">
+
+                            <!-- HEADER -->
+
+                            <div class="dashboard-card-head">
+
+                                <div class="header-title">
+
+                                    <h5>
+                                        Recent Appointments
+                                    </h5>
+
+                                </div>
+
+
+                            
+                            </div>
+
+
+                            <!-- BODY -->
+
+                            <div class="dashboard-card-body">
+
+                                <div class="appointment-table-scroll">
+
+                                    <table class="table dashboard-table appoint-table">
+
+                                        <tbody>
+
+                                            {% if appointment %}
+
+                                                {% for appointment in appointment %}
+
+                                                <tr>
+
+                                                    <!-- PATIENT -->
+
+                                                    <td>
+
+                                                        <div class="patient-info-profile">
+
+                                                            <a href="javascript:void(0);"
+                                                               class="table-avatar">
+
+                                                                {% if appointment.patient.profile_photo %}
+
+                                                                    <img
+                                                                        src="{{ appointment.patient.profile_photo.url }}"
+                                                                        alt="Patient"
+                                                                    >
+
+                                                                {% else %}
+
+                                                                    <img
+                                                                        src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}"
+                                                                        alt="Patient"
+                                                                    >
+
+                                                                {% endif %}
+
+                                                            </a>
+
+
+                                                            <div class="patient-name-info">
+
+                                                                <span>
+                                                                    #Apt{{ appointment.id|stringformat:"04d" }}
+                                                                </span>
+
+                                                                <h5>
+
+                                                                    <a href="javascript:void(0);">
+
+                                                                        {{ appointment.patient.fname }}
+                                                                        {{ appointment.patient.lname }}
+
+                                                                    </a>
+
+                                                                </h5>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </td>
+
+
+                                                    <!-- DATE / TIME -->
+
+                                                    <td>
+
+                                                        <div class="appointment-date-created">
+
+                                                            {% if appointment.appointment_date %}
+
+                                                                <h6>
+                                                                    {{ appointment.appointment_date|date:"d M Y" }}
+                                                                </h6>
+
+                                                            {% else %}
+
+                                                                <h6>
+                                                                    Date not selected
+                                                                </h6>
+
+                                                            {% endif %}
+
+
+                                                            <span class="d-block text-muted">
+
+                                                                <i class="fa-regular fa-calendar me-1"></i>
+
+                                                                {{ appointment.appointment_day }}
+
+                                                            </span>
+
+
+                                                            {% if appointment.appointment_time %}
+
+                                                                <span class="d-block text-primary">
+
+                                                                    <i class="fa-regular fa-clock me-1"></i>
+
+                                                                    {{ appointment.appointment_time|time:"h:i A" }}
+
+                                                                </span>
+
+                                                            {% else %}
+
+                                                                <span class="d-block text-muted">
+
+                                                                    Time not available
+
+                                                                </span>
+
+                                                            {% endif %}
+
+
+                                                            <span class="badge table-badge mt-1">
+
+                                                                Clinic Consulting
+
+                                                            </span>
+
+                                                        </div>
+
+                                                    </td>
+
+
+                                                    <!-- STATUS -->
+
+                                                    <td>
+
+                                                        {% if appointment.status == "Pending" %}
+
+                                                            <span class="badge bg-warning appointment-status-badge">
+
+                                                                Pending
+
+                                                            </span>
+
+                                                        {% elif appointment.status == "Approved" %}
+
+                                                            <span class="badge bg-success appointment-status-badge">
+
+                                                                Approved
+
+                                                            </span>
+
+                                                        {% elif appointment.status == "Rejected" %}
+
+                                                            <span class="badge bg-danger appointment-status-badge">
+
+                                                                Rejected
+
+                                                            </span>
+
+                                                        {% elif appointment.status == "Completed" %}
+
+                                                            <span class="badge bg-primary appointment-status-badge">
+
+                                                                Completed
+
+                                                            </span>
+
+                                                        {% elif appointment.status == "Cancelled" %}
+
+                                                            <span class="badge bg-warning appointment-status-badge">
+
+                                                                Cancelled
+
+                                                            </span>
+
+                                                        {% endif %}
+
+                                                    </td>
+
+
+                                                    <!-- ACTIONS -->
+
+                                                    <td>
+
+                                                        <div class="appointment-action-icons">
+
+                                                            {% if appointment.status == "Pending" %}
+
+                                                                <!-- APPROVE -->
+
+                                                                <a
+                                                                    href="{% url 'approve_appointment' appointment.id %}"
+                                                                    class="text-success-icon"
+                                                                    title="Approve Appointment"
+                                                                    onclick="return confirm('Approve this appointment?');"
+                                                                >
+
+                                                                    <i class="fa-solid fa-check"></i>
+
+                                                                </a>
+
+
+                                                                <!-- REJECT -->
+
+                                                                <a
+                                                                    href="{% url 'reject_appointment' appointment.id %}"
+                                                                    class="text-danger-icon"
+                                                                    title="Reject Appointment"
+                                                                    onclick="return confirm('Reject this appointment?');"
+                                                                >
+
+                                                                    <i class="fa-solid fa-xmark"></i>
+
+                                                                </a>
+
+
+                                                            {% elif appointment.status == "Approved" %}
+
+                                                                <span class="badge bg-success">
+
+                                                                    Accepted
+
+                                                                </span>
+
+
+                                                            {% elif appointment.status == "Rejected" %}
+
+                                                                <span class="badge bg-danger">
+
+                                                                    Rejected
+
+                                                                </span>
+
+
+                                                            {% elif appointment.status == "Completed" %}
+
+                                                                <span class="badge bg-primary">
+
+                                                                    Completed
+
+                                                                </span>
+
+
+                                                            {% elif appointment.status == "Cancelled" %}
+
+                                                                <span class="badge bg-warning">
+
+                                                                    Cancelled
+
+                                                                </span>
+
+                                                            {% endif %}
+
+                                                        </div>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                {% endfor %}
+
+                                            {% else %}
+
+                                                <tr>
+
+                                                    <td colspan="4" class="empty-appointment">
+
+                                                        <i class="fa-regular fa-calendar-xmark"></i>
+
+                                                        <h6>
+                                                            No Appointments Found
+                                                        </h6>
+
+                                                        <p>
+                                                            You don't have any appointments yet.
+                                                        </p>
+
+                                                    </td>
+
+                                                </tr>
+
+                                            {% endif %}
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -170,446 +667,10 @@
 
         </div>
 
-
-        <!-- ================= BODY ================= -->
-        <div class="dashboard-card-body">
-
-            <!-- SCROLL ONLY APPOINTMENT TABLE -->
-            <div class="appointment-table-scroll">
-
-                <table class="table dashboard-table appoint-table">
-
-                    <tbody>
-
-                        {% if appointment %}
-
-                            {% for appointment in appointment %}
-
-                            <tr>
-
-                                <!-- ================= PATIENT ================= -->
-                                <td>
-
-                                    <div class="patient-info-profile">
-
-                                        <a href="javascript:void(0);"
-                                           class="table-avatar">
-
-                                            {% if appointment.patient.profile_photo %}
-
-                                                <img
-                                                    src="{{ appointment.patient.profile_photo.url }}"
-                                                    alt="Patient"
-                                                >
-
-                                            {% else %}
-
-                                                <img
-                                                    src="{% static 'assets/img/doctors-dashboard/profile-04.jpg' %}"
-                                                    alt="Patient"
-                                                >
-
-                                            {% endif %}
-
-                                        </a>
-
-
-                                        <div class="patient-name-info">
-
-                                            <span>
-                                                #Apt{{ appointment.id|stringformat:"04d" }}
-                                            </span>
-
-                                            <h5>
-
-                                                <a href="javascript:void(0);">
-
-                                                    {{ appointment.patient.fname }}
-                                                    {{ appointment.patient.lname }}
-
-                                                </a>
-
-                                            </h5>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-
-                                <!-- ================= DATE & TIME ================= -->
-                                <td>
-
-                                    <div class="appointment-date-created">
-
-                                        <!-- DATE -->
-                                        {% if appointment.appointment_date %}
-
-                                            <h6>
-                                                {{ appointment.appointment_date|date:"d M Y" }}
-                                            </h6>
-
-                                        {% else %}
-
-                                            <h6>
-                                                Date not selected
-                                            </h6>
-
-                                        {% endif %}
-
-
-                                        <!-- DAY -->
-                                        <span class="d-block text-muted">
-
-                                            <i class="fa-regular fa-calendar me-1"></i>
-
-                                            {{ appointment.appointment_day }}
-
-                                        </span>
-
-
-                                        <!-- TIME -->
-                                        {% if appointment.appointment_time %}
-
-                                            <span class="d-block text-primary">
-
-                                                <i class="fa-regular fa-clock me-1"></i>
-
-                                                {{ appointment.appointment_time|time:"h:i A" }}
-
-                                            </span>
-
-                                        {% else %}
-
-                                            <span class="d-block text-muted">
-
-                                                Time not available
-
-                                            </span>
-
-                                        {% endif %}
-
-
-                                        <!-- APPOINTMENT TYPE -->
-                                        <span class="badge table-badge mt-1">
-
-                                            Clinic Consulting
-
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-
-                                <!-- ================= STATUS ================= -->
-                                <td>
-
-                                    {% if appointment.status == "Pending" %}
-
-                                        <span class="badge bg-warning">
-                                            Pending
-                                        </span>
-
-                                    {% elif appointment.status == "Approved" %}
-
-                                        <span class="badge bg-success">
-                                            Approved
-                                        </span>
-
-                                    {% elif appointment.status == "Rejected" %}
-
-                                        <span class="badge bg-danger">
-                                            Rejected
-                                        </span>
-
-                                    {% elif appointment.status == "Completed" %}
-
-                                        <span class="badge bg-primary">
-                                            Completed
-                                        </span>
-
-                                    {% elif appointment.status == "Cancelled" %}
-
-                                        <span class="badge bg-warning">
-                                            Cancelled
-                                        </span>
-
-                                    {% endif %}
-
-                                </td>
-
-
-                                <!-- ================= ACTIONS ================= -->
-                                <td>
-
-                                    <div class="apponiment-actions d-flex align-items-center">
-
-                                        {% if appointment.status == "Pending" %}
-
-                                            <!-- APPROVE -->
-                                            <a
-                                                href="{% url 'approve_appointment' appointment.id %}"
-                                                class="text-success-icon me-2"
-                                                title="Approve Appointment"
-                                                onclick="return confirm('Approve this appointment?');"
-                                            >
-
-                                                <i class="fa-solid fa-check"></i>
-
-                                            </a>
-
-
-                                            <!-- REJECT -->
-                                            <a
-                                                href="{% url 'reject_appointment' appointment.id %}"
-                                                class="text-danger-icon"
-                                                title="Reject Appointment"
-                                                onclick="return confirm('Reject this appointment?');"
-                                            >
-
-                                                <i class="fa-solid fa-xmark"></i>
-
-                                            </a>
-
-
-                                        {% elif appointment.status == "Approved" %}
-
-                                            <span class="badge bg-success">
-                                                Accepted
-                                            </span>
-
-
-                                        {% elif appointment.status == "Rejected" %}
-
-                                            <span class="badge bg-danger">
-                                                Rejected
-                                            </span>
-
-
-                                        {% elif appointment.status == "Completed" %}
-
-                                            <span class="badge bg-primary">
-                                                Completed
-                                            </span>
-
-
-                                        {% elif appointment.status == "Cancelled" %}
-
-                                            <span class="badge bg-warning">
-                                                Cancelled
-                                            </span>
-
-                                        {% endif %}
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            {% endfor %}
-
-
-                        {% else %}
-
-                            <!-- NO APPOINTMENT -->
-                            <tr>
-
-                                <td colspan="4" class="text-center">
-
-                                    No appointments found.
-
-                                </td>
-
-                            </tr>
-
-                        {% endif %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-            <!-- END SCROLL -->
-
-
-        </div>
-        <!-- END BODY -->
-
     </div>
 
 </div>
-							
-								
-								<div class="col-xl-7 d-flex">
-									<div class="dashboard-card w-100">
-										<div class="dashboard-card-head">
-											<div class="header-title">
-												<h5>Notifications</h5>
-											</div>
-											<div class="card-view-link">
-												<a href="#">View All</a>
-											</div>
-										</div>
-										<div class="dashboard-card-body">
-											<div class="table-responsive">
-												<table class="table dashboard-table">
-													<tbody>
-														<tr>
-															<td>
-																<div class="table-noti-info">
-																	<div class="table-noti-icon color-violet">
-																		<i class="fa-solid fa-bell"></i>
-																	</div>
-																	
-																	<div class="table-noti-message">
-																		<h6><a href="#">Booking Confirmed on <span> 21 Mar 2024 </span> 10:30 AM</a></h6>
-																		<span class="message-time">Just Now</span>
-																	</div>
-																</div>
-															</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<div class="table-noti-info">
-																	<div class="table-noti-icon color-blue">
-																		<i class="fa-solid fa-star"></i>
-																	</div>
-																	
-																	<div class="table-noti-message">
-																		<h6><a href="#">You have a  <span> New </span> Review for your Appointment </a></h6>
-																		<span class="message-time">5 Days ago</span>
-																	</div>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="table-noti-info">
-																	<div class="table-noti-icon color-red">
-																		<i class="fa-solid fa-calendar-check"></i>
-																	</div>
-																	
-																	<div class="table-noti-message">
-																		<h6><a href="#">You have Appointment with <span> Ahmed </span> by 01:20 PM </a></h6>
-																		<span class="message-time">12:55 PM</span>
-																	</div>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="table-noti-info">
-																	<div class="table-noti-icon color-yellow">
-																		<i class="fa-solid fa-money-bill-1-wave"></i>
-																	</div>
-																	
-																	<div class="table-noti-message">
-																		<h6><a href="#">Sent an amount of <span> $200 </span> for an Appointment  by 01:20 PM </a></h6>
-																		<span class="message-time">2 Days ago</span>
-																	</div>
-																</div>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="table-noti-info">
-																	<div class="table-noti-icon color-blue">
-																		<i class="fa-solid fa-star"></i>
-																	</div>
-																	
-																	<div class="table-noti-message">
-																		<h6><a href="#">You have a  <span> New </span> Review for your Appointment </a></h6>
-																		<span class="message-time">5 Days ago</span>
-																	</div>
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-										
-									</div>
-								</div>
-								<div class="col-xl-5 d-flex">
-									<div class="dashboard-card w-100">
-										<div class="dashboard-card-head">
-											<div class="header-title">
-												<h5>Clinics & Availability</h5>
-											</div>
-										</div>
-										<div class="dashboard-card-body">
-											<div class="clinic-available">
-												<div class="clinic-head">
-													<div class="clinic-info">
-														<span class="clinic-img">
-															<img src="{% static 'assets/img/doctors-dashboard/clinic-02.jpg' %}" alt="Img">
-														</span>
-														<h6>Sofi’s Clinic</h6>
-													</div>
-													<div class="clinic-charge">
-														<span>$900</span>
-													</div>
-												</div>
-												<div class="available-time">
-													<ul>
-														<li>
-															<span>Tue :</span>
-															07:00 AM - 09:00 PM
-														</li>
-														<li>
-															<span>Wed : </span>
-															07:00 AM - 09:00 PM
-														</li>
-													</ul>
-													<div class="change-time">
-														<a href="#">Change </a>
-													</div>
-												</div>
-											</div>
-											<div class="clinic-available mb-0">
-												<div class="clinic-head">
-													<div class="clinic-info">
-														<span class="clinic-img">
-															<img src="{% static 'assets/img/doctors-dashboard/clinic-01.jpg' %}" alt="Img">
-														</span>
-														<h6>The Family Dentistry Clinic</h6>
-													</div>
-													<div class="clinic-charge">
-														<span>$600</span>
-													</div>
-												</div>
-												<div class="available-time">
-													<ul>
-														<li>
-															<span>Sat :</span>
-															07:00 AM - 09:00 PM
-														</li>
-														<li>
-															<span>Tue : </span>
-															07:00 AM - 09:00 PM
-														</li>
-													</ul>
-													<div class="change-time">
-														<a href="#">Change </a>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-								</div>
-							</div>
-													
-						</div>
-					</div>
 
-				</div>
 
-			</div>	
+{% endblock %}
 
-{%endblock%}
