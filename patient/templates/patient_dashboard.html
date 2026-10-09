@@ -1,993 +1,1340 @@
+
 {% extends "base.html" %}
 {% load static %}
-{% block content%}
-
-			<div class="breadcrumb-bar">
-				<div class="container">
-					<div class="row align-items-center inner-banner">
-						<div class="col-md-12 col-12 text-center">
-							<nav aria-label="breadcrumb" class="page-breadcrumb">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="/patient/" aria-label="home"><i class="isax isax-home-15"></i></a></li>
-									<li class="breadcrumb-item" aria-current="page">Patient</li>
-									<li class="breadcrumb-item active">Dashboard</li>
-								</ol>
-								<h2 class="breadcrumb-title">Patient Dashboard</h2>
-							</nav>
-						</div>
-					</div>
-				</div>
-				<div class="breadcrumb-bg">
-					<img src="{% static 'assets/img/bg/breadcrumb-bg-01.png' %}" alt="img" class="breadcrumb-bg-01">
-					<img src="{% static 'assets/img/bg/breadcrumb-bg-02.png' %}" alt="img" class="breadcrumb-bg-02">
-					<img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}" alt="img" class="breadcrumb-bg-03">
-					<img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}" alt="img" class="breadcrumb-bg-04">
-				</div>
-			</div>
-			<!-- /Breadcrumb -->
-			
-			<!-- Page Content -->
-			<div class="content">
-				<div class="container">
-
-					<div class="row">
-						
-						<!-- Profile Sidebar -->
-						<div class="col-lg-4 col-xl-3 theiaStickySidebar">
-							{% include 'slidebar.html'%}
-						</div>
-						<!-- / Profile Sidebar -->
-						
-						<div class="col-lg-8 col-xl-9">
-
-							<div class="dashboard-header">
-								<h3>Dashboard</h3>
-
-								<ul class="header-list-btns">
-									<li>
-										<div class="dropdown header-dropdown">
-
-											<a class="dropdown-toggle"
-											   data-bs-toggle="dropdown"
-											   href="javascript:void(0);">
-
-												<img src="{% static 'assets/img/doctors-dashboard/profile-06.jpg' %}"
-													 class="avatar dropdown-avatar"
-													 alt="Img">
-
-												Hendrita
-
-											</a>
-
-											<div class="dropdown-menu dropdown-menu-end">
-
-												<a href="javascript:void(0);" class="dropdown-item">
-
-													<img src="{% static 'assets/img/doctors-dashboard/profile-06.jpg' %}"
-														 class="avatar dropdown-avatar"
-														 alt="Img">
-
-													Hendrita
-
-												</a>
-
-												<a href="javascript:void(0);" class="dropdown-item">
-
-													<img src="{% static 'assets/img/doctors-dashboard/profile-08.jpg' %}"
-														 class="avatar dropdown-avatar"
-														 alt="Img">
-
-													Laura
-
-												</a>
-
-												<a href="javascript:void(0);" class="dropdown-item">
-
-													<img src="{% static 'assets/img/doctors-dashboard/profile-07.jpg' %}"
-														 class="avatar dropdown-avatar"
-														 alt="Img">
-
-													Mathew
-
-												</a>
-
-											</div>
-
-										</div>
-									</li>
-								</ul>								
-							</div>
-
-
-							<!-- =========================
-							     HEALTH RECORDS + FAVOURITES
-							     ========================= -->
-
-							<div class="row">
-
-								<!-- Health Records -->
-								<div class="col-xl-8 d-flex">
-
-									<div class="dashboard-card w-100">
-
-										<div class="dashboard-card-head">
-
-											<div class="header-title">
-												<h5>Health Records</h5>
-											</div>											
-
-										</div>
-
-										<div class="dashboard-card-body">
-
-											<div class="row">
-
-												<div class="col-sm-7">
-
-													<div class="row">
-
-														<!-- Heart Rate -->
-														<div class="col-lg-6">
-
-															<div class="health-records icon-orange">
-
-																<span>
-																	<i class="fa-solid fa-heart"></i>
-																	Heart Rate
-																</span>
-
-																<h3>
-																	{{ health_record.heart_rate }} Bpm
-																	<sup> 2%</sup>
-																</h3>
-
-															</div>
-
-														</div>
-
-
-														<!-- Body Temperature -->
-														<div class="col-lg-6">
-
-															<div class="health-records icon-amber">
-
-																<span>
-																	<i class="fa-solid fa-temperature-high"></i>
-																	Body Temprature
-																</span>
-
-																<h3>
-																	{{ health_record.body_temperature }} C
-																</h3>
-
-															</div>
-
-														</div>
-
-
-														<!-- Glucose Level -->
-														<div class="col-lg-6">
-
-															<div class="health-records icon-dark-blue">
-
-																<span>
-																	<i class="fa-solid fa-notes-medical"></i>
-																	Glucose Level
-																</span>
-
-																<h3>
-																	{{ health_record.glucose_level }}
-																	<sup> 6%</sup>
-																</h3>
-
-															</div>
-
-														</div>
-
-
-														<!-- SpO2 -->
-														<div class="col-lg-6">
-
-															<div class="health-records icon-blue">
-
-																<span>
-																	<i class="fa-solid fa-highlighter"></i>
-																	SPo2
-																</span>
-
-																<h3>
-																	{{ health_record.spo2 }}%
-																</h3>
-
-															</div>
-
-														</div>
-
-
-														<!-- Blood Pressure -->
-														<div class="col-lg-6">
-
-															<div class="health-records icon-red">
-
-																<span>
-																	<i class="fa-solid fa-syringe"></i>
-																	Blood Pressure
-																</span>
-
-																<h3>
-																	{{ health_record.blood_pressure }}
-																	<sup> 2%</sup>
-																</h3>
-
-															</div>
-
-														</div>
-
-
-														<!-- BMI -->
-														<div class="col-lg-6">
-
-															<div class="health-records icon-purple">
-
-																<span>
-																	<i class="fa-solid fa-user-pen"></i>
-																	BMI
-																</span>
-
-																<h3>
-																	{{ health_record.bmi }} kg/m2
-																</h3>
-
-															</div>
-
-														</div>
-
-
-														<!-- Report Date -->
-														<div class="col-md-12">
-
-															<div class="report-gen-date">
-
-																<p>
-
-																	Report generated on last visit :
-																	{{ health_record.report_date|date:"d M Y" }}
-
-																	<span>
-																		<i class="fa-solid fa-copy"></i>
-																	</span>
-
-																</p>
-
-															</div>
-
-														</div>
-
-													</div>
-
-												</div>
-
-
-												<!-- Overall Report -->
-												<div class="col-sm-5">
-
-													<div class="chart-over-all-report">
-
-														<h6>Overall Report</h6>
-
-														<div class="circle-bar circle-bar3 report-chart">
-
-															<div class="circle-graph3"
-																 data-percent="{{ health_record.health_percentage }}">
-
-																<p>
-																	Last visit
-																	{{ health_record.report_date|date:"d M Y" }}
-																</p>
-
-															</div>
-
-														</div>
-
-														<span class="health-percentage">
-
-															Your health is
-															{{ health_record.health_percentage }}% Normal
-
-														</span>
-
-														<a href="/medical_details/"
-														   class="btn btn-dark w-100 rounded-pill">
-
-															View Details
-
-															<i class="fa-solid fa-chevron-right ms-2"></i>
-
-														</a>
-
-													</div>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-
-								<!-- Favourites -->
-								<div class="col-xl-4 d-flex">
-
-									<div class="favourites-dashboard w-100">
-
-										<div class="book-appointment-head">
-
-											<h3>
-												<span>Book a new</span>
-												Appointment
-											</h3>
-
-											<span class="add-icon">
-
-												<a href="search.html">
-													<i class="fa-solid fa-circle-plus"></i>
-												</a>
-
-											</span>
-
-										</div>
-
-
-										<div class="dashboard-card w-100">
-
-											<div class="dashboard-card-head">
-
-												<div class="header-title">
-													<h5>Favourites</h5>
-												</div>
-
-												<div class="card-view-link">
-
-													<a href="favourites.html">
-														View All
-													</a>
-
-												</div>
-
-											</div>
-
-
-											{% for favourite in favourites %}
-
-											<div class="doctor-fav-list">
-
-												<div class="doctor-info-profile">
-
-													<a href="#" class="table-avatar">
-
-														{% if favourite.docter.profile_image %}
-
-															<img
-																src="{{ favourite.docter.profile_image.url }}"
-																alt="Img">
-
-														{% else %}
-
-															<img
-																src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}"
-																alt="Img">
-
-														{% endif %}
-
-													</a>
-
-													<div class="doctor-name-info">
-
-														<h5>
-
-															<a href="#">
-
-																Dr. {{ favourite.docter.first_name }}
-																{{ favourite.docter.last_name }}
-
-															</a>
-
-														</h5>
-
-														<span>
-															{{ favourite.docter.specalist }}
-														</span>
-
-													</div>
-
-												</div>
-
-											</div>
-
-											{% endfor %}
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-
-							<!-- =========================
-							     REPORTS
-							     ========================= -->
-
-							<div class="row">
-
-								<div class="col-xl-12 d-flex">
-
-									<div class="dashboard-card w-100">
-
-										<div class="dashboard-card-head">
-
-											<div class="header-title">
-												<h5>Reports</h5>
-											</div>											
-
-										</div>
-
-
-										<div id="appoint-tab" class="tab-pane fade show active">
-
-    <div class="custom-new-table report-table-wrapper">
-
-        <div class="appointment-report-scroll">
-
-            <div class="table-responsive">
-
-                <table class="table table-hover table-center mb-0">
-
-                    <thead>
-
-                        <tr>
-                            <th>ID</th>
-                            <th>Doctor</th>
-                            <th>Date & Time</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {% for i in av %}
-
-                        <tr>
-
-                            <!-- ID -->
-                            <td>
-                                <a href="javascript:void(0);">
-                                    <span class="link-primary">
-                                        #{{ i.id }}
-                                    </span>
-                                </a>
-                            </td>
-
-
-                            <!-- Doctor -->
-                            <td>
-
-                                <h2 class="table-avatar">
-
-                                    {% if i.docter.profile_image %}
-
-                                        <a href="javascript:void(0);"
-                                           class="avatar avatar-sm me-2">
-
-                                            <img
-                                                class="avatar-img rounded-3"
-                                                src="{{ i.docter.profile_image.url }}"
-                                                alt="Doctor Image">
-
-                                        </a>
-
-                                    {% else %}
-
-                                        <a href="javascript:void(0);"
-                                           class="avatar avatar-sm me-2">
-
-                                            <img
-                                                class="avatar-img rounded-3"
-                                                src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}"
-                                                alt="Doctor Image">
-
-                                        </a>
-
-                                    {% endif %}
-
-                                    <a href="javascript:void(0);">
-
-                                        {{ i.docter.first_name }}
-                                        {{ i.docter.last_name }}
-
-                                    </a>
-
-                                </h2>
-
-                            </td>
-
-
-                            <!-- Date & Time -->
-                            <td>
-
-                                {% if i.appointment_date %}
-
-                                    <div>
-                                        <strong>
-                                            {{ i.appointment_date|date:"d M Y" }}
-                                        </strong>
-                                    </div>
-
-                                {% else %}
-
-                                    <div>
-                                        <span class="text-muted">
-                                            Date not selected
-                                        </span>
-                                    </div>
-
-                                {% endif %}
-
-
-                                {% if i.appointment_time %}
-
-                                    <div class="text-muted">
-
-                                        <i class="fa-regular fa-clock me-1"></i>
-
-                                        {{ i.appointment_time|time:"h:i A" }}
-
-                                    </div>
-
-                                {% else %}
-
-                                    <div class="text-muted">
-                                        Time not available
-                                    </div>
-
-                                {% endif %}
-
-
-                                <small class="text-primary">
-
-                                    <i class="fa-regular fa-calendar me-1"></i>
-
-                                    {{ i.appointment_day }}
-
-                                </small>
-
-                            </td>
-
-
-                            <!-- Type -->
-                            <td>
-
-                                <span class="badge badge-xs p-2 badge-soft-info">
-
-                                    Appointment
-
-                                </span>
-
-                            </td>
-
-
-                            <!-- Status -->
-                            <td>
-
-                                {% if i.status == "Approved" %}
-
-                                    <span class="badge badge-xs p-2 badge-soft-success inline-flex align-items-center">
-
-                                        <i class="fa-solid fa-circle me-1 fs-5"></i>
-
-                                        Approved
-
-                                    </span>
-
-
-                                {% elif i.status == "Pending" %}
-
-                                    <span class="badge badge-xs p-2 badge-soft-warning inline-flex align-items-center">
-
-                                        <i class="fa-solid fa-circle me-1 fs-5"></i>
-
-                                        Pending
-
-                                    </span>
-
-
-                                {% elif i.status == "Rejected" %}
-
-                                    <span class="badge badge-xs p-2 badge-soft-danger inline-flex align-items-center">
-
-                                        <i class="fa-solid fa-circle me-1 fs-5"></i>
-
-                                        Rejected
-
-                                    </span>
-
-
-                                {% elif i.status == "Cancelled" %}
-
-                                    <span class="badge badge-xs p-2 badge-soft-secondary inline-flex align-items-center">
-
-                                        <i class="fa-solid fa-circle me-1 fs-5"></i>
-
-                                        Cancelled
-
-                                    </span>
-
-
-                                {% elif i.status == "Completed" %}
-
-                                    <span class="badge badge-xs p-2 badge-soft-success inline-flex align-items-center">
-
-                                        <i class="fa-solid fa-circle me-1 fs-5"></i>
-
-                                        Completed
-
-                                    </span>
-
-
-                                {% else %}
-
-                                    <span class="badge badge-xs p-2 badge-soft-purple inline-flex align-items-center">
-
-                                        <i class="fa-solid fa-circle me-1 fs-5"></i>
-
-                                        {{ i.status }}
-
-                                    </span>
-
-                                {% endif %}
-
-                            </td>
-
-
-                            <!-- Action -->
-                            <td>
-
-                                <div class="report-action-buttons">
-
-                                    {% if i.status == "Pending" or i.status == "Approved" %}
-
-                                        <a
-                                            href="{% url 'cancel_appointment' i.id %}"
-                                            class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are you sure you want to cancel this appointment?');"
-                                        >
-
-                                            <i class="fa-solid fa-xmark me-1"></i>
-
-                                            Cancel
-
-                                        </a>
-
-                                    {% endif %}
-
-
-                                    {% if i.status == "Approved" %}
-
-                                        <a
-                                            href="{% url 'patient_video_call' i.id %}"
-                                            class="btn btn-sm btn-primary"
-                                        >
-
-                                            <i class="fa-solid fa-video me-1"></i>
-
-                                            Join Video Call
-
-                                        </a>
-
-                                    {% endif %}
-
-
-                                    {% if i.status == "Rejected" %}
-
-                                        <span class="text-danger">
-                                            Rejected by Doctor
-                                        </span>
-
-                                    {% endif %}
-
-
-                                    {% if i.status == "Cancelled" %}
-
-                                        <span class="text-muted">
-                                            Cancelled by Patient
-                                        </span>
-
-                                    {% endif %}
-
-
-                                    {% if i.status == "Completed" %}
-
-                                        <span class="text-success">
-                                            Completed
-                                        </span>
-
-                                    {% endif %}
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-                        {% empty %}
-
-                        <tr>
-
-                            <td colspan="6" class="text-center">
-
-                                <div class="py-4">
-
-                                    <i class="fa-regular fa-calendar-xmark fs-2 mb-2"></i>
-
-                                    <p class="mb-0">
-                                        No appointments found.
-                                    </p>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
+{% block content %}
+
+<style>
+/* =====================================================
+   PATIENT DASHBOARD - MAIN STYLES
+   ===================================================== */
+
+.patient-dashboard-page {
+    padding-bottom: 30px;
+    color: #273449;
+}
+
+.patient-dashboard-page .dashboard-header {
+    margin-bottom: 22px;
+}
+
+.patient-dashboard-page .dashboard-header h3 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: #172b4d;
+}
+
+.patient-dashboard-page .dashboard-card {
+    background: #ffffff;
+    border: 1px solid #e6ebf2;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(31, 45, 61, 0.045);
+    overflow: hidden;
+    margin-bottom: 22px;
+}
+
+.patient-dashboard-page .dashboard-card-head {
+    padding: 17px 20px;
+    border-bottom: 1px solid #edf0f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.patient-dashboard-page .dashboard-card-head h5 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #172b4d;
+    margin: 0;
+}
+
+.patient-dashboard-page .dashboard-card-body {
+    padding: 20px;
+}
+
+/* =====================================================
+   HEALTH RECORDS
+   ===================================================== */
+
+.patient-dashboard-page .health-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.patient-dashboard-page .health-metric-card {
+    min-width: 0;
+    padding: 16px 14px;
+    background: #f8faff;
+    border: 1px solid #edf1f8;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.patient-dashboard-page .health-metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(35, 55, 80, 0.07);
+}
+
+.patient-dashboard-page .health-metric-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 12px;
+    min-width: 0;
+}
+
+.patient-dashboard-page .health-metric-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #ffffff;
+    font-size: 15px;
+}
+
+.patient-dashboard-page .health-metric-label {
+    color: #637188;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.patient-dashboard-page .health-metric-value {
+    color: #172b4d;
+    font-size: 21px;
+    font-weight: 750;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    margin: 0;
+}
+
+.patient-dashboard-page .health-metric-value small {
+    color: #708097;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.patient-dashboard-page .health-metric-value.is-empty {
+    color: #8995a7;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.patient-dashboard-page .metric-heart .health-metric-icon {
+    color: #ef476f;
+}
+
+.patient-dashboard-page .metric-temperature .health-metric-icon {
+    color: #f59e0b;
+}
+
+.patient-dashboard-page .metric-glucose .health-metric-icon {
+    color: #3977e8;
+}
+
+.patient-dashboard-page .metric-spo2 .health-metric-icon {
+    color: #7c4dff;
+}
+
+.patient-dashboard-page .metric-pressure .health-metric-icon {
+    color: #ef4444;
+}
+
+.patient-dashboard-page .metric-bmi .health-metric-icon {
+    color: #16a085;
+}
+
+.patient-dashboard-page .report-generated-date {
+    margin-top: 17px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #f7f9fc;
+    color: #66758b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.patient-dashboard-page .report-generated-date i {
+    margin-right: 6px;
+    color: #3877e8;
+}
+
+/* Overall report panel */
+
+.patient-dashboard-page .overall-health-panel {
+    height: 100%;
+    padding: 18px 15px;
+    background: #fbfcff;
+    border: 1px solid #edf1f8;
+    border-radius: 11px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-dashboard-page .overall-health-panel h6 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #172b4d;
+    margin-bottom: 9px;
+}
+
+.patient-dashboard-page .overall-health-panel .last-visit {
+    color: #7a879b;
+    font-size: 12px;
+    margin-bottom: 13px;
+}
+
+.patient-dashboard-page .overall-health-panel .health-percentage {
+    display: block;
+    margin: 12px 0 16px;
+    font-size: 13px;
+    color: #54647b;
+    line-height: 1.6;
+}
+
+.patient-dashboard-page .overall-health-panel .health-score {
+    color: #147d64;
+    font-size: 25px;
+    font-weight: 750;
+}
+
+.patient-dashboard-page .overall-health-panel .health-empty {
+    color: #8995a7;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.patient-dashboard-page .overall-health-panel .btn {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 11px 15px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: auto;
+}
+
+.patient-dashboard-page .circle-graph3 {
+    max-width: 155px;
+    margin: 0 auto;
+}
+
+/* No records */
+
+.patient-dashboard-page .health-empty-state {
+    text-align: center;
+    padding: 35px 15px;
+    color: #7a879b;
+}
+
+.patient-dashboard-page .health-empty-state > i {
+    font-size: 35px;
+    color: #9aabc2;
+    margin-bottom: 12px;
+}
+
+.patient-dashboard-page .health-empty-state h6 {
+    color: #263750;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.patient-dashboard-page .health-empty-state p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+/* =====================================================
+   FAVOURITES AND BOOK APPOINTMENT
+   ===================================================== */
+
+.patient-dashboard-page .book-appointment-head {
+    min-height: 94px;
+    margin-bottom: 18px;
+    padding: 20px;
+    background: linear-gradient(120deg, #315efb, #4234c9);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+}
+
+.patient-dashboard-page .book-appointment-head h3 {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.patient-dashboard-page .book-appointment-head h3 span {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.patient-dashboard-page .book-appointment-head .add-icon a {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.patient-dashboard-page .card-view-link a {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.patient-dashboard-page .doctor-fav-list {
+    padding: 14px 18px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.patient-dashboard-page .doctor-fav-list:last-child {
+    border-bottom: none;
+}
+
+.patient-dashboard-page .doctor-info-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.patient-dashboard-page .doctor-info-profile .table-avatar {
+    flex-shrink: 0;
+}
+
+.patient-dashboard-page .doctor-info-profile .table-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.patient-dashboard-page .doctor-name-info {
+    min-width: 0;
+}
+
+.patient-dashboard-page .doctor-name-info h5 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    overflow-wrap: anywhere;
+}
+
+.patient-dashboard-page .doctor-name-info h5 a {
+    color: #263750;
+}
+
+.patient-dashboard-page .doctor-name-info span {
+    color: #7c899d;
+    font-size: 11px;
+}
+
+.patient-dashboard-page .favourites-empty {
+    text-align: center;
+    padding: 24px 12px;
+    color: #7b8798;
+    font-size: 13px;
+}
+
+/* =====================================================
+   REPORTS TABLE
+   ===================================================== */
+
+.patient-dashboard-page .report-table-wrapper {
+    width: 100%;
+    min-width: 0;
+}
+
+.patient-dashboard-page .appointment-report-scroll {
+    max-height: 340px;
+    overflow-y: auto;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #b9c5d6 #f2f4f7;
+}
+
+.patient-dashboard-page .appointment-report-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.patient-dashboard-page .appointment-report-scroll::-webkit-scrollbar-track {
+    background: #f2f4f7;
+}
+
+.patient-dashboard-page .appointment-report-scroll::-webkit-scrollbar-thumb {
+    background: #b9c5d6;
+    border-radius: 10px;
+}
+
+.patient-dashboard-page .report-table-wrapper table {
+    width: 100%;
+    min-width: 800px;
+    margin-bottom: 0;
+}
+
+.patient-dashboard-page .report-table-wrapper thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: #f2f5fa;
+    color: #46566e;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 13px 14px;
+    white-space: nowrap;
+    border-bottom: 1px solid #e4eaf2;
+}
+
+.patient-dashboard-page .report-table-wrapper tbody td {
+    padding: 14px;
+    vertical-align: middle;
+    color: #3b4b63;
+    font-size: 12px;
+    border-color: #edf0f5;
+}
+
+.patient-dashboard-page .report-table-wrapper tbody tr:hover {
+    background: #fafcff;
+}
+
+.patient-dashboard-page .report-table-wrapper .table-avatar {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    min-width: 155px;
+    white-space: normal;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.patient-dashboard-page .report-table-wrapper .doctor-avatar {
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.patient-dashboard-page .report-table-wrapper .doctor-avatar img {
+    width: 39px;
+    height: 39px;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+.patient-dashboard-page .report-date {
+    display: block;
+    color: #263750;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.patient-dashboard-page .report-time {
+    color: #6f7f96;
+    font-size: 11px;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.patient-dashboard-page .report-weekday {
+    color: #3877e8;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.patient-dashboard-page .report-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.patient-dashboard-page .report-status i {
+    font-size: 7px;
+}
+
+.patient-dashboard-page .status-approved {
+    background: #e6f8ef;
+    color: #16865b;
+}
+
+.patient-dashboard-page .status-pending {
+    background: #fff5dd;
+    color: #a46b00;
+}
+
+.patient-dashboard-page .status-rejected {
+    background: #ffeded;
+    color: #d43f45;
+}
+
+.patient-dashboard-page .status-cancelled {
+    background: #f0f2f5;
+    color: #667085;
+}
+
+.patient-dashboard-page .status-completed {
+    background: #e8f7ed;
+    color: #16865b;
+}
+
+.patient-dashboard-page .status-other {
+    background: #eeeaff;
+    color: #6551c7;
+}
+
+.patient-dashboard-page .report-action-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-width: 155px;
+}
+
+.patient-dashboard-page .report-action-buttons .btn {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 7px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.patient-dashboard-page .report-action-buttons .btn i {
+    margin-right: 4px;
+}
+
+.patient-dashboard-page .report-action-buttons .btn-primary {
+    background: #3569f6;
+    border-color: #3569f6;
+}
+
+.patient-dashboard-page .report-action-buttons .btn-danger {
+    background: #f04452;
+    border-color: #f04452;
+}
+
+.patient-dashboard-page .report-no-data {
+    text-align: center;
+    padding: 30px 15px !important;
+    color: #7b8798 !important;
+}
+
+.patient-dashboard-page .report-no-data i {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #a0aec0;
+}
+
+.patient-dashboard-page .report-no-data p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 1199px) {
+    .patient-dashboard-page .dashboard-card-body {
+        padding: 16px;
+    }
+
+    .patient-dashboard-page .overall-health-panel {
+        margin-top: 18px;
+        min-height: 260px;
+    }
+
+    .patient-dashboard-page .report-table-wrapper table {
+        min-width: 850px;
+    }
+}
+
+@media (max-width: 767px) {
+    .patient-dashboard-page .dashboard-header h3 {
+        font-size: 22px;
+    }
+
+    .patient-dashboard-page .dashboard-card-head {
+        padding: 14px 15px;
+    }
+
+    .patient-dashboard-page .dashboard-card-body {
+        padding: 13px;
+    }
+
+    .patient-dashboard-page .health-metrics-grid {
+        gap: 9px;
+    }
+
+    .patient-dashboard-page .health-metric-card {
+        padding: 12px 10px;
+    }
+
+    .patient-dashboard-page .health-metric-heading {
+        gap: 7px;
+    }
+
+    .patient-dashboard-page .health-metric-icon {
+        width: 29px;
+        height: 29px;
+        font-size: 13px;
+    }
+
+    .patient-dashboard-page .health-metric-label {
+        font-size: 11px;
+    }
+
+    .patient-dashboard-page .health-metric-value {
+        font-size: 18px;
+    }
+
+    .patient-dashboard-page .overall-health-panel {
+        margin-top: 15px;
+    }
+
+    .patient-dashboard-page .book-appointment-head {
+        min-height: 80px;
+        padding: 16px;
+    }
+
+    .patient-dashboard-page .appointment-report-scroll {
+        max-height: 340px;
+    }
+
+    .patient-dashboard-page .report-table-wrapper table {
+        min-width: 850px;
+    }
+
+    .patient-dashboard-page .report-action-buttons {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 400px) {
+    .patient-dashboard-page .health-metric-card {
+        padding: 10px 8px;
+    }
+
+    .patient-dashboard-page .health-metric-value {
+        font-size: 16px;
+    }
+
+    .patient-dashboard-page .health-metric-label {
+        font-size: 10px;
+    }
+}
+</style>
+
+
+<!-- =====================================================
+     BREADCRUMB
+     ===================================================== -->
+
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row align-items-center inner-banner">
+            <div class="col-md-12 col-12 text-center">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/patient/" aria-label="Home">
+                                <i class="isax isax-home-15"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">Patient</li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <h2 class="breadcrumb-title">Patient Dashboard</h2>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumb-bg">
+        <img src="{% static 'assets/img/bg/breadcrumb-bg-01.png' %}"
+             alt="" class="breadcrumb-bg-01">
+
+        <img src="{% static 'assets/img/bg/breadcrumb-bg-02.png' %}"
+             alt="" class="breadcrumb-bg-02">
+
+        <img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}"
+             alt="" class="breadcrumb-bg-03">
+
+        <img src="{% static 'assets/img/bg/breadcrumb-icon.png' %}"
+             alt="" class="breadcrumb-bg-04">
+    </div>
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD CONTENT
+     ===================================================== -->
+
+<div class="content patient-dashboard-page">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- PATIENT SIDEBAR -->
+            <div class="col-lg-4 col-xl-3 theiaStickySidebar">
+                {% include 'slidebar.html' %}
+            </div>
+
+
+            <!-- MAIN CONTENT -->
+            <div class="col-lg-8 col-xl-9">
+
+                <div class="dashboard-header">
+                    <h3>Dashboard</h3>
+                </div>
+
+
+                <!-- =================================================
+                     HEALTH RECORDS + FAVOURITES
+                     ================================================= -->
+
+                <div class="row">
+
+           <!-- HEALTH RECORDS -->
+<div class="col-xl-8 d-flex">
+
+    <div class="dashboard-card w-100 patient-health-card">
+
+        <!-- Card Header -->
+        <div class="dashboard-card-head">
+            <div class="header-title">
+                <h5>
+                    <i class="fa-solid fa-heart-pulse me-2 text-danger"></i>
+                    Health Records
+                </h5>
+            </div>
+        </div>
+
+        <!-- Card Body -->
+       
+<div class="dashboard-card-body">
+
+    <div class="row">
+
+        <!-- LEFT: HEALTH MEASUREMENTS -->
+        <div class="col-sm-7">
+
+            <div class="row">
+
+                <!-- Heart Rate -->
+                <div class="col-lg-6 col-6">
+                    <div class="health-records icon-orange patient-health-metric">
+
+                        <span>
+                            <i class="fa-solid fa-heart"></i>
+                            Heart Rate
+                        </span>
+
+                        <h3>
+                            {% if health_record and health_record.heart_rate %}
+                                {{ health_record.heart_rate }}
+                                <small>BPM</small>
+                            {% else %}
+                                <small class="health-not-recorded">Not recorded</small>
+                            {% endif %}
+                        </h3>
+
+                    </div>
+                </div>
+
+                <!-- Body Temperature -->
+                <div class="col-lg-6 col-6">
+                    <div class="health-records icon-amber patient-health-metric">
+
+                        <span>
+                            <i class="fa-solid fa-temperature-high"></i>
+                            Body Temperature
+                        </span>
+
+                        <h3>
+                            {% if health_record and health_record.body_temperature %}
+                                {{ health_record.body_temperature }}
+                                <small>°C</small>
+                            {% else %}
+                                <small class="health-not-recorded">Not recorded</small>
+                            {% endif %}
+                        </h3>
+
+                    </div>
+                </div>
+
+                <!-- Glucose Level -->
+                <div class="col-lg-6 col-6">
+                    <div class="health-records icon-dark-blue patient-health-metric">
+
+                        <span>
+                            <i class="fa-solid fa-droplet"></i>
+                            Glucose Level
+                        </span>
+
+                        <h3>
+                            {% if health_record and health_record.glucose_level %}
+                                {{ health_record.glucose_level }}
+                            {% else %}
+                                <small class="health-not-recorded">Not recorded</small>
+                            {% endif %}
+                        </h3>
+
+                    </div>
+                </div>
+
+                <!-- SpO2 -->
+                <div class="col-lg-6 col-6">
+                    <div class="health-records icon-blue patient-health-metric">
+
+                        <span>
+                            <i class="fa-solid fa-lungs"></i>
+                            SpO2
+                        </span>
+
+                        <h3>
+                            {% if health_record and health_record.spo2 %}
+                                {{ health_record.spo2 }}<small>%</small>
+                            {% else %}
+                                <small class="health-not-recorded">Not recorded</small>
+                            {% endif %}
+                        </h3>
+
+                    </div>
+                </div>
+
+                <!-- Blood Pressure -->
+                <div class="col-lg-6 col-6">
+                    <div class="health-records icon-red patient-health-metric">
+
+                        <span>
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            Blood Pressure
+                        </span>
+
+                        <h3>
+                            {% if health_record and health_record.blood_pressure %}
+                                {{ health_record.blood_pressure }}
+                            {% else %}
+                                <small class="health-not-recorded">Not recorded</small>
+                            {% endif %}
+                        </h3>
+
+                    </div>
+                </div>
+
+                <!-- BMI -->
+                <div class="col-lg-6 col-6">
+                    <div class="health-records icon-purple patient-health-metric">
+
+                        <span>
+                            <i class="fa-solid fa-weight-scale"></i>
+                            BMI
+                        </span>
+
+                        <h3>
+                            {% if health_record and health_record.bmi %}
+                                {{ health_record.bmi }}
+                                <small>kg/m²</small>
+                            {% else %}
+                                <small class="health-not-recorded">Not recorded</small>
+                            {% endif %}
+                        </h3>
+
+                    </div>
+                </div>
+
+                <!-- Last Updated Date -->
+                <div class="col-12">
+                    <div class="report-gen-date patient-health-report-date">
+
+                        <p>
+                            <i class="fa-regular fa-calendar me-1"></i>
+
+                            <strong>Report generated on last visit:</strong>
+
+                            {% if health_record and health_record.added_on %}
+                                {{ health_record.added_on|date:"d M Y" }}
+                            {% else %}
+                                Not available
+                            {% endif %}
+
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- RIGHT: OVERALL REPORT -->
+        <div class="col-sm-5">
+
+            <div class="chart-over-all-report patient-overall-report">
+
+                <h6>Overall Report</h6>
+
+                {% if health_record %}
+
+                    <div class="patient-health-summary-icon">
+                        <i class="fa-solid fa-file-medical"></i>
+                    </div>
+
+                    <p class="patient-health-summary-title">
+                        Latest Vitals Recorded
+                    </p>
+
+                    {% if health_record.added_on %}
+                        <span class="health-percentage">
+                            Last updated:
+                            <strong>
+                                {{ health_record.added_on|date:"d M Y" }}
+                            </strong>
+
+                            <br>
+
+                            <small>
+                                {{ health_record.added_on|time:"h:i A" }}
+                            </small>
+                        </span>
+                    {% endif %}
+
+                    <p class="patient-health-summary-text">
+                        Your latest saved health measurements are displayed
+                        in the Health Records section.
+                    </p>
+
+                {% else %}
+
+                    <div class="patient-health-empty-score">
+
+                        <i class="fa-solid fa-file-medical"></i>
+
+                        <p>
+                            No health report has been saved yet.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+                <a href="/medical_details/"
+                   class="btn btn-dark w-100 rounded-pill patient-health-details-btn">
+
+                    View Details
+
+                    <i class="fa-solid fa-chevron-right ms-2"></i>
+
+                </a>
 
             </div>
 
         </div>
 
     </div>
-
 </div>
 
-									</div>
 
-								</div>
-
-							</div>
-							<!-- /Reports -->
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
+    </div>
+</div>
+<!-- END HEALTH RECORDS -->
 
 
-<style>
+                    <!-- FAVOURITES -->
+                    <div class="col-xl-4 d-flex">
+                        <div class="favourites-dashboard w-100">
 
-/* =========================================================
-   REPORT SECTION
-   Only affects the Reports area
-   ========================================================= */
+                            <!-- BOOK APPOINTMENT -->
+                            <div class="book-appointment-head">
 
+                                <h3>
+                                    <span>Book a new</span>
+                                    Appointment
+                                </h3>
 
-   /* =========================================
-   Appointment Report Scroll
-   Show around 4 appointments
-   ========================================= */
+                                <span class="add-icon">
+                                    <a href="search.html" aria-label="Book a new appointment">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </a>
+                                </span>
 
-.appointment-report-scroll {
-    max-height: 330px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-/* Keep table width */
-.appointment-report-scroll table {
-    width: 100%;
-}
-
-/* Keep table header visible while scrolling */
-.appointment-report-scroll thead {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: #fff;
-}
-
-/* Scrollbar */
-.appointment-report-scroll::-webkit-scrollbar {
-    width: 6px;
-}
-
-.appointment-report-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.appointment-report-scroll::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 10px;
-}
-
-.appointment-report-scroll::-webkit-scrollbar-thumb:hover {
-    background: #999;
-}
+                            </div>
 
 
-/* Firefox */
-.appointment-report-scroll {
-    scrollbar-width: thin;
-}
-.report-section {
-	width: 100%;
-	max-width: 100%;
-	overflow: hidden;
-}
+                            <!-- FAVOURITES CARD -->
+                            <div class="dashboard-card w-100">
 
-/* Tabs */
-.report-tabs-wrapper {
-	width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-	scrollbar-width: thin;
-}
+                                <div class="dashboard-card-head">
+                                    <div class="header-title">
+                                        <h5>
+                                            <i class="fa-solid fa-star me-2 text-warning"></i>
+                                            Favourites
+                                        </h5>
+                                    </div>
 
-.report-tabs {
-	display: flex;
-	flex-wrap: nowrap;
-	white-space: nowrap;
-	min-width: max-content;
-	margin-bottom: 0;
-}
-
-/* Keep tabs looking like the original design */
-.report-tabs .nav-item {
-	flex: 0 0 auto;
-}
-
-.report-tabs .nav-link {
-	white-space: nowrap;
-}
-
-/* Table wrapper */
-.report-table-wrapper {
-	width: 100%;
-	max-width: 100%;
-	overflow: hidden;
-}
-
-/* Horizontal scroll only when table needs it */
-.report-table-wrapper .table-responsive {
-	width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-}
-
-/* Don't allow table to break the page */
-.report-table-wrapper table {
-	min-width: 850px;
-	margin-bottom: 0;
-}
-
-/* Appointment action buttons */
-.report-action-buttons {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-	flex-wrap: wrap;
-	min-width: 170px;
-}
-
-.report-action-buttons .btn {
-	white-space: nowrap;
-}
-
-/* Keep doctor name in one clean area */
-.report-table-wrapper .table-avatar {
-	margin-bottom: 0;
-}
-
-/* Status badge */
-.report-table-wrapper .badge {
-	white-space: nowrap;
-}
-
-/* Better spacing between tabs and table */
-.report-section .tab-content {
-	padding-top: 15px !important;
-}
+                                    <div class="card-view-link">
+                                        <a href="favourites.html">View All</a>
+                                    </div>
+                                </div>
 
 
-/* =========================================================
-   DESKTOP
-   ========================================================= */
+                                {% for favourite in favourites %}
 
-@media (min-width: 1200px) {
+                                <div class="doctor-fav-list">
 
-	.report-table-wrapper table {
-		min-width: 100%;
-	}
+                                    <div class="doctor-info-profile">
 
-	.report-action-buttons {
-		min-width: 180px;
-	}
+                                        <a href="#" class="table-avatar">
+                                            {% if favourite.docter.profile_image %}
+                                                <img
+                                                    src="{{ favourite.docter.profile_image.url }}"
+                                                    alt="Doctor Image">
+                                            {% else %}
+                                                <img
+                                                    src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}"
+                                                    alt="Doctor Image">
+                                            {% endif %}
+                                        </a>
 
-}
+                                        <div class="doctor-name-info">
 
+                                            <h5>
+                                                <a href="#">
+                                                    Dr. {{ favourite.docter.first_name }}
+                                                    {{ favourite.docter.last_name }}
+                                                </a>
+                                            </h5>
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+                                            <span>
+                                                {{ favourite.docter.specalist|default:"General Practitioner" }}
+                                            </span>
 
-@media (max-width: 1199px) {
+                                        </div>
 
-	.report-table-wrapper .table-responsive {
-		overflow-x: auto;
-	}
+                                    </div>
 
-	.report-table-wrapper table {
-		min-width: 900px;
-	}
+                                </div>
 
-}
+                                {% empty %}
 
+                                <div class="favourites-empty">
+                                    <i class="fa-regular fa-star me-1"></i>
+                                    No favourite doctors added yet.
+                                </div>
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+                                {% endfor %}
 
-@media (max-width: 767px) {
+                            </div>
 
-	.report-tabs-wrapper {
-		margin-bottom: 5px;
-	}
+                        </div>
+                    </div>
 
-	.report-tabs {
-		width: max-content;
-	}
-
-	.report-table-wrapper table {
-		min-width: 900px;
-	}
-
-	.report-action-buttons {
-		flex-wrap: nowrap;
-	}
-
-}
+                </div>
 
 
-/* =========================================================
-   VERY SMALL SCREEN
-   ========================================================= */
 
-@media (max-width: 575px) {
+                <!-- =================================================
+                     APPOINTMENT REPORTS
+                     ================================================= -->
 
-	.report-tabs .nav-link {
-		padding-left: 12px;
-		padding-right: 12px;
-	}
+                <div class="row">
 
-	.report-table-wrapper table {
-		min-width: 900px;
-	}
+                    <div class="col-xl-12 d-flex">
 
-}
+                        <div class="dashboard-card w-100">
 
-</style>
+                            <div class="dashboard-card-head">
+                                <div class="header-title">
+                                    <h5>
+                                        <i class="fa-solid fa-calendar-check me-2 text-primary"></i>
+                                        Reports
+                                    </h5>
+                                </div>
+                            </div>
 
-{% endblock%}
+
+                            <div class="report-table-wrapper">
+
+                                <div class="appointment-report-scroll">
+
+                                    <table class="table table-hover table-center mb-0">
+
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Doctor</th>
+                                                <th>Date &amp; Time</th>
+                                                <th>Type</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody>
+
+                                            {% for i in av %}
+
+                                            <tr>
+
+                                                <!-- APPOINTMENT ID -->
+                                                <td>
+                                                    <span class="link-primary fw-bold">
+                                                        #{{ i.id }}
+                                                    </span>
+                                                </td>
+
+
+                                                <!-- DOCTOR -->
+                                                <td>
+
+                                                    <div class="table-avatar">
+
+                                                        <a href="javascript:void(0);"
+                                                           class="doctor-avatar">
+
+                                                            {% if i.docter.profile_image %}
+                                                                <img
+                                                                    src="{{ i.docter.profile_image.url }}"
+                                                                    alt="Doctor Image">
+                                                            {% else %}
+                                                                <img
+                                                                    src="{% static 'assets/img/doctors-dashboard/doctor-profile-img.jpg' %}"
+                                                                    alt="Doctor Image">
+                                                            {% endif %}
+
+                                                        </a>
+
+                                                        <span>
+                                                            {{ i.docter.first_name }}
+                                                            {{ i.docter.last_name }}
+                                                        </span>
+
+                                                    </div>
+
+                                                </td>
+
+
+                                                <!-- DATE, TIME AND WEEKDAY -->
+                                                <td>
+
+                                                    {% if i.appointment_date %}
+                                                        <span class="report-date">
+                                                            {{ i.appointment_date|date:"d M Y" }}
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="report-date text-muted">
+                                                            Date not selected
+                                                        </span>
+                                                    {% endif %}
+
+
+                                                    {% if i.appointment_time %}
+                                                        <div class="report-time">
+                                                            <i class="fa-regular fa-clock me-1"></i>
+                                                            {{ i.appointment_time|time:"h:i A" }}
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="report-time">
+                                                            Time not available
+                                                        </div>
+                                                    {% endif %}
+
+
+                                                    <div class="report-weekday">
+                                                        <i class="fa-regular fa-calendar me-1"></i>
+
+                                                        {% if i.appointment_date %}
+                                                            {{ i.appointment_date|date:"l" }}
+                                                        {% else %}
+                                                            {{ i.appointment_day|default:"Day not selected" }}
+                                                        {% endif %}
+                                                    </div>
+
+                                                </td>
+
+
+                                                <!-- TYPE -->
+                                                <td>
+                                                    <span class="badge badge-xs p-2 badge-soft-info">
+                                                        Appointment
+                                                    </span>
+                                                </td>
+
+
+                                                <!-- STATUS -->
+                                                <td>
+
+                                                    {% if i.status == "Approved" %}
+
+                                                        <span class="report-status status-approved">
+                                                            <i class="fa-solid fa-circle"></i>
+                                                            Approved
+                                                        </span>
+
+                                                    {% elif i.status == "Pending" %}
+
+                                                        <span class="report-status status-pending">
+                                                            <i class="fa-solid fa-circle"></i>
+                                                            Pending
+                                                        </span>
+
+                                                    {% elif i.status == "Rejected" %}
+
+                                                        <span class="report-status status-rejected">
+                                                            <i class="fa-solid fa-circle"></i>
+                                                            Rejected
+                                                        </span>
+
+                                                    {% elif i.status == "Cancelled" %}
+
+                                                        <span class="report-status status-cancelled">
+                                                            <i class="fa-solid fa-circle"></i>
+                                                            Cancelled
+                                                        </span>
+
+                                                    {% elif i.status == "Completed" %}
+
+                                                        <span class="report-status status-completed">
+                                                            <i class="fa-solid fa-circle"></i>
+                                                            Completed
+                                                        </span>
+
+                                                    {% else %}
+
+                                                        <span class="report-status status-other">
+                                                            {{ i.status }}
+                                                        </span>
+
+                                                    {% endif %}
+
+                                                </td>
+
+
+                                                <!-- ACTION BUTTONS -->
+                                                <td>
+
+                                                    <div class="report-action-buttons">
+
+                                                        <!-- CANCEL -->
+                                                        {% if i.status == "Pending" or i.status == "Approved" %}
+
+                                                            <a
+                                                                href="{% url 'cancel_appointment' i.id %}"
+                                                                class="btn btn-danger"
+                                                                onclick="return confirm('Are you sure you want to cancel this appointment?');"
+                                                            >
+                                                                <i class="fa-solid fa-xmark"></i>
+                                                                Cancel
+                                                            </a>
+
+                                                        {% endif %}
+
+
+                                                        <!-- VIDEO CALL
+                                                             The view calculates call_available
+                                                             for the two-hour time window. -->
+                                                    {% if i.status == "Approved" and i.call_available %}
+
+    <a
+        href="{% url 'patient_video_call' i.id %}"
+        class="btn btn-sm btn-primary"
+    >
+        <i class="fa-solid fa-video me-1"></i>
+        Join Video Call
+    </a>
+
+{% endif %}
+
+
+                                                        <!-- REJECTED -->
+                                                        {% if i.status == "Rejected" %}
+
+                                                            <span class="text-danger">
+                                                                Rejected by Doctor
+                                                            </span>
+
+                                                        {% endif %}
+
+
+                                                        <!-- CANCELLED -->
+                                                        {% if i.status == "Cancelled" %}
+
+                                                            <span class="text-muted">
+                                                                Cancelled by Patient
+                                                            </span>
+
+                                                        {% endif %}
+
+
+                                                        <!-- COMPLETED -->
+                                                        {% if i.status == "Completed" %}
+
+                                                            <span class="text-success">
+                                                                Completed
+                                                            </span>
+
+                                                        {% endif %}
+
+                                                    </div>
+
+                                                </td>
+
+                                            </tr>
+
+                                            {% empty %}
+
+                                            <tr>
+                                                <td colspan="6" class="report-no-data">
+                                                    <i class="fa-regular fa-calendar-xmark"></i>
+                                                    <p>No appointments found.</p>
+                                                </td>
+                                            </tr>
+
+                                            {% endfor %}
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END REPORTS -->
+
+            </div>
+            <!-- END MAIN CONTENT -->
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

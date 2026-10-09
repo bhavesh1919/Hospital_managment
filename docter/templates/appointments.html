@@ -1,293 +1,315 @@
+
 {% extends 'base.html' %}
-{% load static%}
+{% load static %}
 {% block content %}
 
-	<div class="content">
-				<div class="container">
-
-					<div class="row">
-						<div class="col-lg-4 col-xl-3 theiaStickySidebar">
-						
-
-						{% include 'sidebar.html' %}
-							
-						</div>
-						
-						<div class="col-lg-8 col-xl-9">
-							<div class="dashboard-header">
-								<div class="header-back">
-									<a href="appointments.html" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>
-									<h3>Appointment Details</h3>
-								</div>
-							</div>
-							<div class="appointment-details-wrap">
-
-								{% for app in appointments %}
-
-<!-- Appointment Detail Card -->
-								<div class="appointment-wrap appointment-detail-card">
-									<ul>
-
-										<!-- Patient Information -->
-										<li>
-											<div class="patinet-information">
-
-												<a href="#">
-													{% if app.patient.profile_photo %}
-														<img src="{{ app.patient.profile_photo.url }}"
-															alt="Patient Image">
-													{% else %}
-														<img src="{% static 'assets/img/doctors-dashboard/profile-01.jpg' %}"
-															alt="Patient Image">
-													{% endif %}
-												</a>
-
-												<div class="patient-info">
-
-													<p>#Apt{{ app.id|stringformat:"04d" }}</p>
-
-													<h6>
-														<a href="#">
-															{{ app.patient.fname }}
-															{{ app.patient.lname }}
-														</a>
-													</h6>
-
-													<div class="mail-info-patient">
-														<ul>
-
-															{% if app.patient.email %}
-															<li>
-																<i class="fa-solid fa-envelope"></i>
-																{{ app.patient.email }}
-															</li>
-															{% endif %}
-
-															{% if app.patient.phone %}
-															<li>
-																<i class="fa-solid fa-phone"></i>
-																{{ app.patient.phone }}
-															</li>
-															{% endif %}
-
-														</ul>
-													</div>
-
-												</div>
-											</div>
-										</li>
-
-										<!-- Appointment Type -->
-										<li class="appointment-info">
-											<div class="person-info">
-
-												<p>Type of Appointment</p>
-
-												<ul class="d-flex apponitment-types">
-													<li>
-														<i class="fa-solid fa-hospital text-green"></i>
-														Direct Visit
-													</li>
-												</ul>
-
-											</div>
-										</li>
-
-										<!-- Status -->
-										<li class="appointment-action">
-
-											<div class="detail-badge-info">
-
-												{% if app.status == "Pending" %}
-													<span class="badge bg-grey me-2">
-														Pending
-													</span>
-
-												{% elif app.status == "Approved" %}
-													<span class="badge bg-grey me-2">
-														Approved
-													</span>
-
-												{% elif app.status == "Cancelled" %}
-													<span class="badge bg-danger me-2">
-														Cancelled
-													</span>
-
-												{% elif app.status == "Rejected" %}
-													<span class="badge bg-danger me-2">
-														Rejected
-													</span>
-
-												{% elif app.status == "Completed" %}
-													<span class="badge bg-success me-2">
-														Completed
-													</span>
-
-												{% else %}
-													<span class="badge bg-grey me-2">
-														{{ app.status }}
-													</span>
-												{% endif %}
-
-											</div>
-
-											<div class="consult-fees">
-												<h6>
-													Consultation Fees :
-													{% if app.appointment %}
-														₹{{ app.appointment.fee }}
-													{% else %}
-														₹0
-													{% endif %}
-												</h6>
-											</div>
-
-											<ul>
-												<li>
-													<a href="#">
-														<i class="fa-solid fa-comments"></i>
-													</a>
-												</li>
-
-												<li>
-													<a href="#">
-														<i class="fa-solid fa-xmark"></i>
-													</a>
-												</li>
-											</ul>
+<style>
+    .appointment-detail-card {
+        margin-bottom: 20px;
+    }
+
+    .detail-card-bottom-info li h6 {
+        margin-bottom: 8px;
+    }
+
+    .appointment-date-time {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .appointment-date-time i {
+        color: #0d6efd;
+    }
+
+    .start-btn .btn {
+        white-space: nowrap;
+    }
+</style>
+
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Sidebar -->
+            <div class="col-lg-4 col-xl-3 theiaStickySidebar">
+                {% include 'sidebar.html' %}
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-8 col-xl-9">
+
+                <div class="dashboard-header">
+                    <div class="header-back">
+                        <a href="{% url 'appointments' %}" class="back-arrow">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                        <h3>Appointment Details</h3>
+                    </div>
+                </div>
+
+                <div class="appointment-details-wrap">
+
+                    {% for app in appointments %}
+
+                    <div class="appointment-wrap appointment-detail-card">
+
+                        <ul>
+
+                            <!-- Patient Information -->
+                            <li>
+                                <div class="patinet-information">
+
+                                    <a href="#">
+                                        {% if app.patient.profile_photo %}
+                                            <img
+                                                src="{{ app.patient.profile_photo.url }}"
+                                                alt="Patient Image">
+                                        {% else %}
+                                            <img
+                                                src="{% static 'assets/img/doctors-dashboard/profile-01.jpg' %}"
+                                                alt="Patient Image">
+                                        {% endif %}
+                                    </a>
+
+                                    <div class="patient-info">
+
+                                        <p>
+                                            #Apt{{ app.id|stringformat:"04d" }}
+                                        </p>
+
+                                        <h6>
+                                            <a href="#">
+                                                {{ app.patient.fname }}
+                                                {{ app.patient.lname }}
+                                            </a>
+                                        </h6>
+
+                                        <div class="mail-info-patient">
+                                            <ul>
+
+                                                {% if app.patient.email %}
+                                                <li>
+                                                    <i class="fa-solid fa-envelope"></i>
+                                                    {{ app.patient.email }}
+                                                </li>
+                                                {% endif %}
+
+                                                {% if app.patient.phone %}
+                                                <li>
+                                                    <i class="fa-solid fa-phone"></i>
+                                                    {{ app.patient.phone }}
+                                                </li>
+                                                {% endif %}
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Appointment Type -->
+                            <li class="appointment-info">
+                                <div class="person-info">
+
+                                    <p>Type of Appointment</p>
+
+                                    <ul class="d-flex apponitment-types">
+                                        <li>
+                                            <i class="fa-solid fa-hospital text-green"></i>
+                                            Direct Visit
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </li>
+
+                            <!-- Appointment Status and Fee -->
+                            <li class="appointment-action">
+
+                                <div class="detail-badge-info">
+
+                                    {% if app.status == "Pending" %}
+                                        <span class="badge bg-grey me-2">
+                                            Pending
+                                        </span>
+
+                                    {% elif app.status == "Approved" %}
+                                        <span class="badge bg-success me-2">
+                                            Approved
+                                        </span>
+
+                                    {% elif app.status == "Cancelled" %}
+                                        <span class="badge bg-danger me-2">
+                                            Cancelled
+                                        </span>
+
+                                    {% elif app.status == "Rejected" %}
+                                        <span class="badge bg-danger me-2">
+                                            Rejected
+                                        </span>
+
+                                    {% elif app.status == "Completed" %}
+                                        <span class="badge bg-success me-2">
+                                            Completed
+                                        </span>
+
+                                    {% else %}
+                                        <span class="badge bg-grey me-2">
+                                            {{ app.status }}
+                                        </span>
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="consult-fees">
+                                    <h6>
+                                        Consultation Fees:
+
+                                        {% if app.appointment %}
+                                            ₹{{ app.appointment.fee }}
+                                        {% else %}
+                                            ₹0
+                                        {% endif %}
+                                    </h6>
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                        <!-- Appointment Date, Time and Other Details -->
+                        <ul class="detail-card-bottom-info">
+
+
+<!-- Appointment Date -->
+<li>
+    <h6>
+        <i class="fa-regular fa-calendar"></i>
+        Appointment Date
+    </h6>
+
+    <span>
+        {% if app.appointment_date %}
+            {{ app.appointment_date|date:"d M Y" }}
+        {% else %}
+            Date not selected
+        {% endif %}
+    </span>
+</li>
+
+<!-- Appointment Weekday -->
+<li>
+    <h6>
+        <i class="fa-regular fa-calendar-days"></i>
+        Appointment Day
+    </h6>
+
+    <span>
+        {% if app.appointment_date %}
+            {{ app.appointment_date|date:"l" }}
+        {% else %}
+            {{ app.appointment_day|default:"Day not available" }}
+        {% endif %}
+    </span>
+</li>
+
+
+                            <!-- Appointment Time -->
+                            <li>
+                                <h6>
+                                    <i class="fa-regular fa-clock"></i>
+                                    Appointment Time
+                                </h6>
+
+                                <span class="appointment-date-time">
+                                    {% if app.appointment_time %}
+                                        {{ app.appointment_time|time:"h:i A" }}
+                                    {% else %}
+                                        Time not available
+                                    {% endif %}
+                                </span>
+                            </li>
+
+                            
+
+                            <!-- Patient Location -->
+                            <li>
+                                <h6>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Location
+                                </h6>
+
+                                <span>
+                                    {% if app.patient.city %}
+                                        {{ app.patient.city }}
+                                    {% endif %}
+
+                                    {% if app.patient.state %}
+                                        , {{ app.patient.state }}
+                                    {% endif %}
+
+                                    {% if not app.patient.city and not app.patient.state %}
+                                        Not available
+                                    {% endif %}
+                                </span>
+                            </li>
+
+                            <!-- Visit Type -->
+                            <li>
+                                <h6>Visit Type</h6>
+                                <span>General</span>
+                            </li>
+
+                            <!-- Video Call Button -->
+                            <li>
+                               <div class="start-btn">
+
+    {% if app.status == "Approved" and app.call_available %}
+
+        <!-- Show only during the 2-hour appointment window -->
+        <a
+            href="{% url 'start_video_call' app.id %}"
+            class="btn btn-primary">
+            <i class="fa-solid fa-video"></i>
+            Join Video Call
+        </a>
+
+    {% elif app.status == "Approved" %}
+
+        <!-- Appointment has not started or the window has expired -->
+        <span class="text-muted">
+            <i class="fa-regular fa-clock"></i>
+            Video call unavailable
+        </span>
+
+    {% endif %}
+
+</div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    {% empty %}
+
+                    <div class="text-center p-4">
+                        <h5>No Appointments Found</h5>
+                        <p>You don't have any appointments yet.</p>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
-										</li>
-
-									</ul>
-
-									<!-- Bottom Information -->
-									<ul class="detail-card-bottom-info">
-
-										<!-- Appointment Day -->
-										<li>
-											<h6>Appointment Day</h6>
-
-											<span>
-												{{ app.appointment_day }}
-											</span>
-										</li>
-
-										<!-- Clinic -->
-										<li>
-											<h6>Clinic Location</h6>
-
-											<span>
-												Clinic
-											</span>
-										</li>
-
-										<!-- Patient Location -->
-										<li>
-											<h6>Location</h6>
-
-											<span>
-												{% if app.patient.city %}
-													{{ app.patient.city }}
-												{% endif %}
-
-												{% if app.patient.state %}
-													, {{ app.patient.state }}
-												{% endif %}
-											</span>
-										</li>
-
-										<!-- Visit Type -->
-										<li>
-											<h6>Visit Type</h6>
-
-											<span>
-												General
-											</span>
-										</li>
-
-										<!-- Start Session -->
-										<li>
-											<div class="start-btn">
-
-											{% if app.status == "Approved" %}
-    <a href="{% url 'start_video_call' app.id %}"
-       class="btn btn-secondary">
-        Start Session
-    </a>
-{% endif %}
-											</div>
-										</li>
-
-									</ul>
-
-								</div>
-								<!-- /Appointment Detail Card -->
-
-								{% empty %}
-
-								<div class="text-center p-4">
-									<h5>No Appointments Found</h5>
-									<p>You don't have any appointments yet.</p>
-								</div>
-
-								{% endfor %}
-
-								
-
-							
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-			</div>		
-			<!-- /Page Content -->
-
-
-
-<script src="https://meet.jit.si/external_api.js"></script>
-
-<script>
-
-    const roomName = "{{ room_name }}";
-
-    const domain = "meet.jit.si";
-
-    const options = {
-
-        roomName: roomName,
-
-        width: "100%",
-
-        height: "100%",
-
-        parentNode:
-            document.querySelector("#jitsi-container"),
-
-        userInfo: {
-
-            displayName:
-                "{{ request.user.get_full_name|default:request.user.username }}"
-
-        }
-
-    };
-
-    const api = new JitsiMeetExternalAPI(
-        domain,
-        options
-    );
-
-
-    api.addEventListener(
-        "readyToClose",
-        function () {
-
-            window.history.back();
-
-        }
-    );
-
-</script>
 {% endblock %}
+

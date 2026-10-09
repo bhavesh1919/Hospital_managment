@@ -7,15 +7,19 @@ from datetime import datetime
 from django.contrib import messages 
 from django.db.models import Case, When, IntegerField
 from django.contrib.auth.decorators import login_required
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+from django.db.models import Case, When, IntegerField
 
 @login_required(login_url="/login/")
+
+
 def patient_dashboard(req):
 
     patient = Patient.objects.get(profile__user=req.user)
 
-    doctors = Docter.objects.all()
-
-    av = appointment.objects.filter(
+    # Get appointments
+    appointments_qs = appointment.objects.filter(
         patient=patient,
         status__in=["Pending", "Approved"]
     ).select_related(
@@ -28,10 +32,55 @@ def patient_dashboard(req):
         )
     )
 
-    health_record = Vital.objects.filter(
-        patient=patient
-    ).order_by("-id").first()
+    # Use Indian Standard Time explicitly
+    india_timezone = ZoneInfo("Asia/Kolkata")
 
+    now = datetime.now(india_timezone).replace(tzinfo=None)
+
+    # Convert to a list so each appointment can receive
+    # its call_available attribute
+    av = list(appointments_qs)
+
+    for app in av:
+
+        # Hide the button unless all conditions are satisfied
+        app.call_available = False
+
+        if (
+            app.status == "Approved"
+            and app.appointment_date
+            and app.appointment_time
+        ):
+
+            appointment_start = datetime.combine(
+                app.appointment_date,
+                app.appointment_time
+            )
+
+            appointment_end = appointment_start + timedelta(hours=2)
+
+            # Button is visible from the appointment start
+            # until exactly two hours after it starts
+            app.call_available = (
+                appointment_start <= now < appointment_end
+            )
+
+            # Debug output in the Django terminal
+            print(
+                f"[VIDEO DEBUG] Appointment #{app.id} | "
+                f"Status={app.status} | "
+                f"Start={appointment_start} | "
+                f"End={appointment_end} | "
+                f"Now={now} | "
+                f"Available={app.call_available}"
+            )
+
+    # Keep health records unchanged
+    health_record = Vital.objects.filter(
+        patient_id=patient.id
+    ).order_by("-added_on").first()
+
+    # Keep favourites unchanged
     favourites = Favourite.objects.filter(
         patient=patient
     ).select_related("docter")
@@ -41,10 +90,12 @@ def patient_dashboard(req):
         "patient_dashboard.html",
         {
             "av": av,
-            "health_record": health_record,
+           "health_record": health_record,
             "favourites": favourites,
         }
     )
+
+
 
 def cancel_appointment(request, id):
 

@@ -79,7 +79,11 @@
 										</div>
 									</li>
 								</ul>
-								<a href="/add-vital/{{user.id}}" class="btn btn-md btn-primary-gradient rounded-pill" data-bs-toggle="modal">Add Vitals</a>
+<a href="{% url 'add_vital' request.user.id %}"
+   class="btn btn-md btn-primary-gradient rounded-pill">
+    <i class="fa-solid fa-plus me-1"></i>
+    Add Vitals
+</a>
 							</div>
 							<div class="row">
 								<div class="col-md-12">

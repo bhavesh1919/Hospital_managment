@@ -4,7 +4,11 @@ from app1.models import Docter,Profile,Patient
 from patient.models import appointment as Appointment
 from .models import Availability,MedicalRecord,DoctorService,DoctorSpeciality,Speciality
 from django.contrib import messages
-
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
+from django.utils import timezone
+from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404, render
 
 from .models import (
     Docter,
@@ -64,6 +68,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 
 
+
 def appointments(request):
 
     # Logged-in doctor
@@ -80,15 +85,63 @@ def appointments(request):
         "appointment"
     ).order_by("-id")
 
-
+    # Pagination: show 3 appointments per page
     paginator = Paginator(appointments, 3)
 
     page_number = request.GET.get("page")
 
     appointments_page = paginator.get_page(page_number)
 
+    # --------------------------------------------------
+    # VIDEO CALL AVAILABILITY
+    # Approved appointment, from scheduled time
+    # until exactly 2 hours later
+    # --------------------------------------------------
 
-   
+    india_timezone = ZoneInfo("Asia/Kolkata")
+
+    now = timezone.now().astimezone(india_timezone)
+
+    # Calculate availability for appointments on this page
+    for app in appointments_page:
+
+        app.call_available = False
+
+        if (
+            app.status == "Approved"
+            and app.appointment_date
+            and app.appointment_time
+        ):
+
+            # Actual appointment date and time
+            appointment_start = datetime.combine(
+                app.appointment_date,
+                app.appointment_time
+            ).replace(tzinfo=india_timezone)
+
+            # End time: 2 hours after appointment starts
+            appointment_end = (
+                appointment_start + timedelta(hours=2)
+            )
+
+            # Button appears only during this window
+            app.call_available = (
+                appointment_start <= now < appointment_end
+            )
+
+            # Debug output in Django terminal
+            print(
+                f"[DOCTOR VIDEO CALL] Appointment #{app.id} | "
+                f"Status={app.status} | "
+                f"Start={appointment_start} | "
+                f"End={appointment_end} | "
+                f"Now={now} | "
+                f"Available={app.call_available}"
+            )
+
+    # --------------------------------------------------
+    # UNIQUE PATIENTS AND AGE
+    # --------------------------------------------------
 
     patients = []
     patient_ids = set()
@@ -99,7 +152,6 @@ def appointments(request):
 
             patient = app.patient
 
-            # Calculate age
             if patient.dob:
 
                 today = date.today()
@@ -114,15 +166,15 @@ def appointments(request):
                 )
 
             else:
-
                 patient.age = ""
 
             patients.append(patient)
 
             patient_ids.add(app.patient_id)
 
-
-    
+    # --------------------------------------------------
+    # CONTEXT
+    # --------------------------------------------------
 
     context = {
         "appointments": appointments_page,
