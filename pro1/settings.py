@@ -247,4 +247,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # DEFAULT PRIMARY KEY
 # --------------------------------------------------
 
+<<<<<<< HEAD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+=======
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+>>>>>>> 2a342d3cc99c37c767cc35504ff88649db205a34
