@@ -7,6 +7,7 @@ Hospital Management System
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 # Load .env for local development
 load_dotenv()
@@ -139,11 +140,19 @@ TEMPLATES = [
 # For production, configure PostgreSQL before deploying.
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        os.getenv('DATABASE_URL'),
+        conn_max_age=0,
+        ssl_require=True
+    ),
+
+  
 }
+
+DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS']=True
+
+
+
 
 
 # --------------------------------------------------
@@ -247,8 +256,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # DEFAULT PRIMARY KEY
 # --------------------------------------------------
 
-<<<<<<< HEAD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-=======
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
->>>>>>> 2a342d3cc99c37c767cc35504ff88649db205a34
